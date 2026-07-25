@@ -1,0 +1,307 @@
+/* pfd-chrome.css
+ *
+ * Styles for the PFD top and bottom chrome bars:
+ *   PFDTopBar  → .pfd-top-bar  / .ptb-*
+ *   PFDBottomBar → .pfd-bottom-bar / .pbb-*
+ *
+ * Both bars use --hud-* design tokens defined in hud-tokens.css.
+ * Import hud-tokens.css BEFORE this file (done via FlightHUD.tsx chain).
+ */
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PFD TOP BAR — .pfd-top-bar
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.pfd-top-bar {
+  display:          flex;
+  flex-direction:   column;
+  gap:              3px;
+  width:            100%;
+  padding:          5px 8px;
+  background:       rgba(2, 6, 23, 0.95);
+  border-bottom:    1px solid rgba(91, 160, 245, 0.06);
+  box-sizing:       border-box;
+  font-family:      var(--hud-font-ui);
+  color:            var(--hud-text);
+  user-select:      none;
+}
+
+/* ── Shared row layout ─────────────────────────────────────────────────── */
+
+.ptb-row {
+  display:          flex;
+  flex-direction:   row;
+  align-items:      center;
+  gap:              6px;
+  width:            100%;
+  min-height:       0;
+}
+
+/* ── Row 1: arm status + drone name + flight mode ──────────────────────── */
+
+.ptb-row--primary {
+  gap: 5px;
+}
+
+/* LED dot — disarmed = dim green, armed = red blinking */
+.ptb-arm-dot {
+  flex-shrink:      0;
+  width:            7px;
+  height:           7px;
+  border-radius:    50%;
+  transition:       background-color 0.2s ease;
+}
+
+.ptb-arm-dot--disarmed {
+  background-color: #336644;
+  box-shadow:       0 0 3px #336644;
+}
+
+.ptb-arm-dot--armed {
+  background-color: var(--hud-critical);
+  box-shadow:       0 0 5px var(--hud-critical);
+  animation:        ptb-arm-pulse 0.8s ease-in-out infinite;
+}
+
+@keyframes ptb-arm-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* Drone name */
+.ptb-drone-name {
+  font-family:      var(--hud-font-ui);
+  font-size:        12.1px;
+  font-weight:      700;
+  letter-spacing:   0.06em;
+  color:            var(--hud-text);
+  white-space:      nowrap;
+}
+
+/* Arm state text label */
+.ptb-arm-label {
+  font-family:      var(--hud-font-mono);
+  font-size:        11px;
+  font-weight:      600;
+  letter-spacing:   0.05em;
+  white-space:      nowrap;
+  transition:       var(--hud-transition);
+}
+
+.ptb-arm-label--disarmed {
+  color: var(--hud-text-dim);
+}
+
+.ptb-arm-label--armed {
+  color:     var(--hud-critical);
+  animation: ptb-arm-pulse 0.8s ease-in-out infinite;
+}
+
+/* Flight mode badge */
+.ptb-mode-badge {
+  font-family:      var(--hud-font-mono);
+  font-size:        11px;
+  font-weight:      700;
+  letter-spacing:   0.06em;
+  padding:          1px 5px;
+  border:           1px solid currentColor;
+  border-radius:    var(--hud-radius);
+  white-space:      nowrap;
+  text-transform:   uppercase;
+  transition:       var(--hud-transition);
+}
+
+/* ── Row 2: GPS + battery + link ───────────────────────────────────────── */
+
+.ptb-row--secondary {
+  gap: 8px;
+}
+
+/* Generic labelled field */
+.ptb-field {
+  display:          flex;
+  flex-direction:   row;
+  align-items:      baseline;
+  gap:              3px;
+  white-space:      nowrap;
+}
+
+.ptb-field-lbl {
+  font-family:      var(--hud-font-ui);
+  font-size:        9.9px;
+  font-weight:      500;
+  color:            var(--hud-text-dim);
+  letter-spacing:   0.04em;
+  text-transform:   uppercase;
+}
+
+.ptb-field-val {
+  font-family:      var(--hud-font-mono);
+  font-size:        12.1px;
+  font-weight:      600;
+  color:            var(--hud-text);
+  letter-spacing:   0.02em;
+}
+
+.ptb-field-sub {
+  font-family:      var(--hud-font-mono);
+  font-size:        9.9px;
+  color:            var(--hud-text-secondary);
+}
+
+.ptb-field--dim .ptb-field-val {
+  color: var(--hud-text-secondary);
+  font-size: 11px;
+}
+
+/* "Link LOST" blink */
+.ptb-field--lost .ptb-field-val {
+  animation: ptb-arm-pulse 1s ease-in-out infinite;
+}
+
+/* Battery with mini bar */
+.ptb-battery {
+  display:          flex;
+  flex-direction:   row;
+  align-items:      center;
+  gap:              4px;
+}
+
+.ptb-battery--critical .ptb-field-val {
+  animation: ptb-arm-pulse 0.6s ease-in-out infinite;
+}
+
+.ptb-bat-track {
+  width:            36px;
+  height:           6px;
+  border:           1px solid rgba(91, 160, 245, 0.08);
+  border-radius:    2px;
+  overflow:         hidden;
+  background:       rgba(6, 10, 24, 0.80);
+  flex-shrink:      0;
+}
+
+.ptb-bat-fill {
+  height:           100%;
+  transition:       width 0.8s ease, background-color 0.4s ease;
+  border-radius:    1px;
+}
+
+/* Vertical divider */
+.ptb-divider-v {
+  width:            1px;
+  height:           14px;
+  background:       var(--hud-border-light);
+  flex-shrink:      0;
+}
+
+/* Flex spacer */
+.ptb-spacer {
+  flex: 1;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PFD BOTTOM BAR — .pfd-bottom-bar
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.pfd-bottom-bar {
+  width:            100%;
+  background:       rgba(2, 6, 23, 0.95);
+  border-top:       1px solid rgba(91, 160, 245, 0.06);
+  border-bottom:    1px solid rgba(91, 160, 245, 0.06);
+  box-sizing:       border-box;
+  font-family:      var(--hud-font-ui);
+  color:            var(--hud-text);
+  user-select:      none;
+}
+
+/* 4-column grid, 2 rows auto-fill */
+.pbb-grid {
+  display:               grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows:    repeat(2, auto);
+  width:                 100%;
+}
+
+/* Individual data cell */
+.pbb-cell {
+  display:          flex;
+  flex-direction:   column;
+  align-items:      center;
+  justify-content:  center;
+  padding:          4px 4px;
+  border-right:     1px solid var(--hud-border);
+  border-bottom:    1px solid var(--hud-border);
+  min-width:        0;
+  overflow:         hidden;
+}
+
+/* Remove right border from 4th column cells */
+.pbb-cell:nth-child(4n) {
+  border-right: none;
+}
+
+/* Remove bottom border from last 4 cells (Row 2) */
+.pbb-cell:nth-child(n+5) {
+  border-bottom: none;
+}
+
+/* Coordinate cells get a narrower font to fit 7-decimal values */
+.pbb-cell--coord {
+  padding-left:  2px;
+  padding-right: 2px;
+}
+
+.pbb-cell--coord-wide {
+  grid-column: span 2;
+}
+
+/* Label */
+.pbb-lbl {
+  font-family:      var(--hud-font-ui);
+  font-size:        9.35px;
+  font-weight:      500;
+  letter-spacing:   0.06em;
+  text-transform:   uppercase;
+  color:            var(--hud-text-dim);
+  line-height:      1;
+  white-space:      nowrap;
+}
+
+/* Primary value */
+.pbb-val {
+  font-family:      var(--hud-font-mono);
+  font-size:        14.3px;
+  font-weight:      600;
+  color:            var(--hud-text);
+  line-height:      1.2;
+  white-space:      nowrap;
+  letter-spacing:   0.01em;
+  transition:       color 0.3s ease;
+}
+
+/* Unit suffix */
+.pbb-unit {
+  font-family:      var(--hud-font-ui);
+  font-size:        9.35px;
+  color:            var(--hud-text-secondary);
+  line-height:      1;
+}
+
+/* Vertical speed color coding */
+.pbb-val--up   { color: var(--hud-accent); }
+.pbb-val--down { color: var(--hud-warning); }
+
+/* Distance values — slightly smaller to fit "1.23 km" comfortably */
+.pbb-val--nav {
+  font-size: 13.2px;
+}
+
+/* Coordinate values — mono small to fit 7-decimal digits */
+.pbb-val--coord {
+  font-size:   10.45px;
+  font-family: var(--hud-font-mono);
+  color:       var(--hud-text-secondary);
+  letter-spacing: 0;
+}

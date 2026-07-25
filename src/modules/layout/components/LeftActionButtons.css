@@ -1,0 +1,163 @@
+﻿/* LeftActionButtons.css
+ *
+ * Configuration action buttons — left column, between PFD and Telemetry.
+ * Tactical GCS dark theme. Consistent with existing --rohu-* design tokens.
+ */
+
+/* ── Container ─────────────────────────────────────────────────────── */
+.left-action-section {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0 8px;
+  background: rgba(17, 24, 39, 0.55);
+  border: 1px solid rgba(91, 160, 245, 0.1);
+  border-radius: var(--rohu-radius-sm);
+  overflow: hidden;
+}
+
+/* ── Section header label ──────────────────────────────────────────── */
+.left-action-header {
+  padding: 7px 12px 6px;
+  border-bottom: 1px solid rgba(91, 160, 245, 0.08);
+}
+
+.left-action-section-label {
+  font-size: 9.9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--rohu-text-muted);
+  text-transform: uppercase;
+  font-family: var(--rohu-font-ui);
+  user-select: none;
+}
+
+/* ── Button list ───────────────────────────────────────────────────── */
+.left-action-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Individual button ─────────────────────────────────────────────── */
+.left-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 0;
+  color: var(--rohu-text-secondary);
+  font-family: var(--rohu-font-ui);
+  font-size: 12.1px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-left-color 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  border-left: 2px solid transparent;
+  position: relative;
+  outline: none;
+}
+
+.left-action-btn:last-child {
+  border-bottom: none;
+}
+
+/* Hover state */
+.left-action-btn:hover {
+  background: rgba(91, 160, 245, 0.06);
+  color: var(--rohu-text-primary);
+  border-left-color: var(--rohu-neon);
+}
+
+/* Icon wrapper — consistent sizing for svg icons */
+.left-action-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--rohu-neon-dim, rgba(91, 160, 245, 0.5));
+  transition: color 180ms ease;
+}
+
+.left-action-btn:hover .left-action-btn-icon {
+  color: var(--rohu-neon, #5BA0F5);
+}
+
+/* Focus-visible — keyboard accessibility */
+.left-action-btn:focus-visible {
+  background: rgba(91, 160, 245, 0.07);
+  color: var(--rohu-text-primary);
+  border-left-color: var(--rohu-cyan);
+  box-shadow: inset 0 0 0 1px rgba(0, 229, 255, 0.2);
+}
+
+/* Active/press state */
+.left-action-btn:active {
+  background: rgba(91, 160, 245, 0.09);
+}
+
+/* ── Icon ──────────────────────────────────────────────────────────── */
+.left-action-btn-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15.4px;
+  line-height: 1;
+  color: var(--rohu-text-muted);
+  transition: color 150ms ease;
+}
+
+.left-action-btn:hover .left-action-btn-icon {
+  color: var(--rohu-neon);
+}
+
+.left-action-btn:focus-visible .left-action-btn-icon {
+  color: var(--rohu-cyan);
+}
+
+/* ── Label ─────────────────────────────────────────────────────────── */
+.left-action-btn-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Trailing arrow ────────────────────────────────────────────────── */
+.left-action-btn-arrow {
+  flex-shrink: 0;
+  font-size: 15.4px;
+  line-height: 1;
+  color: var(--rohu-text-muted);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease,
+    color 150ms ease;
+}
+
+.left-action-btn:hover .left-action-btn-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--rohu-neon);
+}
+
+.left-action-btn:focus-visible .left-action-btn-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--rohu-cyan);
+}

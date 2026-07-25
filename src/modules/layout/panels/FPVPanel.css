@@ -1,0 +1,216 @@
+/* ═══════════════════════════════════════════════════════════════
+   FPVPanel.css — Premium Aerospace FPV Feed Wrapper
+   ═══════════════════════════════════════════════════════════════ */
+
+.fpv-panel-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid rgba(34, 197, 94, 0.2);
+  background: rgba(2, 6, 23, 0.95);
+  box-shadow: inset 0 10px 30px rgba(0, 0, 0, 0.5), 0 -4px 16px rgba(0, 0, 0, 0.4);
+  /* Optional glassmorphism on the panel itself */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10;
+  cursor: grab;
+}
+
+/* ── Header Bar ── */
+.fpv-panel-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  z-index: 20;
+  pointer-events: auto; /* Changed to auto so the drag system can catch mousedown */
+}
+
+.fpv-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--rohu-font-ui, system-ui);
+  font-size: 12.1px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #22c55e;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+.fpv-rec-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.8);
+  animation: fpv-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes fpv-pulse { 
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(34, 197, 94, 0.8); } 
+  50% { opacity: 0.4; box-shadow: 0 0 2px rgba(34, 197, 94, 0.2); } 
+}
+
+.fpv-close-btn {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: none;
+  background: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.fpv-close-btn:hover {
+  background: rgba(239, 68, 68, 0.3);
+  color: #fff;
+}
+
+/* ── Content (Cesium Globe Canvas) ── */
+.fpv-panel-content {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Cesium specific overrides to hide its UI when used in the tiny panel */
+.fpv-panel-content .cesium-viewer-bottom {
+  display: none !important;
+}
+
+/* ══ FLOATING STATE ══════════════════════════════════════════════════ */
+
+.fpv-floating {
+  position: fixed;
+  z-index: 950;
+  display: flex;
+  flex-direction: column;
+  background: rgba(20, 25, 35, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(34, 197, 94, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.08);
+  user-select: none;
+  transition: box-shadow 240ms ease, background 240ms ease;
+  /* Reset aspect-ratio when floating to allow manual resizing */
+  aspect-ratio: unset;
+}
+
+.fpv-floating:active {
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.6),
+    0 0 0 2px rgba(34, 197, 94, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.12);
+}
+
+.fpv-floating .fpv-panel-header {
+  background: rgba(30, 35, 50, 0.80);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Placeholder when FPV is floating ───────────────────────────── */
+.fpv-placeholder {
+  width: 100%;
+  height: 56px;
+  background: rgba(3, 7, 14, 0.80);
+  border: 1px dashed rgba(34, 197, 94, 0.45);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.fpv-placeholder-label {
+  font-size: 11px;
+  color: rgba(34, 197, 94, 0.55);
+  letter-spacing: 1.5px;
+  font-family: 'B612 Mono', monospace;
+  text-transform: uppercase;
+}
+
+.fpv-placeholder-btn {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 4px 11px;
+  border: 1px solid rgba(34, 197, 94, 0.50);
+  border-radius: 5px;
+  background: rgba(34, 197, 94, 0.15);
+  color: rgba(34, 197, 94, 0.80);
+  cursor: pointer;
+  transition: background 130ms ease, color 130ms ease;
+  font-family: 'B612 Mono', monospace;
+}
+
+.fpv-placeholder-btn:hover {
+  background: rgba(34, 197, 94, 0.35);
+  color: #fff;
+}
+
+/* ── Resize handler ────────────────────────────────────────────── */
+.fpv-resize {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  cursor: se-resize;
+  z-index: 10;
+  background: linear-gradient(
+    135deg,
+    transparent 48%,
+    rgba(34, 197, 94, 0.35) 48%,
+    rgba(34, 197, 94, 0.35) 52%,
+    transparent 52%
+  );
+  border-bottom-right-radius: 12px;
+  transition: background 140ms ease;
+}
+
+.fpv-resize:hover {
+  background: linear-gradient(
+    135deg,
+    transparent 48%,
+    rgba(34, 197, 94, 0.60) 48%,
+    rgba(34, 197, 94, 0.60) 52%,
+    transparent 52%
+  );
+}
+
+.fpv-hint {
+  font-size: 9.9px;
+  font-weight: 600;
+  color: rgba(34, 197, 94, 0.85);
+  font-family: 'B612 Mono', monospace;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}

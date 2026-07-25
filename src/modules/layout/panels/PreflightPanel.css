@@ -1,0 +1,238 @@
+﻿/* ═══════════════════════════════════════════════════════════════════════
+   PreflightPanel.css — Manual Pre-flight Checklist
+   Checklist-only panel. System Status was moved to DroneHealthPanel.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Entry animation ──────────────────────────────────────────────────── */
+@keyframes pf-fade-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pf-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes pf-banner-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.25); }
+  50%       { box-shadow: 0 0 12px 2px rgba(16, 185, 129, 0.15); }
+}
+
+/* ── Panel container ──────────────────────────────────────────────────── */
+.pf-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: pf-fade-in 0.25s ease both;
+}
+
+/* ── Section title ────────────────────────────────────────────────────── */
+.pf-section-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--rohu-neon, #5BA0F5);
+  opacity: 0.8;
+  padding-left: 4px;
+  margin-bottom: 3px;
+}
+
+.pf-section-title::before {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 12px;
+  background: var(--rohu-neon, #5BA0F5);
+  border-radius: 2px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* ── Check counter badge ──────────────────────────────────────────────── */
+.pf-check-counter {
+  margin-left: auto;
+  font-size: 0.638rem;
+  font-weight: 700;
+  color: var(--rohu-text-muted, #6B7280);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Checklist ────────────────────────────────────────────────────────── */
+.pf-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* ── Checklist item button ────────────────────────────────────────────── */
+.pf-check-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 9px;
+  background: rgba(8, 13, 24, 0.60);
+  border: 1px solid rgba(91, 160, 245, 0.13);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  text-align: left;
+  width: 100%;
+  outline: none;
+}
+
+.pf-check-item:hover {
+  background: rgba(91, 160, 245, 0.07);
+  border-color: rgba(91, 160, 245, 0.28);
+}
+
+.pf-check-item:focus-visible {
+  outline: 2px solid var(--rohu-neon, #5BA0F5);
+  outline-offset: 2px;
+}
+
+.pf-check-item--done {
+  background: rgba(16, 185, 129, 0.07);
+  border-color: rgba(16, 185, 129, 0.28);
+}
+
+.pf-check-item--done .pf-check-label {
+  color: var(--rohu-text-muted, #6B7280);
+  text-decoration: line-through;
+  text-decoration-color: rgba(16, 185, 129, 0.45);
+}
+
+/* ── Checkbox square ──────────────────────────────────────────────────── */
+.pf-checkbox {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  border: 1.5px solid rgba(156, 163, 175, 0.38);
+  border-radius: 4px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.pf-checkbox--checked {
+  background: #059669;
+  border-color: #059669;
+  color: #fff;
+}
+
+.pf-checkbox svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* ── Check item label ─────────────────────────────────────────────────── */
+.pf-check-label {
+  font-size: 0.715rem;
+  font-weight: 500;
+  color: var(--rohu-text-secondary, #9CA3AF);
+  line-height: 1.4;
+  transition: color 0.15s ease;
+  text-align: left;
+}
+
+/* ── Completion banner ────────────────────────────────────────────────── */
+.pf-complete-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  border: 1px solid rgba(16, 185, 129, 0.40);
+  background: rgba(16, 185, 129, 0.10);
+  color: #34D399;
+  font-size: 0.77rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  animation: pf-banner-glow 3s ease-in-out infinite;
+  margin-top: 2px;
+}
+
+.pf-banner-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34D399;
+  flex-shrink: 0;
+  animation: pf-pulse 1.8s ease-in-out infinite;
+}
+
+.pf-banner-label {
+  flex: 1;
+}
+
+.pf-banner-icon {
+  font-size: 0.935rem;
+  font-weight: 800;
+}
+
+.pf-auto-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pf-auto-check {
+  display: flex;
+  gap: 8px;
+  padding: 8px 9px;
+  border: 1px solid rgba(91, 160, 245, 0.12);
+  border-radius: 9px;
+  background: rgba(8, 13, 24, 0.58);
+}
+
+.pf-auto-check--ok {
+  border-color: rgba(34, 197, 94, 0.22);
+}
+
+.pf-auto-check--blocked {
+  border-color: rgba(234, 179, 8, 0.24);
+}
+
+.pf-auto-dot {
+  width: 7px;
+  height: 7px;
+  margin-top: 4px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #eab308;
+}
+
+.pf-auto-check--ok .pf-auto-dot {
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.35);
+}
+
+.pf-auto-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.pf-auto-label {
+  color: var(--rohu-text-secondary, #9ca3af);
+  font-size: 0.693rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pf-auto-detail {
+  color: var(--rohu-text-muted, #6b7280);
+  font-size: 0.671rem;
+  line-height: 1.3;
+}

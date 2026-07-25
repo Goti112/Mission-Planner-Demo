@@ -1,0 +1,14 @@
+{
+  "navbar": {
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "connecting": "Connecting...",
+    "status": "State:",
+    "statusConnected": "Connected",
+    "statusError": "Connection err",
+    "statusDisconnected": "Disconnected",
+    "connectTooltip": "Connect drone",
+    "disconnectTooltip": "Disconnect drone",
+    "hud": "HUD"
+  }
+}

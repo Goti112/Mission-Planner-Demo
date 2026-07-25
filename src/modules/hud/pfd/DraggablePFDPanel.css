@@ -1,0 +1,317 @@
+/* DraggablePFDPanel.css
+ *
+ * Styles for the draggable PFD wrapper.
+ *
+ * States:
+ *   DOCKED  — renders inline in the left sidebar with a thin grab handle on top
+ *   FLOATING — renders as a fixed overlay anywhere on screen (via React Portal)
+ */
+
+/* ══ DOCKED STATE ════════════════════════════════════════════════════ */
+
+.dpfd-docked {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: grab;
+}
+
+/* Thin grab bar that sits above the PFD when docked */
+.dpfd-handle--docked {
+  flex-shrink: 0;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 8px;
+  background: rgba(4, 10, 20, 0.97);
+  border-bottom: 1px solid rgba(20, 50, 100, 0.70);
+  cursor: grab;
+  user-select: none;
+  transition: background 120ms ease;
+}
+
+.dpfd-handle--docked:hover {
+  background: rgba(8, 18, 36, 0.98);
+}
+
+.dpfd-handle--docked:active {
+  cursor: grabbing;
+}
+
+.dpfd-handle-icon {
+  font-size: 14.3px;
+  color: rgba(80, 130, 190, 0.50);
+  letter-spacing: -2px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.dpfd-handle-label {
+  font-size: 9.9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(80, 130, 190, 0.55);
+  text-transform: uppercase;
+  font-family: 'B612 Mono', 'Courier New', monospace;
+  flex: 1;
+}
+
+.dpfd-hint {
+  font-size: 8.8px;
+  color: rgba(60, 90, 130, 0.40);
+  font-family: 'B612 Mono', monospace;
+  white-space: nowrap;
+}
+
+/* Small placeholder shown in the sidebar when PFD is floating */
+.dpfd-placeholder {
+  width: 100%;
+  height: 56px;
+  background: rgba(3, 7, 14, 0.80);
+  border: 1px dashed rgba(25, 55, 105, 0.45);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.dpfd-placeholder-label {
+  font-size: 11px;
+  color: rgba(70, 110, 160, 0.55);
+  letter-spacing: 1.5px;
+  font-family: 'B612 Mono', monospace;
+  text-transform: uppercase;
+}
+
+.dpfd-placeholder-btn {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 4px 11px;
+  border: 1px solid rgba(40, 90, 160, 0.50);
+  border-radius: 5px;
+  background: rgba(15, 40, 90, 0.30);
+  color: rgba(90, 150, 220, 0.80);
+  cursor: pointer;
+  transition: background 130ms ease, color 130ms ease;
+  font-family: 'B612 Mono', monospace;
+}
+
+.dpfd-placeholder-btn:hover {
+  background: rgba(25, 60, 140, 0.45);
+  color: #7ab8f5;
+}
+
+/* ══ FLOATING STATE ══════════════════════════════════════════════════ 
+ *
+ * GLASS MORPHISM DESIGN — Modern translucent floating panel
+ * ════════════════════════════════════════════════════════════════════
+ */
+
+.dpfd-floating {
+  position: fixed;
+  z-index: 950;
+  display: flex;
+  flex-direction: column;
+  /* ── Glass morphism foundation ──────────────────────────────────── */
+  background: rgba(20, 25, 35, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  /* ── Depth and shadow ────────────────────────────────────────────── */
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(100, 180, 255, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  /* Prevent selection while dragging */
+  user-select: none;
+  /* Smooth transitions for state changes */
+  transition: box-shadow 240ms ease, background 240ms ease;
+  cursor: grab;
+}
+
+/* Enhanced glow when focused/dragging */
+.dpfd-floating:active {
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.6),
+    0 0 0 2px rgba(100, 180, 255, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.12);
+}
+
+/* Drag handle bar at top of floating panel — glass style */
+.dpfd-handle--floating {
+  flex-shrink: 0;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 10px;
+  /* Subtle top section — slightly more visible than panel */
+  background: rgba(30, 35, 50, 0.40);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: grab;
+  user-select: none;
+  /* Smooth transition on hover */
+  transition: background 180ms ease;
+}
+
+.dpfd-handle--floating:hover {
+  background: rgba(40, 50, 70, 0.50);
+}
+
+.dpfd-handle--floating:active {
+  cursor: grabbing;
+  background: rgba(50, 65, 90, 0.55);
+}
+
+/* ── Handle label and icons ────────────────────────────────────────── */
+.dpfd-handle-icon {
+  font-size: 14.3px;
+  color: rgba(150, 190, 255, 0.50);
+  letter-spacing: -2px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.dpfd-handle-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(180, 210, 255, 0.60);
+  text-transform: uppercase;
+  font-family: 'B612 Mono', 'Courier New', monospace;
+  flex: 1;
+}
+
+.dpfd-hint {
+  font-size: 8.8px;
+  color: rgba(120, 150, 190, 0.40);
+  font-family: 'B612 Mono', monospace;
+  white-space: nowrap;
+}
+
+/* ── Action buttons on handle ───────────────────────────────────────── */
+.dpfd-float-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.dpfd-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid rgba(150, 190, 255, 0.20);
+  background: rgba(100, 150, 255, 0.08);
+  color: rgba(150, 190, 255, 0.75);
+  font-size: 13.2px;
+  cursor: pointer;
+  transition: all 140ms ease;
+  line-height: 1;
+  padding: 0;
+  /* Subtle glow on hover */
+  box-shadow: 0 0 0 0 rgba(100, 150, 255, 0);
+}
+
+.dpfd-action-btn:hover {
+  background: rgba(100, 160, 255, 0.15);
+  color: rgba(200, 230, 255, 0.95);
+  border-color: rgba(150, 200, 255, 0.35);
+  box-shadow: 0 0 12px rgba(100, 160, 255, 0.20);
+}
+
+.dpfd-action-btn:active {
+  background: rgba(100, 160, 255, 0.25);
+  transform: scale(0.95);
+}
+
+/* ── PFD canvas area inside the floating panel ──────────────────────── */
+.dpfd-content {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 15, 25, 0.20);
+  padding: 8px;
+  gap: 8px;  /*
+   * Enable CSS container queries so that cqi units inside this element
+   * resolve against this container's INLINE SIZE (width). This lets the
+   * heading tape row height scale with panel width — critical when the
+   * user drags the resize handle only horizontally (height stays fixed,
+   * so %-of-height formulas would keep the tape frozen at 28 px).
+   */
+  container-type: inline-size;}
+
+/* 
+ * Inside floating panel: pfd-grid fills the space responsively
+ * No more black bars — grid scales to ANY rectangle
+ */
+.dpfd-content .pfd-grid {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  /* Remove explicit aspect ratio for full flexibility */
+  aspect-ratio: unset;
+  min-width: 0;
+  min-height: 0;
+  /*
+   * Heading tape row uses cqi (container query inline units) so its height
+   * tracks the panel WIDTH rather than its height. With cqi, resizing the
+   * panel only horizontally still grows the tape proportionally.
+   *   8cqi = 8% of .dpfd-content’s inline (width) size.
+   * Overlay tops are kept in sync below.
+   */
+  grid-template-rows: clamp(28px, 8cqi, 72px) 1fr;
+}
+
+/* Keep the mode badge just below the heading tape in floating mode. */
+.dpfd-content .pfd-mode-overlay {
+  top: calc(clamp(28px, 8cqi, 72px) + 4px);
+}
+
+.dpfd-content .pfd-arm-overlay {
+  top: calc(clamp(28px, 8cqi, 72px) + 4px);
+}
+
+/* ── Resize handle — bottom-right corner ──────────────────────────── */
+.dpfd-resize {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  cursor: se-resize;
+  z-index: 10;
+  /* Subtle gradient triangle */
+  background: linear-gradient(
+    135deg,
+    transparent 48%,
+    rgba(150, 190, 255, 0.35) 48%,
+    rgba(150, 190, 255, 0.35) 52%,
+    transparent 52%
+  );
+  border-bottom-right-radius: 16px;
+  transition: background 140ms ease;
+}
+
+.dpfd-resize:hover {
+  background: linear-gradient(
+    135deg,
+    transparent 48%,
+    rgba(150, 190, 255, 0.60) 48%,
+    rgba(150, 190, 255, 0.60) 52%,
+    transparent 52%
+  );
+}

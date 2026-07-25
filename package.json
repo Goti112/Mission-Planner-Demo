@@ -1,0 +1,59 @@
+{
+  "name": "rohuplanner-demo",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "audit:surface": "node scripts/assert-public-surface.mjs",
+    "validate": "npm run audit:surface && npm run lint && npm run test && npm run build"
+  },
+  "dependencies": {
+    "cesium": "^1.138.0",
+    "framer-motion": "^12.38.0",
+    "i18next": "^26.0.4",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "lucide-react": "^0.575.0",
+    "mapbox-gl": "^3.19.0",
+    "mgrs": "^2.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-i18next": "^17.0.2",
+    "react-map-gl": "^7.0.17",
+    "recharts": "^3.7.0",
+    "utm": "^1.1.1",
+    "vite-plugin-static-copy": "^3.2.0",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.62.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/jsdom": "^28.0.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@types/utm": "^1.1.4",
+    "@vitejs/plugin-react": "^5.1.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "jsdom": "^29.0.2",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vite": "^8.0.0-beta.13",
+    "vite-plugin-checker": "^0.12.0",
+    "vitest": "^4.1.4"
+  },
+  "overrides": {
+    "vite": "^8.0.0-beta.13"
+  }
+}

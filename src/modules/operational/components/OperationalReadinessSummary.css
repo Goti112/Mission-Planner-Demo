@@ -1,0 +1,163 @@
+/* ── Floating anchor ─────────────────────────────────────── */
+.ors-floating-anchor {
+  position: fixed;
+  top: calc(var(--header-height, 48px) + 52px);
+  right: 16px;
+  z-index: 500;
+  pointer-events: all;
+  animation: ors-drop-in 0.28s var(--rohu-ease, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+
+@keyframes ors-drop-in {
+  from { transform: translateY(-8px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.ors-floating-anchor .ors-card {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ors-floating-anchor .ors-card:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.ors-floating-anchor .ors-card--ready {
+  border-color: rgba(34, 197, 94, 0.28);
+}
+
+.ors-floating-anchor .ors-card--warning {
+  border-color: rgba(234, 179, 8, 0.28);
+}
+
+.ors-floating-anchor .ors-card--critical {
+  border-color: rgba(239, 68, 68, 0.32);
+}
+
+/* ── Card base ───────────────────────────────────────────── */
+.ors-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 11px;
+  border: 1px solid rgba(91, 160, 245, 0.14);
+  border-radius: 12px;
+  background: rgba(8, 12, 22, 0.78);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.ors-card--compact {
+  min-width: 170px;
+  max-width: 260px;
+  padding: 6px 9px;
+  gap: 4px;
+}
+
+.ors-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ors-led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: rgba(91, 160, 245, 0.55);
+}
+
+.ors-card--ready .ors-led {
+  background: #22c55e;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.45);
+}
+
+.ors-card--warning .ors-led {
+  background: #eab308;
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.35);
+}
+
+.ors-card--critical .ors-led {
+  background: #ef4444;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.45);
+}
+
+.ors-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.ors-eyebrow {
+  color: var(--rohu-text-muted, #6b7280);
+  font-size: 0.605rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ors-summary {
+  color: var(--rohu-text-primary, #e5edf8);
+  font-size: 0.792rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ors-card--compact .ors-eyebrow {
+  font-size: 0.528rem;
+}
+
+.ors-card--compact .ors-summary {
+  font-size: 0.704rem;
+}
+
+.ors-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ors-message {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding-left: 10px;
+  border-left: 2px solid rgba(91, 160, 245, 0.24);
+}
+
+.ors-message--warning {
+  border-left-color: rgba(234, 179, 8, 0.6);
+}
+
+.ors-message--critical {
+  border-left-color: rgba(239, 68, 68, 0.75);
+}
+
+.ors-message-label {
+  color: var(--rohu-text-secondary, #9ca3af);
+  font-size: 0.682rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ors-message-detail {
+  color: var(--rohu-text-muted, #6b7280);
+  font-size: 0.671rem;
+  line-height: 1.35;
+}
+

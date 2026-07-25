@@ -1,0 +1,511 @@
+﻿@import 'mapbox-gl/dist/mapbox-gl.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ROHU GCS — Design System v3.0
+   Premium Aerospace-Grade Dark Cockpit Theme
+   Inspired by Garmin G1000 / Collins Pro Line / QGroundControl
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Surfaces — deep space palette ── */
+  --rohu-bg-primary:    #020617;
+  --rohu-bg-secondary:  rgba(4, 8, 22, 0.90);
+  --rohu-bg-tertiary:   #111827;
+  --rohu-bg-card:       rgba(11, 17, 32, 0.88);
+  --rohu-bg-card-hover: rgba(15, 23, 42, 0.95);
+  --rohu-bg-elevated:   rgba(17, 24, 39, 0.92);
+  --rohu-bg-inset:      rgba(0, 0, 0, 0.3);
+  --rohu-bg-overlay:    rgba(2, 6, 23, 0.85);
+
+  /* ── Accent — avionics cyan ── */
+  --rohu-cyan:      #00E5FF;
+  --rohu-cyan-dim:  rgba(0, 229, 255, 0.10);
+  --rohu-cyan-glow: rgba(0, 229, 255, 0.22);
+  --rohu-cyan-mid:  rgba(0, 229, 255, 0.35);
+  --rohu-indigo:    #818CF8;
+  --rohu-indigo-dim: rgba(129, 140, 248, 0.12);
+
+  /* ── Brand Red — ROHU logo ── */
+  --rohu-red:        #E53535;
+  --rohu-red-bright: #FF5E5E;
+  --rohu-red-dim:    rgba(229, 53, 53, 0.10);
+  --rohu-red-glow:   rgba(229, 53, 53, 0.18);
+  --rohu-red-soft:   #C93030;
+
+  /* ── Blue neon accent — primary interactive ── */
+  --rohu-neon:        #5BA0F5;
+  --rohu-neon-dim:    rgba(91, 160, 245, 0.10);
+  --rohu-neon-border: rgba(91, 160, 245, 0.20);
+  --rohu-neon-glow:   rgba(91, 160, 245, 0.15);
+  --rohu-neon-bright: #7DB8FF;
+
+  /* ── Semantic — vivid status colors ── */
+  --rohu-success:     #34D399;
+  --rohu-success-dim: rgba(52, 211, 153, 0.12);
+  --rohu-warning:     #FBBF24;
+  --rohu-warning-dim: rgba(251, 191, 36, 0.12);
+  --rohu-danger:      #F87171;
+  --rohu-danger-dim:  rgba(248, 113, 113, 0.12);
+
+  /* ── Text — high-contrast avionics readability ── */
+  --rohu-text-primary:   #F1F5F9;
+  --rohu-text-secondary: #94A3B8;
+  --rohu-text-muted:     #475569;
+  --rohu-text-dim:       #334155;
+
+  /* ── Borders — layered glassmorphism ── */
+  --rohu-border:        rgba(255, 255, 255, 0.06);
+  --rohu-border-glass:  rgba(255, 255, 255, 0.08);
+  --rohu-border-subtle: rgba(255, 255, 255, 0.04);
+  --rohu-border-accent: rgba(0, 229, 255, 0.16);
+  --rohu-border-red:    rgba(229, 53, 53, 0.20);
+  --rohu-border-hover:  rgba(91, 160, 245, 0.22);
+
+  /* ── Effects — elevation system ── */
+  --rohu-shadow:      0 4px 32px rgba(0, 0, 0, 0.55);
+  --rohu-shadow-glow: 0 0 24px rgba(0, 229, 255, 0.06);
+  --rohu-shadow-red:  0 0 24px rgba(229, 53, 53, 0.08);
+  --rohu-blur:        blur(20px) saturate(1.3);
+  --rohu-blur-heavy:  blur(32px) saturate(1.4);
+  --rohu-blur-light:  blur(12px) saturate(1.15);
+
+  /* ── Animation tokens ── */
+  --rohu-ease:        cubic-bezier(0.22, 1, 0.36, 1);
+  --rohu-ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --rohu-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --rohu-ease-snap:   cubic-bezier(0.12, 0.8, 0.32, 1);
+  --rohu-duration-fast: 120ms;
+  --rohu-duration-base: 180ms;
+  --rohu-duration-slow: 260ms;
+  --rohu-transition-base: var(--rohu-duration-base) var(--rohu-ease);
+  --rohu-transition-slow: var(--rohu-duration-slow) var(--rohu-ease);
+
+  /* ── Teal accent (secondary accent) ── */
+  --rohu-teal:      #06B6D4;
+  --rohu-teal-dim:  rgba(6, 182, 212, 0.12);
+  --rohu-teal-glow: rgba(6, 182, 212, 0.22);
+
+  /* ── Elevation shadow scale ── */
+  --rohu-shadow-xs: 0 1px 4px rgba(0, 0, 0, 0.3);
+  --rohu-shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --rohu-shadow-md: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --rohu-shadow-lg: 0 8px 48px rgba(0, 0, 0, 0.6);
+  --rohu-shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.7);
+  --rohu-shadow-glow-cyan: 0 0 20px rgba(0, 229, 255, 0.10);
+  --rohu-shadow-glow-red:  0 0 20px rgba(229, 53, 53, 0.10);
+  --rohu-shadow-glow-teal: 0 0 16px rgba(6, 182, 212, 0.12);
+  --rohu-shadow-glow-neon: 0 0 16px rgba(91, 160, 245, 0.10);
+
+  /* ── Type scale — aerospace optimized ── */
+  --rohu-text-2xs:  0.6875rem;  /* 11px - badges, units */
+  --rohu-text-xs:   0.75625rem; /* 12.1px - labels, captions */
+  --rohu-text-sm:   0.89375rem; /* 14.3px - secondary body */
+  --rohu-text-base: 0.9625rem;  /* 15.4px - primary body */
+  --rohu-text-md:   1.1rem;     /* 17.6px - panel titles */
+  --rohu-text-lg:   1.2375rem;  /* 19.8px - section headings */
+  --rohu-text-xl:   1.375rem;   /* 22px - large headings */
+
+  /* ── Spacing — 4px base grid ── */
+  --rohu-space-1:  4px;
+  --rohu-space-2:  8px;
+  --rohu-space-3:  12px;
+  --rohu-space-4:  16px;
+  --rohu-space-5:  20px;
+  --rohu-space-6:  24px;
+  --rohu-space-8:  32px;
+  --rohu-space-10: 40px;
+  --rohu-space-12: 48px;
+
+  /* ── Radii ── */
+  --rohu-radius:     10px;
+  --rohu-radius-sm:  6px;
+  --rohu-radius-md:  10px;
+  --rohu-radius-lg:  14px;
+  --rohu-radius-xl:  18px;
+  --rohu-radius-pill: 100px;
+
+  /* ── Typography ── */
+  --rohu-font-ui:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --rohu-font-mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+
+  /* ── Layout ── */
+  --sidebar-width:    300px;
+  --header-height:    48px;
+  --statusbar-height: 30px;
+}
+
+/* ═══════════════════════════════════════════
+   Global Reset & Base
+   ═══════════════════════════════════════════ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--rohu-font-ui);
+  background: var(--rohu-bg-primary);
+  color: var(--rohu-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Tabular-nums for any numeric display */
+.mono, [data-mono] {
+  font-family: var(--rohu-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Scrollbar styling — ultra-thin cockpit style */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(91, 160, 245, 0.12);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(91, 160, 245, 0.25);
+}
+
+/* Smooth transitions for interactive elements */
+button, a, input, select {
+  font-family: inherit;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 229, 255, 0.18);
+  color: #fff;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Utility Classes — shared across all panels
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Glass card surface — premium frost panel ── */
+.rohu-glass-card {
+  background: var(--rohu-bg-card);
+  backdrop-filter: var(--rohu-blur);
+  -webkit-backdrop-filter: var(--rohu-blur);
+  border: 1px solid var(--rohu-border-glass);
+  border-radius: var(--rohu-radius);
+  box-shadow: var(--rohu-shadow-md),
+              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: border-color var(--rohu-transition-base),
+              box-shadow var(--rohu-transition-base);
+}
+
+.rohu-glass-card:hover {
+  border-color: var(--rohu-border-hover);
+  box-shadow: var(--rohu-shadow-md),
+              var(--rohu-shadow-glow-neon);
+}
+
+/* ── Elevated glass — for floating panels & modals ── */
+.rohu-glass-elevated {
+  background: var(--rohu-bg-elevated);
+  backdrop-filter: var(--rohu-blur-heavy);
+  -webkit-backdrop-filter: var(--rohu-blur-heavy);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: var(--rohu-radius-lg);
+  box-shadow: var(--rohu-shadow-lg),
+              inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* ── Inset surface — recessed area within cards ── */
+.rohu-inset {
+  background: var(--rohu-bg-inset);
+  border: 1px solid var(--rohu-border-subtle);
+  border-radius: var(--rohu-radius-sm);
+}
+
+/* ── Section title bar — replaces duplicated ::before pattern ── */
+.rohu-section-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: var(--rohu-text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--rohu-neon);
+  padding-left: 4px;
+}
+
+.rohu-section-title::before {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 13px;
+  background: currentColor;
+  border-radius: 2px;
+  flex-shrink: 0;
+  opacity: 0.75;
+}
+
+/* ── Variant: teal accent ── */
+.rohu-section-title--teal {
+  color: var(--rohu-teal);
+}
+
+/* ── Variant: cyan accent ── */
+.rohu-section-title--cyan {
+  color: var(--rohu-cyan);
+}
+
+/* ── Badge — pill shape with glow ── */
+.rohu-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: var(--rohu-radius-pill);
+  font-size: var(--rohu-text-2xs);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  background: var(--rohu-neon-dim);
+  color: var(--rohu-neon);
+  border: 1px solid var(--rohu-neon-border);
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.rohu-badge--success {
+  background: var(--rohu-success-dim);
+  color: var(--rohu-success);
+  border-color: rgba(52, 211, 153, 0.22);
+}
+
+.rohu-badge--warning {
+  background: var(--rohu-warning-dim);
+  color: var(--rohu-warning);
+  border-color: rgba(251, 191, 36, 0.22);
+}
+
+.rohu-badge--danger {
+  background: var(--rohu-danger-dim);
+  color: var(--rohu-danger);
+  border-color: rgba(248, 113, 113, 0.22);
+}
+
+/* ── Icon button (square, ghost) — refined ── */
+.rohu-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid transparent;
+  border-radius: var(--rohu-radius-sm);
+  background: transparent;
+  color: var(--rohu-text-muted);
+  cursor: pointer;
+  transition: background var(--rohu-transition-base),
+              color var(--rohu-transition-base),
+              border-color var(--rohu-transition-base),
+              box-shadow var(--rohu-transition-base);
+  flex-shrink: 0;
+}
+
+.rohu-icon-btn:hover {
+  background: var(--rohu-neon-dim);
+  color: var(--rohu-neon);
+  border-color: var(--rohu-neon-border);
+  box-shadow: var(--rohu-shadow-glow-neon);
+}
+
+.rohu-icon-btn:focus-visible {
+  outline: 2px solid var(--rohu-cyan);
+  outline-offset: 2px;
+}
+
+/* ── Divider ── */
+.rohu-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--rohu-border);
+  flex-shrink: 0;
+}
+
+.rohu-divider--vertical {
+  width: 1px;
+  height: 100%;
+  background: var(--rohu-border);
+}
+
+/* ── Empty state card ── */
+.rohu-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.rohu-empty-state__icon {
+  color: var(--rohu-text-muted);
+  opacity: 0.4;
+}
+
+.rohu-empty-state__title {
+  font-size: var(--rohu-text-xs);
+  font-weight: 600;
+  color: var(--rohu-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.rohu-empty-state__sub {
+  font-size: var(--rohu-text-2xs);
+  color: var(--rohu-text-muted);
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════
+   Map
+   ═══════════════════════════════════════════ */
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Override mapbox controls to match theme */
+.mapboxgl-ctrl-group {
+  background: var(--rohu-bg-card) !important;
+  backdrop-filter: var(--rohu-blur) !important;
+  -webkit-backdrop-filter: var(--rohu-blur) !important;
+  border: 1px solid var(--rohu-border-glass) !important;
+  border-radius: var(--rohu-radius-sm) !important;
+  box-shadow: var(--rohu-shadow) !important;
+  overflow: hidden !important;
+}
+.mapboxgl-ctrl-group button {
+  background: transparent !important;
+  border-color: var(--rohu-border) !important;
+  transition: background 150ms ease !important;
+}
+.mapboxgl-ctrl-group button:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+.mapboxgl-ctrl-group button span {
+  filter: invert(1) brightness(0.8);
+}
+.mapboxgl-ctrl-attrib {
+  background: rgba(0, 0, 0, 0.6) !important;
+  color: var(--rohu-text-muted) !important;
+  font-size: 9.9px !important;
+  backdrop-filter: blur(8px) !important;
+}
+.mapboxgl-ctrl-attrib a {
+  color: var(--rohu-text-muted) !important;
+}
+
+/* ═══════════════════════════════════════════
+   Global Keyframe Animations
+   ═══════════════════════════════════════════ */
+
+/* Soft pulse — for connected status dots, active indicators */
+@keyframes rohu-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.88); }
+}
+
+/* Fast blink — for critical/error states */
+@keyframes rohu-blink-crit {
+  0%, 100% { opacity: 1; box-shadow: 0 0 7px currentColor; }
+  50%       { opacity: 0.55; box-shadow: 0 0 2px currentColor; }
+}
+
+/* Connecting spin — for loading/connecting spinner dots */
+@keyframes rohu-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Subtle fade-up entry — for panels, cards, popups */
+@keyframes rohu-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scale-in entry — for modals, dropdowns */
+@keyframes rohu-scale-in {
+  from { opacity: 0; transform: scale(0.96) translateY(-6px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+
+/* Shimmer — skeleton loading placeholder */
+@keyframes rohu-shimmer {
+  0%   { background-position: -400% 0; }
+  100% { background-position:  400% 0; }
+}
+
+/* Neon glow breathe — e.g. active mission indicator */
+@keyframes rohu-glow-breathe {
+  0%, 100% { box-shadow: 0 0 8px rgba(0, 229, 255, 0.18); }
+  50%       { box-shadow: 0 0 20px rgba(0, 229, 255, 0.40); }
+}
+
+/* Slide-in from left */
+@keyframes rohu-slide-in-left {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Slide-in from right */
+@keyframes rohu-slide-in-right {
+  from { opacity: 0; transform: translateX(12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Scan line — cockpit HUD scan effect */
+@keyframes rohu-scanline {
+  0%   { transform: translateY(-100%); opacity: 0.6; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════
+   Utility Animation Classes
+   ═══════════════════════════════════════════ */
+.rohu-animate-in {
+  animation: rohu-fade-up 0.28s var(--rohu-ease) both;
+}
+
+.rohu-animate-in-left {
+  animation: rohu-slide-in-left 0.26s var(--rohu-ease) both;
+}
+
+.rohu-animate-in-right {
+  animation: rohu-slide-in-right 0.26s var(--rohu-ease) both;
+}
+
+.rohu-stagger > * {
+  animation: rohu-fade-up 0.28s var(--rohu-ease) both;
+}
+.rohu-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.rohu-stagger > *:nth-child(2) { animation-delay: 40ms; }
+.rohu-stagger > *:nth-child(3) { animation-delay: 80ms; }
+.rohu-stagger > *:nth-child(4) { animation-delay: 120ms; }
+.rohu-stagger > *:nth-child(5) { animation-delay: 160ms; }
+.rohu-stagger > *:nth-child(6) { animation-delay: 200ms; }

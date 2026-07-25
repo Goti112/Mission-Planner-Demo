@@ -1,0 +1,530 @@
+﻿/* ═══════════════════════════════════════════════════════════════════
+   TelemetryPanelAdvanced  ·  tap-* class namespace
+   Professional 7-section telemetry panel
+   Dark / glassmorphism · ROHU design tokens
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Panel shell ────────────────────────────────────────────────────────── */
+.tap-panel {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: rgba(2, 6, 23, 0.92);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(91, 160, 245, 0.10);
+  border-radius: var(--rohu-radius, 10px);
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  font-family: var(--rohu-font-ui, 'Inter', sans-serif);
+  color: var(--rohu-text-primary, #F0F2F5);
+  overflow: hidden;
+}
+
+.tap-panel--minimized .tap-header {
+  border-bottom: none;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.tap-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px 7px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  flex-shrink: 0;
+}
+
+.tap-drone-name {
+  font-size: 0.693rem;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--rohu-neon, #5BA0F5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 1 auto;
+}
+
+.tap-header-badges {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* ARM badge */
+.tap-arm-badge {
+  font-size: 0.605rem;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(80, 90, 107, 0.30);
+  color: rgba(200, 210, 220, 0.60);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  line-height: 1.5;
+}
+.tap-arm-badge--armed {
+  background: rgba(239, 68, 68, 0.18);
+  color: #FCA5A5;
+  border-color: rgba(239, 68, 68, 0.35);
+  text-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+}
+
+/* Mode badge */
+.tap-mode-badge {
+  font-size: 0.605rem;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(91, 160, 245, 0.12);
+  color: var(--rohu-neon, #5BA0F5);
+  border: 1px solid rgba(91, 160, 245, 0.25);
+  line-height: 1.5;
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Minimize button */
+.tap-minimize-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.30);
+  cursor: pointer;
+  font-size: 14.3px;
+  line-height: 1;
+  padding: 2px 3px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s;
+}
+.tap-minimize-btn:hover {
+  color: var(--rohu-neon, #5BA0F5);
+  background: rgba(91, 160, 245, 0.08);
+}
+
+/* ── Body ────────────────────────────────────────────────────────────────── */
+.tap-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Group ───────────────────────────────────────────────────────────────── */
+.tap-group {
+  padding: 8px 10px 9px;
+  border-top: 1px solid rgba(255, 255, 255, 0.045);
+}
+.tap-group:first-child { border-top: none; }
+
+.tap-group-head {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 6px;
+  padding-left: 6px;
+  border-left: 2px solid rgba(91, 160, 245, 0.45);
+}
+
+.tap-group-icon {
+  color: rgba(91, 160, 245, 0.55);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.tap-group-label {
+  font-size: 0.638rem;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(91, 160, 245, 0.65);
+  flex: 1;
+}
+
+.tap-group-badge {
+  flex-shrink: 0;
+}
+
+/* ── Data grid ───────────────────────────────────────────────────────────── */
+.tap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 5px;
+}
+
+.tap-grid > .tap-bat-bar-wrap {
+  grid-column: 1 / span 2;
+  margin-bottom: 1px;
+}
+
+/* ── Data cell ───────────────────────────────────────────────────────────── */
+.tap-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 5px 7px;
+  background: rgba(255, 255, 255, 0.028);
+  border: 1px solid rgba(255, 255, 255, 0.048);
+  border-radius: 5px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.tap-cell--wide {
+  grid-column: 1 / span 2;
+}
+
+.tap-cell-label {
+  font-size: 0.627rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--rohu-text-muted, #505A6B);
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tap-cell-value {
+  font-family: var(--rohu-font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.99rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--rohu-text-primary, #F0F2F5);
+  line-height: 1.25;
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tap-cell--wide .tap-cell-value {
+  font-size: 0.902rem;
+}
+
+.tap-cell-value--dim {
+  color: rgba(240, 242, 245, 0.48) !important;
+  font-size: 0.858rem;
+}
+
+.tap-cell-unit {
+  font-size: 0.748rem;
+  font-weight: 400;
+  opacity: 0.55;
+  letter-spacing: 0.2px;
+}
+
+/* ── Status text helpers ──────────────────────────────────────────────────── */
+.tap-text-ok  { color: var(--rohu-success, #22C55E); }
+.tap-text-bad { color: var(--rohu-danger,  #EF4444); }
+.tap-text-warn { color: var(--rohu-warning, #F59E0B); }
+
+/* ── Link dot ─────────────────────────────────────────────────────────────── */
+.tap-link-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+}
+.tap-link-dot-pulse {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.tap-link-dot--ok    { color: var(--rohu-success, #22C55E); }
+.tap-link-dot--weak  { color: var(--rohu-warning, #F59E0B); }
+.tap-link-dot--lost  { color: var(--rohu-danger,  #EF4444); }
+
+.tap-link-dot--ok .tap-link-dot-pulse {
+  animation: tapPulseOk 2s ease-in-out infinite;
+}
+.tap-link-dot--lost .tap-link-dot-pulse {
+  animation: tapBlink 1s step-start infinite;
+}
+
+@keyframes tapPulseOk {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.55; transform: scale(0.7); }
+}
+@keyframes tapBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Battery bar ──────────────────────────────────────────────────────────── */
+.tap-bat-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.tap-bat-bar {
+  flex: 1;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tap-bat-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s cubic-bezier(.4, 1.2, .6, 1);
+}
+
+.tap-bat-pulse {
+  animation: tapBatPulse 1.2s ease-in-out infinite;
+}
+@keyframes tapBatPulse {
+  0%, 100% { filter: brightness(1); }
+  50%       { filter: brightness(1.8) drop-shadow(0 0 3px currentColor); }
+}
+
+.tap-bat-pct-label {
+  font-family: var(--rohu-font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.792rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  min-width: 32px;
+  text-align: right;
+}
+
+.tap-pct-inline {
+  font-family: var(--rohu-font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.748rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Badges (GPS fix, EKF health) ─────────────────────────────────────────── */
+.tap-badge {
+  font-size: 0.572rem;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  padding: 1px 4px;
+  border-radius: 3px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.tap-badge--good {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--rohu-success, #22C55E);
+  border: 1px solid rgba(34, 197, 94, 0.30);
+}
+.tap-badge--warn {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--rohu-warning, #F59E0B);
+  border: 1px solid rgba(245, 158, 11, 0.30);
+}
+.tap-badge--bad {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--rohu-danger, #EF4444);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+.tap-badge--rtk {
+  background: rgba(168, 85, 247, 0.15);
+  color: #C084FC;
+  border: 1px solid rgba(168, 85, 247, 0.30);
+}
+.tap-badge--dgps {
+  background: rgba(99, 218, 255, 0.12);
+  color: #67E8F9;
+  border: 1px solid rgba(99, 218, 255, 0.22);
+}
+.tap-badge--unknown {
+  background: rgba(80, 90, 107, 0.20);
+  color: rgba(200, 210, 220, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* ── Mission state inline label ───────────────────────────────────────────── */
+.tap-mission-state {
+  font-size: 0.638rem;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+/* ── Settings gear button ─────────────────────────────────────────────────── */
+.tap-settings-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s, transform 0.25s;
+}
+.tap-settings-btn:hover {
+  color: var(--rohu-neon, #5BA0F5);
+  background: rgba(91, 160, 245, 0.08);
+}
+.tap-settings-btn[aria-pressed="true"] {
+  color: var(--rohu-neon, #5BA0F5);
+  background: rgba(91, 160, 245, 0.12);
+  transform: rotate(45deg);
+}
+
+/* ── Settings config overlay ──────────────────────────────────────────────── */
+.tap-config-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: rgba(4, 9, 28, 0.97);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(91, 160, 245, 0.18);
+  border-radius: var(--rohu-radius, 10px) var(--rohu-radius, 10px) 8px 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+}
+
+/* need relative on the panel for absolute overlay */
+.tap-panel {
+  position: relative;
+}
+
+.tap-config-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.tap-config-title {
+  font-size: 0.682rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--rohu-neon, #5BA0F5);
+}
+.tap-config-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+.tap-config-close:hover { color: var(--rohu-danger, #EF4444); }
+
+.tap-config-body {
+  padding: 6px 10px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 55vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(91, 160, 245, 0.2) transparent;
+}
+.tap-config-body::-webkit-scrollbar { width: 3px; }
+.tap-config-body::-webkit-scrollbar-thumb {
+  background: rgba(91, 160, 245, 0.20);
+  border-radius: 2px;
+}
+
+.tap-config-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.tap-config-group-label {
+  font-size: 0.627rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(91, 160, 245, 0.55);
+  margin-bottom: 1px;
+}
+
+.tap-config-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: background 0.12s;
+}
+.tap-config-item:hover { background: rgba(91, 160, 245, 0.07); }
+
+.tap-config-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(91, 160, 245, 0.35);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.04);
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.12s, border-color 0.12s;
+}
+.tap-config-item input[type="checkbox"]:checked {
+  background: var(--rohu-neon, #5BA0F5);
+  border-color: var(--rohu-neon, #5BA0F5);
+}
+.tap-config-item input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 1px; left: 3px;
+  width: 4px; height: 7px;
+  border: 1.5px solid #000;
+  border-top: none; border-left: none;
+  transform: rotate(45deg);
+}
+
+.tap-config-item span {
+  font-size: 0.748rem;
+  font-weight: 500;
+  color: rgba(240, 242, 245, 0.70);
+}
+
+.tap-config-reset {
+  margin: 5px 10px 8px;
+  padding: 4px 0;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.30);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.tap-config-reset:hover {
+  color: var(--rohu-warning, #F59E0B);
+  border-color: rgba(245, 158, 11, 0.35);
+  background: rgba(245, 158, 11, 0.06);
+}

@@ -1,0 +1,264 @@
+﻿/* ════════════════════════════════════════════════════════════════
+   FlightLogPanel.css — Flight event log viewer styles
+   Dark, compact, consistent with the GCS UI theme
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Container ── */
+.flog-panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--rohu-bg-card, rgba(14, 18, 32, 0.82));
+  border: 1px solid var(--rohu-border-glass, rgba(255, 255, 255, 0.08));
+  border-radius: var(--rohu-radius-sm, 8px);
+  overflow: hidden;
+  min-height: 0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Header bar ── */
+.flog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--rohu-border, rgba(255, 255, 255, 0.06));
+  flex-shrink: 0;
+  gap: 6px;
+}
+
+.flog-header-left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--rohu-text-secondary);
+}
+
+.flog-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rohu-text-secondary);
+  font-family: var(--rohu-font-ui);
+}
+
+.flog-count {
+  font-size: 11px;
+  background: rgba(91, 160, 245, 0.08);
+  color: var(--rohu-text-muted);
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--rohu-font-mono);
+  border: 1px solid rgba(91, 160, 245, 0.1);
+}
+
+.flog-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Buttons ── */
+.flog-btn {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 7px;
+  border: 1px solid var(--rohu-border, rgba(255, 255, 255, 0.06));
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--rohu-text-muted);
+  font-size: 11px;
+  font-family: var(--rohu-font-ui);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+  line-height: 1;
+}
+
+.flog-btn:hover {
+  background: rgba(91, 160, 245, 0.08);
+  color: var(--rohu-text-primary);
+  border-color: var(--rohu-neon-border);
+}
+
+.flog-btn--danger:hover {
+  background: var(--rohu-danger-dim, rgba(239, 68, 68, 0.12));
+  color: var(--rohu-danger, #EF4444);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* ── Drone filter ── */
+.flog-filter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--rohu-border, rgba(255, 255, 255, 0.06));
+  flex-shrink: 0;
+  color: var(--rohu-text-muted);
+}
+
+.flog-select {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--rohu-border, rgba(255, 255, 255, 0.06));
+  border-radius: 5px;
+  color: var(--rohu-text-secondary);
+  font-size: 11px;
+  font-family: var(--rohu-font-ui);
+  padding: 2px 4px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 150ms ease;
+}
+
+.flog-select:focus {
+  border-color: var(--rohu-neon-border, rgba(91, 160, 245, 0.3));
+}
+
+/* ── Scrollable event list ── */
+.flog-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 0;
+  max-height: 200px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(91, 160, 245, 0.1) transparent;
+}
+
+.flog-list::-webkit-scrollbar {
+  width: 3px;
+}
+
+.flog-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.flog-list::-webkit-scrollbar-thumb {
+  background: rgba(91, 160, 245, 0.12);
+  border-radius: 2px;
+}
+
+/* ── Empty state ── */
+.flog-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 12px;
+  color: var(--rohu-text-muted);
+  font-size: 11px;
+  font-style: italic;
+  font-family: var(--rohu-font-ui);
+}
+
+/* ── Event row ── */
+.flog-event {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 3px 10px;
+  font-size: 11.55px;
+  line-height: 1.55;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.025);
+  font-variant-numeric: tabular-nums;
+  transition: background 120ms ease;
+}
+
+.flog-event:last-child {
+  border-bottom: none;
+}
+
+.flog-event-time {
+  flex-shrink: 0;
+  color: var(--rohu-text-muted);
+  font-size: 11px;
+  font-family: var(--rohu-font-mono);
+  letter-spacing: 0.2px;
+}
+
+.flog-event-drone {
+  flex-shrink: 0;
+  font-size: 9.9px;
+  color: rgba(91, 160, 245, 0.65);
+  border: 1px solid rgba(91, 160, 245, 0.18);
+  border-radius: 4px;
+  padding: 0 4px;
+  font-family: var(--rohu-font-mono);
+}
+
+.flog-event-msg {
+  flex: 1;
+  color: var(--rohu-text-secondary);
+  word-break: break-word;
+  font-family: var(--rohu-font-ui);
+}
+
+/* ── Event type color variants ── */
+
+/* INFO — default, neutral */
+.flog-event--info .flog-event-msg {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* SUCCESS — waypoint reached, mission complete, airborne */
+.flog-event--success {
+  background: rgba(52, 211, 153, 0.05);
+}
+
+.flog-event--success .flog-event-msg {
+  color: rgba(52, 211, 153, 0.85);
+}
+
+.flog-event--success .flog-event-time {
+  color: rgba(52, 211, 153, 0.35);
+}
+
+/* WARNING — low battery, pause */
+.flog-event--warning {
+  background: rgba(251, 191, 36, 0.05);
+}
+
+.flog-event--warning .flog-event-msg {
+  color: rgba(251, 191, 36, 0.85);
+}
+
+.flog-event--warning .flog-event-time {
+  color: rgba(251, 191, 36, 0.35);
+}
+
+/* CRITICAL — abort, critical battery, fail */
+.flog-event--critical {
+  background: rgba(239, 68, 68, 0.06);
+}
+
+.flog-event--critical .flog-event-msg {
+  color: rgba(239, 68, 68, 0.9);
+}
+
+.flog-event--critical .flog-event-time {
+  color: rgba(239, 68, 68, 0.35);
+}
+
+/* ── Jump-to-latest sticky button ── */
+.flog-scroll-btn {
+  display: block;
+  width: 100%;
+  padding: 4px;
+  background: rgba(59, 130, 246, 0.12);
+  border: none;
+  border-top: 1px solid rgba(59, 130, 246, 0.2);
+  color: rgba(99, 179, 237, 0.8);
+  font-size: 11px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.flog-scroll-btn:hover {
+  background: rgba(59, 130, 246, 0.2);
+}

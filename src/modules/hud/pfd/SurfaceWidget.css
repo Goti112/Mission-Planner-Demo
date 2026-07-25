@@ -1,0 +1,142 @@
+/* SurfaceWidget.css — Floating detached surface widget */
+
+.sw-widget {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 130px;
+  height: 260px;
+  background: rgba(8, 14, 26, 0.97);
+  border: 1px solid rgba(30, 58, 95, 0.7);
+  border-top: 2px solid var(--sw-color, #5ba0f5);
+  border-radius: 8px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(91, 160, 245, 0.08),
+    0 0 24px -4px color-mix(in srgb, var(--sw-color, #5ba0f5) 20%, transparent);
+  overflow: hidden;
+  z-index: 800;
+  user-select: none;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.sw-widget:hover {
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(91, 160, 245, 0.18),
+    0 0 32px -4px color-mix(in srgb, var(--sw-color, #5ba0f5) 30%, transparent);
+}
+
+.sw-widget--dragging {
+  opacity: 0.92;
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.85);
+  cursor: grabbing;
+}
+
+.sw-widget--resizing {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(91, 160, 245, 0.35);
+}
+
+/* ── Header ── */
+.sw-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 6px;
+  height: 24px;
+  background: rgba(15, 25, 48, 0.9);
+  border-bottom: 1px solid rgba(30, 58, 95, 0.5);
+  cursor: grab;
+  flex-shrink: 0;
+}
+
+.sw-header:active {
+  cursor: grabbing;
+}
+
+/* Color dot next to label */
+.sw-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sw-color, #5ba0f5);
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.sw-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.9px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.08em;
+  flex: 1;
+}
+
+.sw-close {
+  background: none;
+  border: none;
+  padding: 3px;
+  cursor: pointer;
+  color: rgba(148, 163, 184, 0.4);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.15s, background 0.15s;
+}
+
+.sw-close:hover {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.12);
+}
+
+/* ── Canvas zone ── */
+.sw-canvas-zone {
+  flex: 1 1 0;
+  width: 100%;
+  min-height: 0;
+}
+
+/* ── Zone toggles — hidden by default, appear on hover ── */
+.sw-zones {
+  display: flex;
+  border-top: 1px solid rgba(30, 58, 95, 0.5);
+  background: rgba(5, 10, 20, 0.9);
+  flex-shrink: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease;
+}
+
+.sw-widget:hover .sw-zones {
+  max-height: 22px;
+}
+
+.sw-zone-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 3px 0;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.7px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(74, 101, 128, 0.8);
+  text-transform: uppercase;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sw-zone-btn--active {
+  color: var(--sw-color, #5ba0f5);
+  background: color-mix(in srgb, var(--sw-color, #5ba0f5) 12%, transparent);
+}
+
+.sw-zone-btn:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+

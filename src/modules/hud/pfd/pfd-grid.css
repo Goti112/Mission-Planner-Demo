@@ -1,0 +1,273 @@
+/* pfd-grid.css
+ *
+ * Grid-based layout for the PrimaryFlightDisplay.
+ *
+ * LAYERED GLASS COCKPIT ARCHITECTURE
+ *
+ * The artificial horizon canvas spans the entire five-column main row as a
+ * background layer (z-index: 0).  Speed, throttle, altitude, and VSI tape
+ * panels overlay it at z-index: 1 with transparent backgrounds
+ * so the sky/ground horizon literally shows through the
+ * semi-translucent panel wash drawn by each canvas instrument.
+ *
+ * Layer stack (main row):
+ *   z=0  pfd-cell--horizon   (full row width: col 1 to col 5)
+ *   z=1  pfd-cell--speed     (col 1, transparent overlay)
+ *   z=1  pfd-cell--throttle  (col 2, transparent overlay)
+ *   z=1  pfd-cell--altitude  (col 4, transparent overlay)
+ *   z=1  pfd-cell--vsi       (col 5, transparent overlay)
+ *
+ * Grid template areas (used for named placement of tape cells):
+ *   "heading  heading   heading  heading  heading"   32px top strip
+ *   "speed    throttle  horizon  altitude vsi    "   1fr main panel
+ */
+
+/* Root grid container */
+.pfd-grid {
+  position: relative;
+  display: grid;
+  /* contain: strict tells the browser that nothing inside .pfd-grid
+   * affects layout or paint outside it — enables aggressive compositing. */
+  contain: strict;
+  /*
+   * RESPONSIVE COLUMN LAYOUT
+   *
+   * Speed tape  : 7% of width, clamped 52px–104px
+   * Throttle    : 4% of width, clamped 42px–54px
+   * Horizon     : fills remaining space (1fr)
+   * Altitude    : 8.5% of width, clamped 48px–110px
+   * VSI         : 9%  of width, clamped 44px–100px
+   *
+   * Using clamp() + percentage units so all columns grow/shrink
+   * proportionally with the container. The canvas instruments compute
+   * their own font sizes relative to the canvas dimensions, so they
+   * scale automatically once the cell sizes scale.
+   */
+  grid-template-columns:
+    clamp(52px,  7%, 104px)   /* speed tape */
+    clamp(42px,  4%,  54px)   /* throttle rail */
+    1fr                       /* horizon */
+    clamp(48px,  8.5%, 110px) /* altitude */
+    clamp(44px,  9%,  100px); /* vsi */
+
+  /*
+   * RESPONSIVE ROW HEIGHTS
+   *
+   * Heading tape: must grow with PFD WIDTH, not height.
+   * With aspect-ratio 4:3, container height = width × 0.75, so:
+   *   9.33% of height  ≡  7% of width  (9.33 × 0.75 = 7)
+   * This means the tape starts growing once the PFD is wider than ~400 px
+   * (where 9.33% of 300px = 28px ≈ the minimum), which covers the full
+   * practical range of the docked/floating panel.
+   *
+   * The old value was 5% of height = 3.75% of width — kept ≤ 28px for every
+   * PFD below ~750 px wide, so tick heights and font sizes were permanently
+   * stuck at their 8–9 px floor no matter how wide the panel grew.
+   *
+   * Main row: fills remaining height.
+   */
+  grid-template-rows: clamp(28px, 9.33%, 72px) 1fr;
+
+  grid-template-areas:
+    "heading  heading   heading  heading  heading"
+    "speed    throttle  horizon  altitude vsi";
+  width: 100%;
+  /* aspect-ratio maintains correct PFD proportions in docked/floating mode.
+   * In viewport mode (.pfd-grid--viewport) this is overridden to unset so
+   * the PFD expands to fill the available stage height. */
+  height: auto;
+  aspect-ratio: 4 / 3;
+  min-width: 340px;
+  background: #060a10;
+  border: 1px solid rgba(0, 100, 200, 0.20);
+  border-radius: var(--hud-radius);
+  overflow: hidden;
+  font-family: var(--hud-font-ui);
+  box-sizing: border-box;
+  box-shadow:
+    0 0 0 1px rgba(0, 120, 220, 0.20),
+    0 0 16px rgba(0, 80, 180, 0.28),
+    0 0 48px rgba(0, 50, 140, 0.20),
+    0 4px 80px rgba(0, 25, 90, 0.38),
+    inset 0 0 60px rgba(0, 0, 0, 0.50);
+}
+
+/* Shared base for all cells */
+.pfd-cell {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Canvas element is always transparent so layers composite correctly */
+.pfd-cell canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  /* Promote each canvas to its own GPU compositing layer.
+   * This prevents re-rasterisation during panel animations,
+   * keeping canvas updates on the GPU without main-thread paint. */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Individual cell styles */
+
+/* Heading tape - full-width top band */
+.pfd-cell--heading {
+  grid-area: heading;
+  z-index: 1;
+  background: rgba(10, 14, 22, 0.60);
+  border-bottom: 1px solid rgba(60, 140, 255, 0.12);
+}
+
+/* HORIZON: background layer spanning the FULL main row.
+ * grid-row / grid-column override named-area placement.
+ * z-index: 0 keeps it behind every tape panel overlay.
+ *
+ * NOTE: No CSS ::after vignette — the ArtificialHorizon canvas instrument
+ * already draws its own radial-gradient vignette in drawVignette().
+ * A second CSS vignette would double the edge-darkening and render on
+ * top of the NavigationOverlay SVG, obscuring it.  The canvas-drawn
+ * vignette is the single source of truth for edge-darkening. */
+.pfd-cell--horizon {
+  grid-row:    2 / 3;
+  grid-column: 1 / -1;
+  z-index: 0;
+}
+
+/* TAPE PANELS: transparent overlays on top of the horizon.
+ * background: transparent lets the horizon canvas show through.
+ * The canvas instruments draw a low-alpha gradient (0.16-0.45)
+ * as their frosted-glass panel wash without CSS backdrop filters. */
+
+/* Airspeed tape - left column */
+.pfd-cell--speed {
+  grid-area: speed;
+  z-index: 1;
+  background: transparent;
+  border-right: 1px solid rgba(80, 160, 255, 0.14);
+  /* NOTE: backdrop-filter MUST NOT be used here.
+   * It forces all WebGL canvases on the page (Three.js / Cesium) to go
+   * black due to a Chromium GPU compositing bug. The translucency effect
+   * is already achieved by the low-alpha gradient drawn by the canvas
+   * instrument itself — CSS blur compositing is not needed. */
+}
+
+/* Throttle rail - compact left-side power indicator */
+.pfd-cell--throttle {
+  grid-area: throttle;
+  z-index: 1;
+  background: transparent;
+  border-right: 1px solid rgba(68, 210, 135, 0.16);
+}
+
+/* Altitude tape - right-of-center column */
+.pfd-cell--altitude {
+  grid-area: altitude;
+  z-index: 1;
+  background: transparent;
+  border-left: 1px solid rgba(80, 160, 255, 0.14);
+}
+
+/* Vertical speed indicator - far-right thin column */
+.pfd-cell--vsi {
+  grid-area: vsi;
+  z-index: 1;
+  background: transparent;
+  border-left: 1px solid rgba(80, 160, 255, 0.08);
+}
+
+/* Viewport mode modifier.
+ * Applied via .pfd-grid--viewport when PrimaryFlightDisplay is hosted
+ * inside FlightDisplayViewport (full-screen cockpit overlay).
+ * Removes the 4:3 aspect-ratio constraint so the PFD fills the stage
+ * at any display resolution. Same proportional column strategy — wider
+ * clamp ceilings because the stage can be much larger than the docked panel. */
+.pfd-grid--viewport {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: unset;
+  grid-template-columns:
+    clamp(78px, 15%, 180px)   /* speed */
+    clamp(42px,  5%,  70px)   /* throttle */
+    1fr                       /* horizon */
+    clamp(70px, 11%, 160px)   /* altitude */
+    clamp(56px,  9%, 130px);  /* vsi */
+  grid-template-rows: clamp(36px, 5%, 64px) 1fr;
+}
+
+/* In viewport mode the heading tape row formula differs from the default,
+ * so the mode-overlay must use the viewport row height to stay just below it. */
+.pfd-grid--viewport .pfd-mode-overlay {
+  top:  calc(clamp(36px, 5%, 64px) + 4px);
+  left: calc(clamp(78px, 15%, 180px) + clamp(42px, 5%, 70px) + 6px);  /* viewport speed + throttle columns */
+}
+
+.pfd-grid--viewport .pfd-arm-overlay {
+  top: calc(clamp(36px, 5%, 64px) + 4px);
+  right: calc(clamp(70px, 11%, 160px) + clamp(56px, 9%, 130px) + 8px);
+}
+
+/* Flight-mode label — top-left corner of the horizon cell */
+.pfd-mode-overlay {
+  position:       absolute;
+  /*
+   * Top: just below the default heading tape row with a small inset to avoid overlap.
+   * Left: just inside the horizon after the speed tape and throttle rail.
+   */
+  top:            calc(clamp(28px, 9.33%, 72px) + 4px);  /* matches default heading row */
+  left:           calc(clamp(52px, 7%, 104px) + clamp(42px, 4%, 54px) + 6px);
+  z-index:        10;
+  font-family:    var(--hud-font-mono, 'Roboto Mono', monospace);
+  font-size:      clamp(9.9px, 1.98%, 17.6px);
+  font-weight:    700;
+  letter-spacing: 0.07em;
+  pointer-events: none;
+  user-select:    none;
+  text-shadow:    0 0 8px currentColor;
+  transition:     color 0.3s ease;
+}
+
+.pfd-arm-overlay {
+  position: absolute;
+  top: calc(clamp(28px, 9.33%, 72px) + 4px);
+  right: calc(clamp(48px, 8.5%, 110px) + clamp(44px, 9%, 100px) + 6px);
+  z-index: 10;
+  min-width: 72px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: var(--hud-font-mono, 'Roboto Mono', monospace);
+  font-size: clamp(9.9px, 1.98%, 17.6px);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+  text-shadow: 0 0 8px currentColor;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms cubic-bezier(0.2, 0.9, 0.25, 1),
+    opacity 180ms ease;
+}
+
+.pfd-arm-overlay--armed {
+  color: var(--hud-warning);
+  background: rgba(34, 26, 4, 0.42);
+  border: 1px solid rgba(255, 200, 70, 0.34);
+  box-shadow: 0 0 14px rgba(255, 200, 70, 0.16);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.pfd-arm-overlay--disarmed {
+  color: rgba(190, 198, 210, 0.72);
+  background: rgba(5, 7, 10, 0.62);
+  border: 1px solid rgba(150, 160, 175, 0.16);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+  opacity: 0.9;
+  transform: scale(0.96);
+}

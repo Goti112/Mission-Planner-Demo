@@ -1,0 +1,474 @@
+﻿/* ═══════════════════════════════════════════════════════════════
+   DroneFleetPanel — Floating fleet management panel
+   Matches ROHU GCS dark-glass aesthetic
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Root wrapper — establishes positioning context ─────────── */
+.dfp-root {
+  position: relative;
+  display: inline-flex;
+  z-index: 200;
+}
+
+/* ══ TRIGGER BUTTON ════════════════════════════════════════════ */
+
+.dfp-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid rgba(91, 160, 245, 0.15);
+  border-radius: 8px;
+  color: var(--rohu-text-secondary, #9CA3AF);
+  font-family: 'Inter', sans-serif;
+  font-size: 13.2px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  user-select: none;
+}
+
+.dfp-trigger:hover {
+  background: rgba(17, 24, 39, 0.95);
+  border-color: rgba(91, 160, 245, 0.3);
+  color: var(--rohu-text-primary, #F9FAFB);
+}
+
+.dfp-trigger--open {
+  background: rgba(17, 24, 39, 0.95);
+  border-color: var(--rohu-cyan, #00E5FF);
+  color: var(--rohu-cyan, #00E5FF);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
+}
+
+.dfp-trigger__icon {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.dfp-trigger--open .dfp-trigger__icon {
+  opacity: 1;
+  color: var(--rohu-cyan, #00E5FF);
+}
+
+.dfp-trigger__label {
+  letter-spacing: 0.02em;
+}
+
+.dfp-trigger__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: rgba(91, 160, 245, 0.15);
+  color: var(--rohu-neon, #5BA0F5);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.dfp-trigger--open .dfp-trigger__badge {
+  background: rgba(0, 229, 255, 0.2);
+  color: var(--rohu-cyan, #00E5FF);
+}
+
+.dfp-trigger__chevron {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0.5;
+}
+
+.dfp-trigger__chevron--open {
+  transform: rotate(180deg);
+  opacity: 0.9;
+}
+
+/* ══ DROPDOWN PANEL ════════════════════════════════════════════ */
+
+.dfp-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 380px;
+  max-height: 0;
+  overflow: hidden;
+  background: rgba(11, 15, 25, 0.96);
+  border: 1px solid rgba(91, 160, 245, 0.12);
+  border-radius: 14px;
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.55),
+    0 0 1px rgba(91, 160, 245, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  opacity: 0;
+  transform: translateY(-8px) scale(0.97);
+  pointer-events: none;
+  transition:
+    max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dfp-panel--open {
+  max-height: 520px;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* ── Panel header ──────────────────────────────────────────── */
+
+.dfp-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid rgba(91, 160, 245, 0.08);
+}
+
+.dfp-panel__header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dfp-panel__title {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 15.4px;
+  font-weight: 600;
+  color: var(--rohu-text-primary, #F9FAFB);
+  letter-spacing: 0.01em;
+}
+
+.dfp-panel__subtitle {
+  font-size: 12.1px;
+  color: var(--rohu-text-muted, #6B7280);
+}
+
+.dfp-panel__flying {
+  color: var(--rohu-success, #10B981);
+  font-weight: 500;
+}
+
+.dfp-panel__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--rohu-text-muted, #6B7280);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dfp-panel__close:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--rohu-text-primary, #F9FAFB);
+}
+
+/* ── Drone list (scrollable) ───────────────────────────────── */
+
+.dfp-panel__list {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 440px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(91, 160, 245, 0.15) transparent;
+}
+
+.dfp-panel__list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.dfp-panel__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dfp-panel__list::-webkit-scrollbar-thumb {
+  background: rgba(91, 160, 245, 0.15);
+  border-radius: 3px;
+}
+
+/* ── Empty state ───────────────────────────────────────────── */
+
+.dfp-panel__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 16px;
+  color: var(--rohu-text-muted, #6B7280);
+  font-size: 14.3px;
+}
+
+/* ══ DRONE CARD ════════════════════════════════════════════════ */
+
+.dfp-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  background: rgba(17, 24, 39, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.dfp-card:hover {
+  background: rgba(17, 24, 39, 0.8);
+  border-color: rgba(91, 160, 245, 0.12);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dfp-card--active {
+  background: rgba(0, 229, 255, 0.06);
+  border-color: rgba(0, 229, 255, 0.2);
+}
+
+.dfp-card--active:hover {
+  background: rgba(0, 229, 255, 0.1);
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+/* Glowing left accent bar for active drone */
+.dfp-card__active-bar {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: var(--rohu-cyan, #00E5FF);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+/* ── Card header ───────────────────────────────────────────── */
+
+.dfp-card__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dfp-card__avatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(91, 160, 245, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(91, 160, 245, 0.08);
+}
+
+.dfp-card--active .dfp-card__avatar {
+  background: rgba(0, 229, 255, 0.08);
+  border-color: rgba(0, 229, 255, 0.15);
+}
+
+.dfp-card__identity {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.dfp-card__name {
+  font-family: 'Inter', sans-serif;
+  font-size: 15.4px;
+  font-weight: 500;
+  color: var(--rohu-text-muted, #6B7280);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dfp-card__id {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 18.7px;
+  font-weight: 600;
+  color: var(--rohu-text-primary, #F9FAFB);
+  letter-spacing: 0.01em;
+}
+
+/* ── Connection badge ──────────────────────────────────────── */
+
+.dfp-card__conn-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--rohu-text-muted, #6B7280);
+}
+
+.dfp-card__conn-badge[data-connected] {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--rohu-success, #10B981);
+}
+
+.dfp-card__conn-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--rohu-text-muted, #6B7280);
+}
+
+.dfp-card__conn-badge[data-connected] .dfp-card__conn-dot {
+  background: var(--rohu-success, #10B981);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+  animation: dfp-pulse 2s ease-in-out infinite;
+}
+
+@keyframes dfp-pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* ── Stats row ─────────────────────────────────────────────── */
+
+.dfp-card__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  padding: 6px 0 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.dfp-card__stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12.1px;
+  color: var(--rohu-text-secondary, #9CA3AF);
+}
+
+/* ── Battery bar ───────────────────────────────────────────── */
+
+.dfp-battery-bar {
+  width: 48px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  margin-left: 2px;
+}
+
+.dfp-battery-bar__fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s ease, background 0.5s ease;
+}
+
+/* ── Telemetry row (altitude / speed) ──────────────────────── */
+
+.dfp-card__telemetry {
+  display: flex;
+  gap: 16px;
+  padding: 4px 0 0;
+}
+
+.dfp-card__telem-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 12.1px;
+  color: var(--rohu-neon, #5BA0F5);
+}
+
+.dfp-card__telem-item svg {
+  opacity: 0.6;
+}
+
+/* ── Action buttons ────────────────────────────────────────── */
+
+.dfp-card__actions {
+  display: flex;
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.dfp-card__action-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 5px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--rohu-text-secondary, #9CA3AF);
+  font-family: 'Inter', sans-serif;
+  font-size: 12.1px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dfp-card__action-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--rohu-text-primary, #F9FAFB);
+}
+
+.dfp-card__action-btn--connect:hover {
+  border-color: rgba(0, 229, 255, 0.25);
+  color: var(--rohu-cyan, #00E5FF);
+  background: rgba(0, 229, 255, 0.06);
+}
+
+.dfp-card__action-btn--disconnect {
+  border-color: rgba(0, 229, 255, 0.15);
+  color: var(--rohu-cyan, #00E5FF);
+  background: rgba(0, 229, 255, 0.06);
+}
+
+.dfp-card__action-btn--disconnect:hover {
+  border-color: rgba(0, 229, 255, 0.3);
+  background: rgba(0, 229, 255, 0.1);
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .dfp-panel {
+    width: calc(100vw - 24px);
+    right: -8px;
+  }
+
+  .dfp-card__stats {
+    gap: 4px 8px;
+  }
+}

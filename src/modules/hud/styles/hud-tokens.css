@@ -1,0 +1,47 @@
+﻿/* hud-tokens.css
+ *
+ * HUD design tokens aligned with the main --rohu-* design system.
+ * Canvas instruments use HUDTheme.ts for TypeScript color constants.
+ * These CSS variables are used by HTML/CSS HUD chrome elements.
+ */
+
+:root {
+  /* ── Semaphore colors (inherit from main system) ──────── */
+  --hud-safe:     var(--rohu-success, #10B981);
+  --hud-warning:  var(--rohu-warning, #F59E0B);
+  --hud-critical: var(--rohu-danger,  #EF4444);
+  --hud-accent:   var(--rohu-cyan,    #00E5FF);
+  --hud-caution:  #FACC15; /* amber — distinct from warning orange */
+
+  /* ── Artificial horizon (canvas-rendered, keep standalone) */
+  --hud-sky:    #1a6ba0;
+  --hud-ground: #7a5c28;
+
+  /* ── Panel surfaces (aligned with main system) ─────────── */
+  --hud-bg:           var(--rohu-bg-primary, #080B14);
+  --hud-bg-glass:     var(--rohu-bg-card, rgba(14, 18, 32, 0.82));
+  --hud-border:       var(--rohu-border, rgba(255,255,255,0.06));
+  --hud-border-light: var(--rohu-border-glass, rgba(255,255,255,0.08));
+
+  /* ── Text (aligned with main system) ────────────────────── */
+  --hud-text:           var(--rohu-text-primary, #F0F2F5);
+  --hud-text-secondary: var(--rohu-text-secondary, #8B95A5);
+  --hud-text-dim:       var(--rohu-text-muted, #505A6B);
+
+  /* ── Typography (use imported fonts from index.css) ──────── */
+  --hud-font-mono: var(--rohu-font-mono, 'JetBrains Mono', monospace);
+  --hud-font-ui:   var(--rohu-font-ui, 'Inter', sans-serif);
+  --hud-font-size:    13.2px;
+  --hud-font-size-sm: 11px;
+  --hud-font-size-lg: 15.4px;
+
+  /* ── Spacing ─────────────────────────────────────────────── */
+  --hud-gap:       6px;
+  --hud-radius:    var(--rohu-radius-sm, 8px);
+  --hud-radius-lg: var(--rohu-radius, 12px);
+
+  /* ── Transitions (aligned with main system) ──────────────── */
+  --hud-transition: color var(--rohu-duration-base, 200ms) var(--rohu-ease-out),
+                    background-color var(--rohu-duration-base, 200ms) var(--rohu-ease-out),
+                    border-color var(--rohu-duration-base, 200ms) var(--rohu-ease-out);
+}

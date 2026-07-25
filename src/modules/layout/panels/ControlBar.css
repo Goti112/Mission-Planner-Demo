@@ -1,0 +1,61 @@
+﻿/* ═══════════════════════════════════════
+   CONTROL BAR INTEGRADA EN FOOTER — ESTILO SELECT
+   ═══════════════════════════════════════ */
+.control-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  font-size: 14.3px;
+}
+
+.coords-display {
+  font-variant-numeric: tabular-nums;
+  font-size: 14.3px;
+  color: var(--rohu-text-secondary, #9CA3AF);
+  letter-spacing: 0.5px;
+}
+
+.control-bar select,
+.control-bar button {
+  background: rgba(255, 255, 255, 0.1); /* fondo oscuro semitransparente */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  color: #fff; /* texto blanco */
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 14.3px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.control-bar button.active {
+  background: rgba(0, 188, 212, 0.14);
+  color: #5BA0F5;
+  border-color: #5BA0F5;
+  box-shadow: 0 0 10px rgba(91, 160, 245, 0.2);
+}
+
+.control-bar button.fpv-active {
+  background: rgba(255, 90, 60, 0.15);
+  color: #ff6a45;
+  border-color: rgba(255, 90, 60, 0.4);
+  box-shadow: 0 0 10px rgba(255, 90, 60, 0.2);
+}
+
+.control-bar select {
+  min-width: 70px;
+}
+
+/* Forzar estilo de los option */
+.control-bar select option {
+  background: rgba(10, 18, 35, 0.95); /* fondo oscuro de opciones */
+  color: #fff; /* texto blanco */
+}
+
+/* hover / focus */
+.control-bar button:hover,
+.control-bar select:hover,
+.control-bar select:focus {
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+}

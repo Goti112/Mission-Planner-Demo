@@ -1,0 +1,346 @@
+/* FlightDisplayViewport.css
+ *
+ * Full-screen cockpit instrument overlay.
+ *
+ * Layout (top → bottom):
+ *   .fdv-chrome     — 42px header: title + quick-readouts + controls
+ *   .fdv-stage      — 1fr  main PFD area (PrimaryFlightDisplay fills it)
+ *   .fdv-ribbon     — 32px footer: secondary data + branding
+ *
+ * The overlay sits fixed between the GCS navbar (52px) and statusbar (36px).
+ * z-index 900 puts it above the map / sidebar but below modals (z-index 1000+).
+ */
+
+/* ── Outer overlay ────────────────────────────────────────────────────── */
+.fdv-overlay {
+  position: fixed;
+  top:    52px;   /* below GCSNavBar */
+  left:   0;
+  right:  0;
+  bottom: 36px;   /* above statusbar */
+  z-index: 900;
+
+  display: flex;
+  flex-direction: column;
+
+  /* Deep aviation-black background */
+  background: #020509;
+
+  /* Subtle outer border / glow */
+  border-top:    1px solid rgba(0, 100, 200, 0.25);
+  border-bottom: 1px solid rgba(0, 100, 200, 0.15);
+
+  /* Entry animation */
+  animation: fdv-enter 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fdv-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Chrome header bar ────────────────────────────────────────────────── */
+.fdv-chrome {
+  flex-shrink: 0;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 18px;
+
+  /* Solid dark header — backdrop-filter is intentionally omitted.
+   * Any backdrop-filter on elements stacked above WebGL canvases (Three.js /
+   * Cesium) forces the GPU compositor to isolate the layer, which causes all
+   * WebGL canvases on the page to go black in Chromium. */
+  background: rgba(10, 14, 24, 0.96);
+  border-bottom: 1px solid rgba(100, 180, 255, 0.12);
+  box-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Left: title */
+.fdv-chrome-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+}
+
+.fdv-chrome-title {
+  font-size: 14.3px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #5cb8ff;
+  text-transform: uppercase;
+  font-family: var(--hud-font-inst, 'B612 Mono', 'Courier New', monospace);
+}
+
+.fdv-chrome-sep {
+  color: rgba(80, 120, 160, 0.5);
+  font-size: 12.1px;
+}
+
+.fdv-chrome-sub {
+  font-size: 9.9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  color: rgba(100, 150, 200, 0.55);
+  text-transform: uppercase;
+}
+
+/* Center: quick readouts */
+.fdv-chrome-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+}
+
+.fdv-readout {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 4px 12px;
+  background: rgba(20, 28, 46, 0.85);
+  border: 1px solid rgba(100, 180, 255, 0.15);
+  border-radius: 6px;
+  min-width: 80px;
+  transition: background 140ms ease, border-color 140ms ease;
+  box-shadow: 0 0 0 0 rgba(100, 180, 255, 0);
+}
+
+.fdv-readout:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(100, 180, 255, 0.25);
+  box-shadow: 0 0 12px rgba(100, 180, 255, 0.12);
+}
+
+.fdv-readout-label {
+  font-size: 8.8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(100, 150, 200, 0.6);
+  text-transform: uppercase;
+  font-family: var(--hud-font-inst, 'B612 Mono', monospace);
+}
+
+.fdv-readout-value {
+  font-size: 15.4px;
+  font-weight: 700;
+  color: #c8d6e2;
+  font-family: var(--hud-font-inst, 'B612 Mono', 'Courier New', monospace);
+  letter-spacing: 0.5px;
+  min-width: 32px;
+  text-align: right;
+}
+
+.fdv-readout-unit {
+  font-size: 9.9px;
+  color: rgba(100, 150, 200, 0.45);
+  font-family: var(--hud-font-inst, 'B612 Mono', monospace);
+}
+
+/* Right: status + close */
+.fdv-chrome-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.fdv-status-chip {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(30, 60, 100, 0.50);
+  font-size: 9.9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(150, 190, 220, 0.75);
+  text-transform: uppercase;
+  font-family: var(--hud-font-inst, 'B612 Mono', monospace);
+  white-space: nowrap;
+}
+
+.fdv-status-chip--armed {
+  border-color: rgba(220, 60, 60, 0.5);
+  color: #ff6666;
+}
+
+.fdv-status-chip--disarmed {
+  border-color: rgba(50, 150, 80, 0.4);
+  color: #55cc77;
+}
+
+.fdv-status-chip--mode {
+  border-color: rgba(80, 140, 220, 0.45);
+  color: #7ab8f5;
+}
+
+.fdv-close-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid rgba(200, 80, 80, 0.35);
+  border-radius: 6px;
+  background: rgba(200, 50, 50, 0.08);
+  color: rgba(220, 120, 120, 0.85);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+  text-transform: uppercase;
+  font-family: var(--hud-font-inst, 'B612 Mono', monospace);
+}
+
+.fdv-close-btn:hover {
+  background: rgba(220, 60, 60, 0.18);
+  border-color: rgba(220, 80, 80, 0.65);
+  color: #ff8888;
+}
+
+/* ── Main PFD stage ───────────────────────────────────────────────────── */
+.fdv-stage {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+  padding: 8px 14px 4px;
+  position: relative;
+  min-height: 0;
+}
+
+/* Subtle corner-vignette for immersion */
+.fdv-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 0% 0%,   rgba(0, 0, 0, 0.45) 0%, transparent 45%),
+    radial-gradient(ellipse at 100% 0%,  rgba(0, 0, 0, 0.45) 0%, transparent 45%),
+    radial-gradient(ellipse at 0% 100%,  rgba(0, 0, 0, 0.45) 0%, transparent 45%),
+    radial-gradient(ellipse at 100% 100%,rgba(0, 0, 0, 0.45) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* PFD wrapper — constrains to 16:10 aspect within available space */
+.fdv-pfd-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+
+  /* Cockpit bezel effect */
+  border: 1px solid rgba(20, 50, 95, 0.70);
+  border-radius: 4px;
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.9),
+    0 0 0 3px rgba(15, 35, 70, 0.60),
+    inset 0 0 80px rgba(0, 0, 0, 0.30),
+    0 4px 40px rgba(0, 20, 60, 0.50);
+  overflow: hidden;
+}
+
+/* Override pfd-grid inside the viewport to fill all available space.
+ * This backs up the pfd-grid--viewport CSS class set in pfd-grid.css. */
+.fdv-pfd-wrap .pfd-grid {
+  flex: 1;
+  min-height: 0;
+  aspect-ratio: unset;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 144px 48px 1fr 110px 82px;
+  grid-template-rows: 54px 1fr;
+}
+
+.fdv-pfd-wrap .pfd-mode-overlay {
+  top: 58px;
+  left: 198px;
+}
+
+.fdv-pfd-wrap .pfd-arm-overlay {
+  top: 58px;
+  right: calc(110px + 82px + 8px);
+}
+
+/* ── Bottom data ribbon ───────────────────────────────────────────────── */
+.fdv-ribbon {
+  flex-shrink: 0;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 18px;
+
+  /* Solid dark footer — no backdrop-filter (same WebGL compositing reason
+   * as the chrome header). */
+  background: rgba(10, 14, 24, 0.96);
+  border-top: 1px solid rgba(100, 180, 255, 0.12);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.04),
+    0 -2px 16px rgba(0, 0, 0, 0.25);
+}
+
+.fdv-ribbon-brand {
+  font-size: 9.9px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: rgba(229, 53, 53, 0.55);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.fdv-ribbon-items {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  justify-content: center;
+}
+
+.fdv-ribbon-item {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.fdv-ribbon-label {
+  font-size: 8.8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(80, 130, 180, 0.55);
+  text-transform: uppercase;
+  font-family: var(--hud-font-inst, 'B612 Mono', monospace);
+}
+
+.fdv-ribbon-value {
+  font-size: 12.1px;
+  font-weight: 600;
+  color: #90aac4;
+  font-family: var(--hud-font-inst, 'B612 Mono', 'Courier New', monospace);
+}
+
+.fdv-ribbon-sig {
+  font-size: 8.8px;
+  color: rgba(60, 90, 120, 0.40);
+  flex-shrink: 0;
+  font-family: var(--hud-font-inst, monospace);
+}

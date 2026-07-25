@@ -1,0 +1,509 @@
+/* ══════════════════════════════════════════════════════════════
+   ControlSurfacesDrawer.css
+   Compact status-bar trigger + bottom-left panel.
+   The collapsed trigger lives inside the status bar zone so it does not
+   cover the live map area.
+
+   z-index: 450 (above workspace, below navbar 500)
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Collapsed trigger (hidden — header tab replaces it) ───────────────── */
+.csd-trigger {
+  display: none;
+}
+
+/* ── Wrapper — persistent tab anchored to sidebar bottom ─────────────── */
+.csd-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  flex-shrink: 0;
+  z-index: 350;
+  pointer-events: auto;
+}
+
+/* body revealed via .csd-body height transition — see .csd-wrapper--open .csd-body below */
+
+/* ── Inline tab button (clickable in statusbar) ─────────────────────── */
+.csd-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid rgba(91, 160, 245, 0.18);
+  border-radius: 4px;
+  background: rgba(10, 14, 24, 0.50);
+  color: rgba(91, 160, 245, 0.75);
+  cursor: pointer;
+  font-size: 8.8px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 150ms, color 150ms, border-color 150ms;
+}
+
+.csd-tab:hover {
+  background: rgba(91, 160, 245, 0.10);
+  border-color: rgba(91, 160, 245, 0.30);
+  color: rgba(91, 160, 245, 1);
+}
+
+.csd-wrapper--open .csd-tab {
+  background: rgba(91, 160, 245, 0.12);
+  border-color: rgba(91, 160, 245, 0.30);
+  color: rgba(91, 160, 245, 0.95);
+}
+
+/* ── Panel — fixed, slides up above the statusbar ───────────────────── */
+.csd-panel {
+  position: fixed;
+  bottom: var(--statusbar-height, 30px);
+  left: 0; /* overridden by inline style from ref */
+  width: 390px;
+  z-index: 450;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  background: linear-gradient(180deg, rgba(9, 16, 30, 0.98), rgba(5, 10, 20, 0.98));
+  border: 1px solid rgba(91, 160, 245, 0.18);
+  border-radius: 10px;
+  box-shadow: 0 -6px 32px rgba(0, 0, 0, 0.55),
+              0 -1px 0   rgba(91, 160, 245, 0.08);
+
+  /* hidden by default */
+  transform: translateY(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 200ms ease;
+}
+
+.csd-wrapper--open .csd-panel {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Panel header ─────────────────────────────────────────────────────── */
+.csd-header {
+  position: relative;
+  z-index: 453;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  height: 42px;
+  padding: 0 9px 0 11px;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(91, 160, 245, 0.12);
+  background: linear-gradient(180deg, rgba(18, 30, 52, 0.86), rgba(8, 15, 28, 0.94));
+}
+
+.csd-heading {
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  margin-right: auto;
+}
+
+/* Chevron in tab */
+.csd-chevron {
+  color: rgba(91, 160, 245, 0.55);
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), color 150ms;
+  flex-shrink: 0;
+}
+
+.csd-wrapper--open .csd-chevron {
+  transform: rotate(180deg);
+  color: rgba(91, 160, 245, 0.85);
+}
+
+.csd-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: rgba(233, 242, 255, 0.86);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.csd-source {
+  align-self: flex-start;
+  margin: 0;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 8.8px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.csd-source--servo-output-raw {
+  color: #8ef5cf;
+  background: rgba(74, 222, 128, 0.10);
+  border-color: rgba(74, 222, 128, 0.35);
+}
+
+.csd-source--actuator-output-status {
+  color: #aee7ff;
+  background: rgba(34, 211, 238, 0.10);
+  border-color: rgba(34, 211, 238, 0.35);
+}
+
+.csd-source--rc-channels {
+  color: #fbd38d;
+  background: rgba(251, 191, 36, 0.10);
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+.csd-source--attitude-proxy {
+  color: #fca5a5;
+  background: rgba(248, 113, 113, 0.10);
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+.csd-source--prev-hold {
+  color: #fecaca;
+  background: rgba(248, 113, 113, 0.10);
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+.csd-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: background 150ms, color 150ms;
+}
+.csd-close:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ── Floating (detached) panel ──────────────────────────────────────────── */
+.csd-wrapper--floating {
+  position: fixed;
+  height: auto;
+  transition: none;
+}
+
+.csd-wrapper--floating .csd-panel {
+  position: relative;
+  bottom: auto;
+  left: auto;
+  width: auto;
+  transform: none;
+  opacity: 1;
+  pointer-events: auto;
+  border-radius: 10px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.7),
+              0 0 0 1px rgba(91, 160, 245, 0.2);
+}
+
+.csd-wrapper--anchor-left .csd-panel,
+.csd-wrapper--anchor-right .csd-panel,
+.csd-wrapper--anchor-top .csd-panel,
+.csd-wrapper--anchor-bottom .csd-panel {
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.75),
+    0 0 0 2px rgba(91, 160, 245, 0.34);
+}
+
+/* ── Draggable header (when floating) ───────────────────────────────────── */
+.csd-header--draggable {
+  cursor: move;
+  user-select: none;
+}
+
+/* ── Detach/dock icon button in header ──────────────────────────────────── */
+.csd-header-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: background 150ms, color 150ms;
+  margin-right: 2px;
+  flex-shrink: 0;
+}
+.csd-header-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(91, 160, 245, 0.9);
+}
+
+.csd-mode-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 2px;
+  height: 24px;
+  border: 1px solid rgba(91, 160, 245, 0.22);
+  border-radius: 6px;
+  background: rgba(12, 20, 34, 0.8);
+}
+
+.csd-mode-btn {
+  border: 0;
+  border-radius: 4px;
+  min-width: 22px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: rgba(172, 200, 236, 0.72);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.8px;
+  font-weight: 700;
+  letter-spacing: 0;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.csd-mode-btn:hover {
+  color: rgba(228, 241, 255, 0.98);
+  background: rgba(91, 160, 245, 0.15);
+}
+
+.csd-mode-btn--active {
+  color: #dff1ff;
+  background: rgba(91, 160, 245, 0.3);
+}
+
+/* ── Canvas area ──────────────────────────────────────────────────────── */
+.csd-body {
+  overflow: hidden;
+  min-height: 0;
+  height: 268px;
+  padding: 10px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    rgba(3, 8, 16, 0.48);
+  background-size: 18px 18px;
+}
+
+/* ── Floating panel: body fills remaining height (panel size is inline) ── */
+.csd-wrapper--floating .csd-body {
+  flex: 1;
+  height: auto;
+  min-height: 0;
+  padding: 10px;
+}
+
+/* ── Column slots grid (replaces single-canvas panel body) ── */
+.csd-slots {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.csd-slots--horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.csd-slots--vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.csd-slots--grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.csd-slots--grid .csd-slot:nth-child(1),
+.csd-slots--grid .csd-slot:nth-child(2),
+.csd-slots--grid .csd-slot:nth-child(3) {
+  grid-column: span 2;
+}
+
+.csd-slots--grid .csd-slot:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.csd-slots--grid .csd-slot:nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
+.csd-slot {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  min-height: 0;
+  min-width: 0;
+  border: 1px solid rgba(91, 160, 245, 0.12);
+  border-radius: 8px;
+  background: radial-gradient(circle at 50% 20%, rgba(91, 160, 245, 0.08), rgba(5, 11, 22, 0.92) 64%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.csd-slot > div:not(.csd-slot-handle):not(.csd-slot-placeholder) {
+  border-radius: 8px;
+}
+
+/* Drag handle that appears on hover */
+.csd-slot-handle {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 12.1px;
+  color: rgba(190, 218, 255, 0.48);
+  background: rgba(4, 10, 20, 0.55);
+  border: 1px solid rgba(91, 160, 245, 0.12);
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+  z-index: 2;
+  cursor: grab;
+}
+
+.csd-slot:hover .csd-slot-handle {
+  opacity: 0.75;
+}
+
+/* Ghost overlay shown while dragging */
+.csd-slot-ghost {
+  position: fixed;
+  width: 130px;
+  height: 260px;
+  background: rgba(11, 22, 40, 0.88);
+  border: 1px dashed rgba(91, 160, 245, 0.5);
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 900;
+  overflow: hidden;
+}
+
+/* Empty placeholder shown when a column is detached */
+.csd-slot-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 1px dashed rgba(91, 160, 245, 0.18);
+  border-radius: 4px;
+  background: rgba(30, 58, 95, 0.06);
+  cursor: pointer;
+  transition: border-color 150ms, background 150ms;
+}
+
+.csd-slot-placeholder:hover {
+  border-color: rgba(91, 160, 245, 0.35);
+  background: rgba(30, 58, 95, 0.14);
+}
+
+.csd-slot-placeholder-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(91, 160, 245, 0.30);
+}
+
+.csd-slot-placeholder-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.7px;
+  color: #334155;
+}
+
+.csd-resize-handle {
+  position: absolute;
+  z-index: 452;
+}
+
+.csd-resize-handle--n,
+.csd-resize-handle--s {
+  left: 16px;
+  right: 16px;
+  height: 8px;
+  cursor: ns-resize;
+}
+
+.csd-resize-handle--n { top: 0; }
+.csd-resize-handle--s { bottom: 0; }
+
+.csd-resize-handle--e,
+.csd-resize-handle--w {
+  top: 16px;
+  bottom: 16px;
+  width: 8px;
+  cursor: ew-resize;
+}
+
+.csd-resize-handle--e { right: 0; }
+.csd-resize-handle--w { left: 0; }
+
+.csd-resize-handle--ne,
+.csd-resize-handle--se,
+.csd-resize-handle--sw,
+.csd-resize-handle--nw {
+  width: 16px;
+  height: 16px;
+}
+
+.csd-resize-handle--ne {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.csd-resize-handle--se {
+  right: 0;
+  bottom: 0;
+  cursor: nwse-resize;
+  background: linear-gradient(135deg, transparent 48%, rgba(91, 160, 245, 0.42) 48%, rgba(91, 160, 245, 0.42) 52%, transparent 52%);
+  border-bottom-right-radius: 10px;
+}
+
+.csd-resize-handle--sw {
+  left: 0;
+  bottom: 0;
+  cursor: nesw-resize;
+}
+
+.csd-resize-handle--nw {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}

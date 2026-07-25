@@ -1,0 +1,188 @@
+/* ═══════════════════════════════════════════════════════════════
+   ReplayBar — Flight Recorder & Replay Panel
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Outer wrap — sits above the status bar ── */
+.replay-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background: rgba(10, 12, 20, 0.92);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 13.2px;
+  color: #c8d0e0;
+  user-select: none;
+  animation: replaybar-in 0.2s ease;
+}
+
+@keyframes replaybar-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Record indicator dot ── */
+.replay-bar__rec-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff3b3b;
+  flex-shrink: 0;
+  animation: rec-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes rec-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,59,59,0.5); }
+  50%       { opacity: 0.6; box-shadow: 0 0 0 5px rgba(255,59,59,0); }
+}
+
+/* ── Buttons ── */
+.replay-bar button {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: #c8d0e0;
+  padding: 2px 10px;
+  font-size: 13.2px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  height: 22px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.replay-bar button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.replay-bar button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── REC button ── */
+.replay-bar__btn-rec {
+  border-color: rgba(255, 59, 59, 0.5) !important;
+  color: #ff6b6b !important;
+}
+
+.replay-bar__btn-rec:hover {
+  background: rgba(255, 59, 59, 0.15) !important;
+}
+
+.replay-bar__btn-rec--active {
+  background: rgba(255, 59, 59, 0.2) !important;
+  color: #ff4444 !important;
+  border-color: #ff4444 !important;
+  box-shadow: 0 0 8px rgba(255, 59, 59, 0.3);
+}
+
+/* ── REPLAY button ── */
+.replay-bar__btn-play {
+  border-color: rgba(100, 210, 255, 0.4) !important;
+  color: #64d2ff !important;
+}
+
+.replay-bar__btn-play:hover {
+  background: rgba(100, 210, 255, 0.1) !important;
+}
+
+.replay-bar__btn-play--active {
+  background: rgba(100, 210, 255, 0.15) !important;
+  color: #40c8ff !important;
+  border-color: #40c8ff !important;
+  box-shadow: 0 0 8px rgba(100, 210, 255, 0.25);
+}
+
+/* ── Timeline scrubber ── */
+.replay-bar__scrubber-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.replay-bar__time {
+  font-variant-numeric: tabular-nums;
+  font-size: 12.1px;
+  color: #7a8599;
+  flex-shrink: 0;
+  min-width: 42px;
+  text-align: right;
+}
+
+.replay-bar__slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.08);
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.replay-bar__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #64d2ff;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(100,210,255,0.5);
+  transition: transform 0.1s;
+}
+
+.replay-bar__slider::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+.replay-bar__slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #64d2ff;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 5px rgba(100,210,255,0.5);
+}
+
+/* ── Speed selector ── */
+.replay-bar__speed {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  color: #c8d0e0;
+  padding: 2px 4px;
+  font-size: 12.1px;
+  cursor: pointer;
+  height: 22px;
+  outline: none;
+}
+
+.replay-bar__speed option {
+  background: #12151f;
+}
+
+/* ── Frame count ── */
+.replay-bar__frames {
+  font-size: 12.1px;
+  color: #4a5568;
+  flex-shrink: 0;
+}
+
+/* ── Divider ── */
+.replay-bar__div {
+  width: 1px;
+  height: 16px;
+  background: rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}

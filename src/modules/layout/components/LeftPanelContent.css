@@ -1,0 +1,39 @@
+﻿/* LeftPanelContent.css — Scrollable panel area v3.0 */
+
+.lpc-container {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(91, 160, 245, 0.12) transparent;
+}
+.lpc-container::-webkit-scrollbar { width: 4px; }
+.lpc-container::-webkit-scrollbar-track { background: transparent; }
+.lpc-container::-webkit-scrollbar-thumb { background: rgba(91, 160, 245, 0.12); border-radius: 2px; }
+.lpc-container::-webkit-scrollbar-thumb:hover { background: rgba(91, 160, 245, 0.24); }
+
+.lpc-telem-body { padding: 8px; }
+
+@keyframes lpc-fade-slide {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lpc-panel-enter { padding: 8px; animation: lpc-fade-slide 0.22s var(--rohu-ease) both; }
+.lpc-panel-enter--telem { padding: 0; }
+
+.lpc-no-drone { display: flex; align-items: center; justify-content: center; padding: 20px 12px; }
+.lpc-no-drone-text { font-size: 12.1px; font-weight: 500; color: var(--rohu-text-muted); letter-spacing: 0.04em; text-transform: uppercase; font-family: var(--rohu-font-ui); }
+
+.lpc-placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px; margin: 8px; padding: 28px 16px;
+  background: rgba(6, 10, 24, 0.45);
+  border: 1px solid rgba(91, 160, 245, 0.05);
+  border-radius: var(--rohu-radius-sm);
+}
+.lpc-placeholder-icon { font-size: 24.2px; color: var(--rohu-text-muted); opacity: 0.5; line-height: 1; }
+.lpc-placeholder-title { font-size: 12.1px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rohu-text-secondary); font-family: var(--rohu-font-ui); }
+.lpc-placeholder-sub { font-size: 11px; color: var(--rohu-text-muted); font-family: var(--rohu-font-ui); opacity: 0.7; }

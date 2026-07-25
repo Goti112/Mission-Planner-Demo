@@ -1,0 +1,46 @@
+/* ═══════════════════════════════════════════════════════════════
+   LayoutControls.css — Panel side-swap button
+   Sits just below the left/right collapse handle (layout-zone__toggle).
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Floating container — follows the panel's current side ── */
+.layout-ctrl {
+  position: absolute;
+  top: 44px; /* 8px (toggle top) + 28px (toggle height) + 8px (gap) */
+  z-index: 300;
+}
+
+.layout-ctrl--left  { left:  8px; }
+.layout-ctrl--right { right: 8px; }
+
+/* ── Toggle button — identical size & style to layout-zone__toggle ── */
+.layout-ctrl__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(10, 14, 24, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 0;
+}
+
+.layout-ctrl__toggle:hover {
+  background: rgba(30, 38, 56, 1);
+  border-color: rgba(0, 188, 212, 0.4);
+  color: #00bcd4;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.layout-ctrl__toggle:active {
+  transform: scale(0.94);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}

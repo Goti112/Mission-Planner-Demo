@@ -1,0 +1,143 @@
+/* ── Control Surfaces floating panel specific styles ───────────────────── */
+
+.dcsp-floating {
+  min-width: 220px;
+  min-height: 180px;
+}
+
+/* Anchor state: tighter shadow to indicate edge lock */
+.dcsp-floating--anchor-left,
+.dcsp-floating--anchor-right,
+.dcsp-floating--anchor-top,
+.dcsp-floating--anchor-bottom {
+  box-shadow:
+    0 0 0 1.5px rgba(91, 160, 245, 0.45),
+    0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Mode selector ──────────────────────────────────────────────────────── */
+
+.dcsp-mode-control {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: rgba(5, 12, 24, 0.35);
+}
+
+.dcsp-mode-btn,
+.dcsp-anchor-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  min-width: 26px;
+  border: none;
+  background: transparent;
+  color: rgba(148, 180, 220, 0.75);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: color 0.12s, background 0.12s;
+  padding: 0 5px;
+}
+
+.dcsp-mode-btn:hover,
+.dcsp-anchor-pill:hover {
+  color: rgba(220, 238, 255, 0.95);
+  background: rgba(100, 160, 255, 0.14);
+}
+
+.dcsp-mode-btn--active {
+  color: #d7ecff;
+  background: rgba(91, 160, 245, 0.28);
+}
+
+/* ── Anchor pill ────────────────────────────────────────────────────────── */
+
+.dcsp-anchor-pill {
+  gap: 4px;
+  border-radius: 4px;
+  font-size: 9.9px;
+  text-transform: uppercase;
+}
+
+/* ── Resize handles ─────────────────────────────────────────────────────── */
+
+.dcsp-resize-handle {
+  position: absolute;
+  z-index: 12;
+}
+
+/* Edge handles — thin strips */
+.dcsp-resize-handle--n,
+.dcsp-resize-handle--s {
+  left: 16px;
+  right: 16px;
+  height: 6px;
+  cursor: ns-resize;
+}
+
+.dcsp-resize-handle--n { top: 0; }
+.dcsp-resize-handle--s { bottom: 0; }
+
+.dcsp-resize-handle--e,
+.dcsp-resize-handle--w {
+  top: 16px;
+  bottom: 16px;
+  width: 6px;
+  cursor: ew-resize;
+}
+
+.dcsp-resize-handle--e { right: 0; }
+.dcsp-resize-handle--w { left: 0; }
+
+/* Corner handles */
+.dcsp-resize-handle--ne,
+.dcsp-resize-handle--se,
+.dcsp-resize-handle--sw,
+.dcsp-resize-handle--nw {
+  width: 18px;
+  height: 18px;
+}
+
+.dcsp-resize-handle--ne {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.dcsp-resize-handle--se {
+  right: 0;
+  bottom: 0;
+  cursor: nwse-resize;
+  border-bottom-right-radius: 16px;
+}
+
+.dcsp-resize-handle--sw {
+  left: 0;
+  bottom: 0;
+  cursor: nesw-resize;
+}
+
+.dcsp-resize-handle--nw {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+
+/* ── Layout-specific content padding ────────────────────────────────────── */
+
+.dcsp-floating--vertical .dpfd-content {
+  padding: 8px;
+}
+
+.dcsp-floating--horizontal .dpfd-content {
+  padding: 8px;
+}
+
+.dcsp-floating--grid .dpfd-content {
+  padding: 8px;
+}

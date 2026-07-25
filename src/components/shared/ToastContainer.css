@@ -1,0 +1,81 @@
+/* ── Toast Container ─────────────────────────────────────────────────────── */
+
+.toast-container {
+  position: fixed;
+  bottom: 52px; /* sits above the 36px status bar with 16px gap */
+  right: 16px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 320px;
+  min-height: 40px;
+  padding: 10px 12px;
+  background: rgba(11, 17, 32, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 3px solid transparent;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
+  font-size: 13.2px;
+  font-weight: 500;
+  color: var(--rohu-text-primary);
+  animation: toast-slide-in 0.22s var(--rohu-ease) both;
+}
+
+@keyframes toast-slide-in {
+  from { transform: translateX(110%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.toast--error   { border-left-color: var(--rohu-danger);  }
+.toast--success { border-left-color: var(--rohu-success); }
+.toast--warning { border-left-color: var(--rohu-warning); }
+.toast--info    { border-left-color: var(--rohu-neon);    }
+
+.toast-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.toast--error   .toast-icon { color: var(--rohu-danger);  }
+.toast--success .toast-icon { color: var(--rohu-success); }
+.toast--warning .toast-icon { color: var(--rohu-warning); }
+.toast--info    .toast-icon { color: var(--rohu-neon);    }
+
+.toast-message {
+  flex: 1;
+  line-height: 1.4;
+  color: var(--rohu-text-secondary);
+}
+
+.toast-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  border-radius: 3px;
+  transition: color 140ms, background 140ms;
+  padding: 0;
+}
+
+.toast-close:hover {
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.08);
+}

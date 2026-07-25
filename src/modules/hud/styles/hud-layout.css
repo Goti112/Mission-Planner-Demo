@@ -1,0 +1,176 @@
+/* hud-layout.css
+ *
+ * Glass-cockpit overlay layout for the Primary Flight Display.
+ *
+ * Architecture — instruments are absolutely positioned over each other:
+ *
+ *   .hud-canvas-zone  (relative container, sets overall PFD dimensions)
+ *     ├── .hud-cvs--horizon   0,0 → 100% × 100%  (background layer)
+ *     ├── .hud-cvs--speed     left edge overlay   (z-index 2)
+ *     ├── .hud-cvs--altitude  right edge overlay  (z-index 2)
+ *     ├── .hud-cvs--vsi       far-right overlay   (z-index 2)
+ *     ├── .hud-cvs--heading   top-center overlay  (z-index 3)
+ *     └── .hud-cvs--waypoint  bottom-full overlay (z-index 3)
+ *
+ * Percentage values keep the layout proportional at any sidebar width.
+ * Each canvas is observed individually via useHUDResize — no shared size.
+ */
+
+/* ── Outer wrapper (FlightHUD root div) ─────────────────────────── */
+.hud-panel {
+  display:       flex;
+  flex-direction: column;
+  gap:           0;
+  padding:       0;
+  background:    transparent;
+  height:        auto;
+  width:         100%;
+  min-width:     0;
+  max-width:     none;
+  /* overflow: hidden prevents the canvas zone (absolutely-positioned
+   * children use percentage sizing) from spilling outside the sidebar
+   * panel boundary at narrow widths. */
+  overflow:      hidden;
+  box-sizing:    border-box;
+  font-family:   var(--hud-font-ui);
+  color:         var(--hud-text);
+}
+
+/* ── Glass-cockpit canvas zone ──────────────────────────────────── */
+/* aspect-ratio 4:3 gives the PFD a natural landscape proportion.    */
+/* overflow: hidden prevents absolutely-positioned children from      */
+/* escaping the PFD boundary.                                         */
+.hud-canvas-zone {
+  position:     relative;
+  width:        100%;
+  aspect-ratio: 4 / 3;
+  overflow:     hidden;
+  background:   #0d1017;
+  border:       1px solid var(--hud-border);
+  border-radius: var(--hud-radius);
+}
+
+/* ── Shared base for all overlay canvas elements ────────────────── */
+.hud-cvs {
+  position: absolute;
+  display:  block;
+}
+
+/* ── 0. ARTIFICIAL HORIZON — full-canvas background ────────────── */
+/* Fills 100 × 100% in rectangular mode (no circular bezel clip).   */
+.hud-cvs--horizon {
+  top:    0;
+  left:   0;
+  width:  100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* ── 1. SPEED TAPE — left side overlay ──────────────────────────── */
+/* Slightly transparent background lets the horizon bleed through   */
+/* at the tape's right edge — matches real G1000 aesthetics.        */
+.hud-cvs--speed {
+  top:    0;
+  left:   0;
+  width:  21%;
+  height: 85%;
+  z-index: 2;
+}
+
+/* ── 2. ALTITUDE TAPE — right side overlay ──────────────────────── */
+/* Inset to leave room for throttle (9%) and VSI (9%) columns.      */
+.hud-cvs--altitude {
+  top:   0;
+  right: 18%;
+  width: 21%;
+  height: 85%;
+  z-index: 2;
+}
+
+/* ── 3. VERTICAL SPEED INDICATOR — far-right column ─────────────── */
+/* Narrow strip; starts slightly below the top to clear the heading  */
+/* tape's center-bug triangle which points down from y = 0.          */
+.hud-cvs--vsi {
+  top:    0;
+  right:  0;
+  width:  9%;
+  height: 85%;
+  z-index: 2;
+}
+
+/* ── 4. HEADING TAPE — top-center band ──────────────────────────── */
+/* Spans the gap between the left tape right edge (21%) and           */
+/* the altitude tape left edge (100% − 9%vsi − 21%alt = 70%).        */
+/* The heading tape canvas is positioned to fill that center zone.   */
+/*                                                                     */
+/* height formula: with aspect-ratio 4:3, height = width × 0.75 so   */
+/*   12% of height ≡ 9% of width  (12 × 0.75 = 9).                   */
+/* The 24 px minimum ensures readability on very small panels.        */
+/* Old value was bare `9%` (6.75% of width) with no minimum, causing  */
+/* the tape to be < 20 px on panels narrower than ~300 px.            */
+.hud-cvs--heading {
+  top:   0;
+  left:  21%;
+  right: 30%;    /* 21% altitude + 9% VSI */
+  height: clamp(24px, 12%, 64px);
+  z-index: 3;
+}
+
+/* ── 5. NAVIGATION STRIP — bottom full-width ────────────────────── */
+/* Full-width bar at the bottom: GS | BRG | WP DIST | HDG.           */
+.hud-cvs--waypoint {
+  bottom: 0;
+  left:   0;
+  width:  100%;
+  height: 15%;
+  z-index: 3;
+}
+
+/* ── 6. THROTTLE INDICATOR — narrow vertical gauge left of VSI ─── */
+/* Sits between the altitude tape right edge and VSI left edge.      */
+.hud-cvs--throttle {
+  top:    0;
+  right:  9%;
+  width:  9%;
+  height: 85%;
+  z-index: 2;
+}
+
+/* ── Legacy status-row classes (kept for backward compatibility) ── */
+.hud-status-row {
+  display:        flex;
+  flex-direction: row;
+  flex-wrap:      wrap;
+  gap:            4px;
+  width:          100%;
+}
+
+.hud-status-row .hud-indicator {
+  flex:      1 1 auto;
+  min-width: 60px;
+}
+
+
+.hud-secondary-row canvas {
+  flex:             1;
+  display:          block;
+  min-height:       100px;
+}
+
+/* ── Bottom telemetry grid: coordinates · GS · home · link ──────────────── */
+/*
+ * 2×2 grid of compact info indicators.
+ * CoordinatesIndicator spans both columns (wider content).
+ * The other three fill the remaining cells.
+ */
+.hud-telemetry-grid {
+  display:          grid;
+  grid-template-columns: 1fr 1fr;
+  gap:              4px;
+  width:            100%;
+}
+
+/* Coordinates takes the full top row — needs space for two coord lines */
+.hud-telemetry-grid .hud-coordinates {
+  grid-column:      1 / -1;
+}

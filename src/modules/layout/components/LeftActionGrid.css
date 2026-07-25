@@ -1,0 +1,158 @@
+/* LeftActionGrid.css — Premium Action Grid v3.0
+ * Compact horizontal panel selector with glass buttons */
+
+.lag-container {
+  flex-shrink: 0;
+  padding: 5px 6px;
+  border-top: 1px solid rgba(91, 160, 245, 0.04);
+  border-bottom: 1px solid rgba(91, 160, 245, 0.04);
+  background: rgba(0, 0, 0, 0.25);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(91, 160, 245, 0.15) transparent;
+}
+.lag-container::-webkit-scrollbar { height: 3px; }
+.lag-container::-webkit-scrollbar-track { background: transparent; }
+.lag-container::-webkit-scrollbar-thumb { background: rgba(91, 160, 245, 0.15); border-radius: 2px; }
+.lag-container::-webkit-scrollbar-thumb:hover { background: rgba(91, 160, 245, 0.30); }
+
+.lag-grid { display: flex; flex-direction: row; flex-wrap: nowrap; gap: 6px; min-width: 100%; }
+
+.lag-divider {
+  width: 1px;
+  height: auto;
+  align-self: stretch;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 4px auto;
+  border-radius: 1px;
+}
+
+.lag-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 4px 4px;
+  flex: 0 0 auto;
+  min-width: 48px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: var(--rohu-radius-sm);
+  color: var(--rohu-text-muted);
+  font-family: var(--rohu-font-ui);
+  cursor: pointer;
+  transition: all 180ms var(--rohu-ease);
+  outline: none;
+  user-select: none;
+}
+.lag-btn:hover {
+  background: rgba(91, 160, 245, 0.05);
+  border-color: rgba(91, 160, 245, 0.14);
+  color: var(--rohu-text-primary);
+}
+.lag-btn:focus-visible {
+  border-color: rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.10);
+  color: var(--rohu-text-primary);
+}
+.lag-btn:active { background: rgba(91, 160, 245, 0.08); }
+
+.lag-btn--active {
+  background: rgba(91, 160, 245, 0.08);
+  border-color: rgba(91, 160, 245, 0.25);
+  color: var(--rohu-neon);
+  box-shadow: 0 0 10px rgba(91, 160, 245, 0.06);
+}
+.lag-btn--active:hover {
+  background: rgba(91, 160, 245, 0.12);
+  border-color: rgba(91, 160, 245, 0.35);
+}
+
+.lag-btn-symbol {
+  font-size: 15.4px;
+  line-height: 1;
+  display: block;
+  transition: color 130ms ease;
+}
+.lag-btn--active .lag-btn-symbol { color: var(--rohu-neon); }
+.lag-btn:hover:not(.lag-btn--active) .lag-btn-symbol { color: var(--rohu-text-secondary); }
+
+.lag-btn-label {
+  font-size: 8.25px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ── FPV Technical Button Override ── */
+.lag-btn-fpv {
+  position: relative;
+  overflow: hidden;
+  padding: 0; 
+}
+
+.fpv-btn-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  width: 100%;
+  height: 100%;
+  padding: 4px 4px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lag-btn-fpv:not(.fpv-active-state) {
+  background: rgba(15, 23, 42, 0.5); 
+  border-color: rgba(91, 160, 245, 0.08);
+}
+.lag-btn-fpv:not(.fpv-active-state):hover {
+  background: rgba(91, 160, 245, 0.08); 
+  border-color: rgba(91, 160, 245, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Active State */
+.fpv-active-state.lag-btn-fpv {
+  background: rgba(34, 197, 94, 0.08);
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: inset 0 0 12px rgba(34, 197, 94, 0.1), 0 0 8px rgba(34, 197, 94, 0.15);
+  transform: translateY(-1px);
+}
+
+.fpv-active-state.lag-btn-fpv .lag-btn-symbol {
+  color: #22c55e;
+  filter: drop-shadow(0 0 4px rgba(34, 197, 94, 0.6));
+}
+
+.fpv-active-state.lag-btn-fpv .lag-btn-label {
+  color: #4ade80; 
+}
+
+/* Status LED */
+.fpv-status-led {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 250ms ease;
+}
+
+.fpv-status-led.led-on {
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.9);
+  animation: fpv-btn-pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes fpv-btn-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.8); }
+}
