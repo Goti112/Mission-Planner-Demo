@@ -20,7 +20,7 @@ Until that release gate passes, the complete demo can be reviewed locally using 
 - Switch to the Cesium 3D view to inspect the aircraft, route, and altitude trajectory.
 - Open the primary flight display and operational panels to examine flight state and safety signals.
 - Replay the recorded mission with trajectory, events, telemetry plots, and analysis controls.
-- Select **Restart tour** at any point to restore the same prepared mission and guided state.
+- Select **Restart tour** at any point to restore the prepared mission, runtime and replay baseline, primary PLAN view, and guided-tour state.
 
 ## Two-minute guided scenario
 
@@ -29,7 +29,7 @@ Until that release gate passes, the complete demo can be reviewed locally using 
 3. Use the highlighted **Start simulated mission** control and observe the live synthetic flight.
 4. Select **Continue to 3D inspection**, then use the highlighted **Switch to 3D** control.
 5. Inspect the aircraft and trajectory, then use the highlighted **Open replay** control.
-6. Review the recorded route and telemetry. Select **Restart tour** to return every demo store and controller to the prepared start state.
+6. Review the recorded route and telemetry. Select **Restart tour** to restore the prepared mission, runtime and replay baseline, primary PLAN view, and guided-tour state.
 
 No hardware, autopilot, local bridge, or live vehicle data is involved.
 
@@ -37,11 +37,11 @@ No hardware, autopilot, local bridge, or live vehicle data is involved.
 
 RohuPlanner Demo es un caso de estudio de una estación de control terrestre ejecutada íntegramente en el navegador. Permite revisar una misión sintética preparada, validar su ruta, iniciar una simulación, observar telemetría y seguridad, inspeccionar la trayectoria en 3D y reproducir el vuelo grabado.
 
-La edición pública utiliza exclusivamente datos sintéticos y no se conecta a aeronaves. El recorrido guiado y **Restart tour** restauran un estado determinista para que la misma experiencia pueda repetirse. Para ejecutarla en local se necesitan Node.js 24 y tokens de cliente restringidos de Mapbox y Cesium ion.
+La edición pública utiliza exclusivamente datos sintéticos y no se conecta a aeronaves. **Restart tour** restaura la misión preparada y el estado base de ejecución, reproducción, vista principal y recorrido guiado. Para ejecutarla en local se necesitan Node.js 24 y tokens de cliente restringidos de Mapbox y Cesium ion.
 
 ## How it is engineered
 
-- **Simulation-only composition:** `src/demo/` owns environment validation, the prepared scenario, guided-tour state, startup composition, and deterministic reset.
+- **Simulation-only composition:** `src/demo/` owns environment validation, the prepared scenario, guided-tour state, startup composition, and the prepared reset baseline.
 - **Typed telemetry path:** `SimulationTelemetrySource` emits MAVLink-shaped raw packets; `TelemetryManager` normalizes them before typed state reaches the application stores and UI.
 - **Separated mission model:** mission types, commands, factories, selectors, metrics, vehicle profiles, and validation live in the domain layer; planning interaction and runtime execution remain separate.
 - **One visible state:** mission, telemetry, drone, replay, layout, and operational surfaces consume shared Zustand stores rather than parallel demo-only UI state.

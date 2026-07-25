@@ -54,11 +54,11 @@ The mission module separates durable mission meaning from planning interaction a
 
 This boundary lets readiness checks reject an invalid plan before runtime execution while keeping visual editing concerns out of the domain model.
 
-## Deterministic reset
+## Prepared reset baseline
 
-`resetDemoScenario()` is the single restart transaction. It first returns the active mission controller to idle, then clears transient recorder, replay, mission-progress, and event state. It recreates the same mission and aircraft identifiers, restores the PLAN view with 3D disabled, and synchronizes runtime entities with the resulting stores.
+`resetDemoScenario()` restores the prepared mission, runtime, and replay baseline used by the tour. It returns the active mission controller to idle; clears recorder, replay import, replay trajectory, mission-progress, and flight-event state; recreates the prepared mission and aircraft; restores the PLAN view with 3D disabled; and synchronizes runtime entities with that scoped state.
 
-The prepared mission also uses a fixed `updatedAtIso` value. Restarting the tour therefore restores the same route, selection, UI mode, replay baseline, battery baseline, and controller state instead of inheriting state from the previous run. A reset failure is wrapped in `DemoScenarioResetError` with the original cause rather than being ignored.
+The **Restart tour** handler then calls the guide store's `restart()` action to return the tour to its welcome state. These reset steps are sequential and limited to the listed state. The prepared mission uses a fixed `updatedAtIso` value, so the reset restores the same route, selection, primary UI mode, replay baseline, and idle runtime baseline. A scenario-reset failure is wrapped in `DemoScenarioResetError` with the original cause rather than being ignored.
 
 ## Provider boundary
 
