@@ -823,6 +823,54 @@ export class DroneMissionController {
     }
   }
 
+  /**
+   * Stop all controller-owned mission work and synchronously return registered
+   * drones to an idle runtime state before an external scenario reset replaces
+   * the Zustand stores.
+   */
+  resetRuntimeToIdle(): void {
+    const droneIds = new Set<string>([
+      ...this.entities.keys(),
+      ...this.missionAssignments.keys(),
+    ])
+
+    this._stopLoop()
+
+    for (const droneId of droneIds) {
+      const missionId = this.missionAssignments.get(droneId)
+
+      if (missionId !== undefined) {
+        useMissionStore.getState().stopMission(missionId)
+        missionProgressCalculator.clearMission(missionId)
+      }
+
+      this.entities.get(droneId)?.setState(DroneState.IDLE)
+      useMissionProgressStore.getState().clearProgress(droneId)
+      missionProgressCalculator.clearDrone(droneId)
+      droneRuntime.clearMissionState(droneId)
+      droneRuntime.resetInterpolator(droneId)
+      missionStateController.forceReset(droneId)
+    }
+
+    this.missionAssignments.clear()
+    this.navControllers.clear()
+    this.flightDynamics.clear()
+    this.takeoffTimers.clear()
+    this.takeoffStartAlt.clear()
+    this.takeoffTargetAlt.clear()
+    this.takeoffHeading.clear()
+    this.prevAlt.clear()
+    this.prevYaw.clear()
+    this._lastWpIndex.clear()
+    this._lastLoggedAlt.clear()
+    this._battWarnState.clear()
+    this._missionStartTime.clear()
+    this._rtlHomeLat.clear()
+    this._rtlHomeLng.clear()
+    this._rtlAscendTarget.clear()
+    this._rtlNavCtrl.clear()
+  }
+
   /** Clean up — cancel loop if running */
   destroy(): void {
     this._stopLoop()

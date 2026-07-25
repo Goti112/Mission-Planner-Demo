@@ -42,6 +42,7 @@ export class DemoScenarioResetError extends Error {
 
 export const resetDemoScenario = (): void => {
   try {
+    droneMissionController.resetRuntimeToIdle();
     const mission = createDemoMissionRecord();
 
     useFlightRecorderStore.getState().stopRecording();

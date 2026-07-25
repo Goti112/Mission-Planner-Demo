@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { useDroneStore } from '../../modules/drone';
-import { useMissionPlanStore, useMissionStore } from '../../modules/mission';
+import { DroneState, useDroneStore } from '../../modules/drone';
+import {
+  droneMissionController,
+  missionStateController,
+  useMissionPlanStore,
+  useMissionStore,
+} from '../../modules/mission';
 import { useFlightRecorderStore } from '../../modules/replay/store';
 import { useUIStore } from '../../shared/store/uiStore';
 import { DEMO_HOME, DEMO_MISSION_ID, createDemoMissionRecord } from './demoMission';
@@ -65,5 +70,38 @@ describe('resetDemoScenario', () => {
       lng: DEMO_HOME.lng,
       altitude: DEMO_HOME.alt,
     });
+  });
+
+  it('clears an active controller mission before restoring the grounded demo state', () => {
+    resetDemoScenario();
+
+    const legacyMissionId = useMissionStore.getState().createMission('Active legacy mission', 'drone-1');
+    useMissionStore.getState().addWaypoint(legacyMissionId, {
+      id: 'legacy-waypoint',
+      lat: 40.4172,
+      lng: -3.703,
+      altitude: 60,
+    });
+    droneMissionController.startMission('drone-1', legacyMissionId);
+
+    expect(droneMissionController.getAssignedMission('drone-1')).toBe(legacyMissionId);
+    expect(droneMissionController.isRunning).toBe(true);
+
+    resetDemoScenario();
+    droneMissionController.update(1);
+
+    const resetDrone = useDroneStore.getState().drones['drone-1'];
+
+    expect(resetDrone).toMatchObject({
+      active: true,
+      lat: DEMO_HOME.lat,
+      lng: DEMO_HOME.lng,
+      altitude: DEMO_HOME.alt,
+      missionState: DroneState.IDLE,
+    });
+    expect(droneMissionController.getAssignedMission('drone-1')).toBeUndefined();
+    expect(droneMissionController.getEntity('drone-1')?.state).toBe(DroneState.IDLE);
+    expect(droneMissionController.isRunning).toBe(false);
+    expect(missionStateController.getState('drone-1')).toBe('IDLE');
   });
 });
