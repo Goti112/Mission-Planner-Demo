@@ -2,6 +2,7 @@ import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useDroneStore } from '../modules/drone'
 import { useUIStore } from '../shared/store/uiStore'
+import { useInitializeDemo } from '../demo/useInitializeDemo'
 import { LazyCesiumGlobe, MapContainer, MapToolbar } from '../modules/map'
 import type {
   HomeMarkerData,
@@ -140,6 +141,7 @@ const buildHomeFlightMissionMapModel = (
 }
 
 const App: React.FC = () => {
+  useInitializeDemo()
   const dronesObj = useDroneStore((state) => state.drones)
   const visibleDrones = React.useMemo(() => Object.values(dronesObj), [dronesObj])
   const activeDrone = React.useMemo(
