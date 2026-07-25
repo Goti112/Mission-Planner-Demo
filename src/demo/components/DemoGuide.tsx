@@ -14,6 +14,18 @@ const STEP_NUMBER: Readonly<Record<keyof typeof DEMO_GUIDE_CONTENT, number>> = {
   REVIEW: 5,
 };
 
+const FOCUSABLE_SELECTOR = [
+  'button:not([disabled])',
+  'a[href]',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
+const focusableElements = (container: HTMLElement): HTMLElement[] =>
+  Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR));
+
 const useHighlightedTarget = (target: string | null): void => {
   useEffect(() => {
     if (target === null) {
@@ -59,9 +71,30 @@ export const DemoGuide = (): React.JSX.Element | null => {
   useHighlightedTarget(content?.target ?? null);
 
   useEffect(() => {
-    if (isOpen && step !== 'FREE') {
-      dialogRef.current?.focus();
+    if (!isOpen || step === 'FREE') {
+      return undefined;
     }
+
+    const dialog = dialogRef.current;
+    dialog?.focus();
+
+    if (step !== 'WELCOME' || dialog === null) {
+      return undefined;
+    }
+
+    const keepFocusInDialog = (event: FocusEvent): void => {
+      const focusedNode = event.target;
+
+      if (focusedNode instanceof Node && !dialog.contains(focusedNode)) {
+        dialog.focus();
+      }
+    };
+
+    document.addEventListener('focusin', keepFocusInDialog);
+
+    return () => {
+      document.removeEventListener('focusin', keepFocusInDialog);
+    };
   }, [isOpen, step]);
 
   if (!isOpen || step === 'FREE' || content === null) {
@@ -79,12 +112,55 @@ export const DemoGuide = (): React.JSX.Element | null => {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLElement>): void => {
     if (event.key === 'Escape') {
+      event.preventDefault();
       close();
+      return;
+    }
+
+    if (step !== 'WELCOME' || event.key !== 'Tab') {
+      return;
+    }
+
+    const dialog = dialogRef.current;
+
+    if (dialog === null) {
+      return;
+    }
+
+    const elements = focusableElements(dialog);
+    const firstElement = elements[0];
+    const lastElement = elements[elements.length - 1];
+
+    if (firstElement === undefined || lastElement === undefined) {
+      event.preventDefault();
+      dialog.focus();
+      return;
+    }
+
+    if (event.shiftKey && (document.activeElement === firstElement || document.activeElement === dialog)) {
+      event.preventDefault();
+      lastElement.focus();
+      return;
+    }
+
+    if (!event.shiftKey && document.activeElement === lastElement) {
+      event.preventDefault();
+      firstElement.focus();
+    }
+  };
+
+  const handleLayerPointerDown = (event: React.PointerEvent<HTMLDivElement>): void => {
+    if (step === 'WELCOME' && event.target === event.currentTarget) {
+      event.preventDefault();
+      event.stopPropagation();
     }
   };
 
   return (
-    <div className={`demo-guide-layer demo-guide-layer--${step.toLowerCase()}`}>
+    <div
+      className={`demo-guide-layer demo-guide-layer--${step.toLowerCase()}`}
+      onPointerDown={handleLayerPointerDown}
+    >
       <section
         ref={dialogRef}
         className="demo-guide"

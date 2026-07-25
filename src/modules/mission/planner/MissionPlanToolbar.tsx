@@ -1,5 +1,6 @@
 import { FilePlus2, Play, Radio, Route, Timer } from 'lucide-react';
 import { useDemoGuideStore } from '../../../demo/guide/demoGuideStore';
+import { useUIStore } from '../../../shared/store/uiStore';
 import type { DomainMissionMetrics, MissionValidationResult } from '../domain';
 import type { MissionExecutionReadiness } from './missionPlanAdapter';
 import type { PlannerMissionRecord } from './types';
@@ -39,12 +40,14 @@ export default function MissionPlanToolbar({
   const canStart = hasMission && readiness !== null && readiness.canExecute;
   const guideStep = useDemoGuideStore((state) => state.step);
   const advanceGuide = useDemoGuideStore((state) => state.advance);
+  const setCurrentView = useUIStore((state) => state.setCurrentView);
 
   const handleStartSimulation = (): void => {
     onUploadStart();
 
     if (guideStep === 'PLAN') {
       advanceGuide();
+      setCurrentView('FLIGHT');
     }
   };
 

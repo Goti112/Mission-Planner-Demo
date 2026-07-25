@@ -25,7 +25,7 @@ export const MapToolbar: React.FC<MapToolbarProps> = ({ className = 'gcs-map-too
   const handleToggle3D = (): void => {
     setShow3D(!show3D);
 
-    if (guideStep === 'INSPECT') {
+    if (guideStep === 'INSPECT' && !show3D) {
       advanceGuide();
     }
   };

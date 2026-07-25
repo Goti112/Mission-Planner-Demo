@@ -8,6 +8,7 @@
 .demo-guide-layer--welcome {
   background: rgba(2, 6, 23, 0.58);
   backdrop-filter: blur(2px);
+  pointer-events: auto;
 }
 
 .demo-guide {
