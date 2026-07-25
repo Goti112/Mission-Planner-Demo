@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { Activity, Map, Play } from 'lucide-react';
+import { useDemoGuideStore } from '../../../demo/guide/demoGuideStore';
 import { useUIStore } from '../../../shared/store/uiStore';
 import type { AppView } from '../../../shared/store/uiStore';
 import { MAX_FRAMES_PER_DRONE, useFlightRecorderStore } from '../../replay';
@@ -73,12 +74,18 @@ function NavViewButton({ view, label, icon }: NavViewButtonProps) {
 function ReplayButton() {
   const recordings = useFlightRecorderStore((state) => state.recordings);
   const setCurrentView = useUIStore((state) => state.setCurrentView);
+  const guideStep = useDemoGuideStore((state) => state.step);
+  const advanceGuide = useDemoGuideStore((state) => state.advance);
   const hasReplayData = Object.values(recordings).some(
     (recording) => Math.min(recording.total, MAX_FRAMES_PER_DRONE) >= 2,
   );
   const openReplay = useCallback((): void => {
     setCurrentView('REPLAY');
-  }, [setCurrentView]);
+
+    if (guideStep === 'REVIEW') {
+      advanceGuide();
+    }
+  }, [advanceGuide, guideStep, setCurrentView]);
 
   return (
     <button
@@ -87,6 +94,7 @@ function ReplayButton() {
       disabled={!hasReplayData}
       title="Open simulation replay"
       type="button"
+      data-demo-target="open-replay"
     >
       <Play size={13} />
       <span>Replay</span>

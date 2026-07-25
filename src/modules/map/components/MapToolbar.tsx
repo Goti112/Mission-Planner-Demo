@@ -1,4 +1,5 @@
 import { Box } from 'lucide-react';
+import { useDemoGuideStore } from '../../../demo/guide/demoGuideStore';
 import { useUIStore } from '../../../shared/store/uiStore';
 import type { MapStyle } from '../../../shared/store/uiStore';
 
@@ -18,6 +19,16 @@ export const MapToolbar: React.FC<MapToolbarProps> = ({ className = 'gcs-map-too
   const setShow3D = useUIStore((s) => s.setShow3D);
   const show3DBuildings = useUIStore((s) => s.show3DBuildings);
   const setShow3DBuildings = useUIStore((s) => s.setShow3DBuildings);
+  const guideStep = useDemoGuideStore((state) => state.step);
+  const advanceGuide = useDemoGuideStore((state) => state.advance);
+
+  const handleToggle3D = (): void => {
+    setShow3D(!show3D);
+
+    if (guideStep === 'INSPECT') {
+      advanceGuide();
+    }
+  };
 
   const styles: { id: MapStyle; label: string }[] = [
     { id: 'streets', label: 'Mapa' },
@@ -42,8 +53,10 @@ export const MapToolbar: React.FC<MapToolbarProps> = ({ className = 'gcs-map-too
 
       <button
         className={`gcs-map-tool-btn ${show3D ? 'gcs-map-tool-btn--active' : ''}`}
-        onClick={() => setShow3D(!show3D)}
+        onClick={handleToggle3D}
         title="Activar vista 3D"
+        type="button"
+        data-demo-target="toggle-3d"
       >
                 <Box size={12} /> 3D
       </button>

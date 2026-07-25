@@ -2,6 +2,7 @@ import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useDroneStore } from '../modules/drone'
 import { useUIStore } from '../shared/store/uiStore'
+import { DemoBanner, DemoGuide } from '../demo'
 import { useInitializeDemo } from '../demo/useInitializeDemo'
 import { LazyCesiumGlobe, MapContainer, MapToolbar } from '../modules/map'
 import type {
@@ -228,10 +229,12 @@ const App: React.FC = () => {
   return (
     <DetachedSurfacesContext.Provider value={detachedSurfaces}>
       <div className="gcs-shell">
+        <DemoBanner />
         <GCSNavBar
           clockTime={clockTime}
           readiness={operationalReadiness}
         />
+        <DemoGuide />
         {SHOW_GLOBAL_NOTIFICATIONS ? <FailsafeAlerts readiness={operationalReadiness} /> : null}
 
         <AnimatePresence mode="wait">

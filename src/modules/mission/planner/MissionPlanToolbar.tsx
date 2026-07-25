@@ -1,4 +1,5 @@
 import { FilePlus2, Play, Radio, Route, Timer } from 'lucide-react';
+import { useDemoGuideStore } from '../../../demo/guide/demoGuideStore';
 import type { DomainMissionMetrics, MissionValidationResult } from '../domain';
 import type { MissionExecutionReadiness } from './missionPlanAdapter';
 import type { PlannerMissionRecord } from './types';
@@ -36,6 +37,16 @@ export default function MissionPlanToolbar({
   const validationErrorCount = validation === null ? 0 : validation.errors.length;
   const validationWarningCount = validation === null ? 0 : validation.warnings.length;
   const canStart = hasMission && readiness !== null && readiness.canExecute;
+  const guideStep = useDemoGuideStore((state) => state.step);
+  const advanceGuide = useDemoGuideStore((state) => state.advance);
+
+  const handleStartSimulation = (): void => {
+    onUploadStart();
+
+    if (guideStep === 'PLAN') {
+      advanceGuide();
+    }
+  };
 
   return (
     <div className="mp-toolbar" role="toolbar" aria-label="Mission planning toolbar">
@@ -83,9 +94,10 @@ export default function MissionPlanToolbar({
         <button
           type="button"
           className="mp-button mp-button--primary"
-          onClick={onUploadStart}
+          onClick={handleStartSimulation}
           disabled={!canStart}
           title="Start simulated mission"
+          data-demo-target="start-simulation"
         >
           <Play size={14} />
           <span>Start simulated mission</span>
