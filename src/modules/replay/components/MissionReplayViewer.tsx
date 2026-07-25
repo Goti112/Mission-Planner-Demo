@@ -256,7 +256,7 @@ const MissionReplayViewer: React.FC = () => {
     const firstDroneId = Object.keys(dronesObj)[0] ?? 'drone-1'
     const firstDrone   = dronesObj[firstDroneId]
     return (
-      <div className="mrv">
+      <div className="mrv" role="region" aria-label="Mission replay">
         <div className="mrv__empty">
           <span className="mrv__empty-icon">📭</span>
           <h2>Sin datos de vuelo</h2>
@@ -286,7 +286,7 @@ const MissionReplayViewer: React.FC = () => {
   }
 
   return (
-    <div className="mrv">
+    <div className="mrv" role="region" aria-label="Mission replay">
       {/* ── Full-screen viewer — 2D Mapbox map or 3D Cesium globe ── */}
       <div className="mrv__map">
         {view3D ? (
