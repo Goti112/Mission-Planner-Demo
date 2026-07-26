@@ -21,6 +21,48 @@ const forbiddenContent = [
   'serialPort',
 ];
 const textExtensions = new Set(['.css', '.html', '.js', '.json', '.md', '.mjs', '.ts', '.tsx', '.yml', '.yaml']);
+const expectedCspSources = {
+  'default-src': ["'self'"],
+  'script-src': ["'self'", "'unsafe-eval'"],
+  'connect-src': ["'self'", 'https://api.cesium.com', 'https://assets.cesium.com', 'https://*.mapbox.com'],
+};
+
+const parseCspDirectives = (policy) => new Map(policy
+  .split(';')
+  .map((directive) => directive.trim())
+  .filter((directive) => directive.length > 0)
+  .map((directive) => {
+    const [name, ...sources] = directive.split(/\s+/);
+    return [name, sources];
+  }));
+
+const collectCspViolations = async () => {
+  const indexPath = resolve('index.html');
+  const indexContent = await readFile(indexPath, 'utf8');
+  const policyMatch = indexContent.match(
+    /<meta\s+http-equiv="Content-Security-Policy"\s+content="([^"]+)"/i,
+  );
+
+  if (policyMatch === null) {
+    return [{ repositoryPath: 'index.html', marker: 'Content-Security-Policy', kind: 'missing-csp' }];
+  }
+
+  const directives = parseCspDirectives(policyMatch[1]);
+  return Object.entries(expectedCspSources).flatMap(([name, expectedSources]) => {
+    const actualSources = directives.get(name);
+    const matches = actualSources !== undefined
+      && actualSources.length === expectedSources.length
+      && actualSources.every((source, index) => source === expectedSources[index]);
+
+    return matches
+      ? []
+      : [{
+          repositoryPath: 'index.html',
+          marker: `${name}: expected ${expectedSources.join(' ')}`,
+          kind: 'csp',
+        }];
+  });
+};
 
 const collectFiles = async (directory) => {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -34,7 +76,7 @@ const collectFiles = async (directory) => {
 };
 
 const files = await collectFiles(root);
-const violations = [];
+const violations = await collectCspViolations();
 for (const absolutePath of files) {
   const repositoryPath = relative(root, absolutePath).replaceAll('\\', '/');
   for (const fragment of forbiddenPathFragments) {

@@ -7,7 +7,7 @@ test('completes the guided simulation path', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByText('SIMULATION DEMO')).toBeVisible();
   await page.getByRole('button', { name: 'Review mission' }).click();
-  await expect(page.getByText('Synthetic Range Alpha')).toBeVisible();
+  await expect(page.getByRole('textbox', { name: 'Mission name' })).toHaveValue('Synthetic Range Alpha');
   await page.locator('[data-demo-target="start-simulation"]').click();
   await expect(page.getByText(/telemetry/i)).toBeVisible();
   await expect(page.getByRole('dialog', { name: 'Observe the simulated flight' })).toBeVisible();
