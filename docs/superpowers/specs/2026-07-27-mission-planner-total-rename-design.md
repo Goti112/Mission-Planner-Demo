@@ -42,3 +42,12 @@ Provider tokens remain local or in the already authorized Vercel build environme
 
 Completion requires:
 
+- `npm run validate` passes, including the tracked-surface audit, ESLint,
+  Vitest, and the production build;
+- the tracked-surface audit reports zero current-surface matches for the
+  removed identity in tracked paths and content;
+- the guided Playwright journey passes against the stable production URL with
+  provider values loaded only into the test process; and
+- GitHub, Vercel, CI, and the local and remote refs are checked against the
+  published release commit, with redacted evidence recorded for each surface.
+
