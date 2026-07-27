@@ -1,9 +1,11 @@
-import { readFile, readdir } from 'node:fs/promises';
-import { extname, relative, resolve } from 'node:path';
+import { execFile } from 'node:child_process';
+import { readFile } from 'node:fs/promises';
+import { promisify } from 'node:util';
+import { extname, resolve } from 'node:path';
 
 const root = resolve('.');
 const auditScriptPath = resolve('scripts/assert-public-surface.mjs');
-const ignoredDirectories = new Set(['.git', 'dist', 'node_modules', 'playwright-report', 'test-results']);
+const executeFile = promisify(execFile);
 const forbiddenPathFragments = [
   'src/integrations/',
   'src/modules/connection/',
@@ -65,21 +67,20 @@ const collectCspViolations = async () => {
   });
 };
 
-const collectFiles = async (directory) => {
-  const entries = await readdir(directory, { withFileTypes: true });
-  const nested = await Promise.all(entries
-    .filter((entry) => !ignoredDirectories.has(entry.name))
-    .map(async (entry) => {
-      const absolutePath = resolve(directory, entry.name);
-      return entry.isDirectory() ? collectFiles(absolutePath) : [absolutePath];
+const collectTrackedFiles = async () => {
+  const { stdout } = await executeFile('git', ['ls-files', '-z'], { cwd: root });
+  return stdout
+    .split('\0')
+    .filter((repositoryPath) => repositoryPath.length > 0)
+    .map((repositoryPath) => ({
+      absolutePath: resolve(root, repositoryPath),
+      repositoryPath,
     }));
-  return nested.flat();
 };
 
-const files = await collectFiles(root);
+const files = await collectTrackedFiles();
 const violations = await collectCspViolations();
-for (const absolutePath of files) {
-  const repositoryPath = relative(root, absolutePath).replaceAll('\\', '/');
+for (const { absolutePath, repositoryPath } of files) {
   if (removedIdentityPattern.test(repositoryPath)) {
     violations.push({ repositoryPath, marker: 'removed identity', kind: 'path' });
   }
@@ -88,11 +89,11 @@ for (const absolutePath of files) {
       violations.push({ repositoryPath, marker: fragment, kind: 'path' });
     }
   }
-  if (absolutePath === auditScriptPath || !textExtensions.has(extname(repositoryPath))) continue;
   const content = await readFile(absolutePath, 'utf8');
   if (removedIdentityPattern.test(content)) {
     violations.push({ repositoryPath, marker: 'removed identity', kind: 'content' });
   }
+  if (absolutePath === auditScriptPath || !textExtensions.has(extname(repositoryPath))) continue;
   for (const marker of forbiddenContent) {
     if (content.includes(marker)) {
       violations.push({ repositoryPath, marker, kind: 'content' });

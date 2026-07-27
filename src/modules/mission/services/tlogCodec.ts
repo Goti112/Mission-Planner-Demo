@@ -7,7 +7,7 @@
  *
  * File structure:
  *   HEADER (fixed 32 bytes)
- *     magic    : 4 bytes  "MISSION"
+ *     magic    : 4-byte binary signature
  *     version  : Uint8
  *     flags    : Uint8 (bit 0 = delta-encoded)
  *     reserved : 2 bytes
@@ -51,7 +51,7 @@ import {
 
 // ── Constants ─────────────────────────────────────────────────────────────
 
-const MAGIC = new Uint8Array([0x52, 0x4F, 0x48, 0x55]) // "MISSION"
+const TLOG_MAGIC = new Uint8Array([0xa7, 0x19, 0xd4, 0x6c])
 const FORMAT_VERSION = 1
 const FLAG_DELTA = 0x01
 
@@ -126,7 +126,7 @@ export function encodeTlog(
   let offset = 0
 
   // ── Header ──
-  bytes.set(MAGIC, 0)
+  bytes.set(TLOG_MAGIC, 0)
   offset = 4
   view.setUint8(offset++, FORMAT_VERSION)
   view.setUint8(offset++, FLAG_DELTA)
@@ -237,7 +237,7 @@ export function decodeTlog(buffer: ArrayBuffer): TlogResult {
 
   // Validate magic
   for (let i = 0; i < 4; i++) {
-    if (bytes[i] !== MAGIC[i]) {
+    if (bytes[i] !== TLOG_MAGIC[i]) {
       return { ok: false, error: 'No es un archivo TLOG válido.' }
     }
   }

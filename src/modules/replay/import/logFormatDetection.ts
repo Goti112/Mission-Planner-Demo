@@ -1,6 +1,6 @@
 import type { FlightLogFormat } from './logImportTypes';
 
-const MISSION_MAGIC = [0x52, 0x4f, 0x48, 0x55] as const;
+const TLOG_MAGIC = [0xa7, 0x19, 0xd4, 0x6c] as const;
 const DATAFLASH_HEAD_1 = 0xa3;
 const DATAFLASH_HEAD_2 = 0x95;
 const MAVLINK_V1_MAGIC = 0xfe;
@@ -14,7 +14,7 @@ export function detectFlightLogFormat(fileName: string, buffer: ArrayBuffer): Fl
   const bytes = new Uint8Array(buffer);
   const lowerName = fileName.toLowerCase();
 
-  if (startsWith(bytes, MISSION_MAGIC)) {
+  if (startsWith(bytes, TLOG_MAGIC)) {
     return 'MISSION_TLOG';
   }
 

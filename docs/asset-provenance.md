@@ -14,9 +14,9 @@ The generator uses only Node.js built-in modules and deterministic geometry or p
 
 | Published asset | Origin | Embedded evidence | SHA-256 |
 | --- | --- | --- | --- |
-| `public/Logo.svg` | Original vector route mark and wordmark produced by `scripts/generate-original-assets.ts` for Mission Planner | SVG metadata names the owner and portfolio purpose | `EB39240FD80231FD96DE5A50FE66B70F54D1A205B89BF5E5C9A59702536B1D1F` |
-| `public/assets/aircraft-marker.png` | Original procedural aircraft marker rendered by the same generator | PNG `Copyright` text chunk names the owner and portfolio purpose | `52834BE2919EE7D8B74ABA019A2C94965FF4F6E1F5E86A92289B977A19382173` |
-| `public/assets/drone.glb` | Original low-poly fixed-wing model assembled from procedural box geometry by the same generator | glTF `asset.generator`, `asset.copyright`, and `extras.provenance` fields record its source | `17FDA3AC7368544AB9CD74DBF96E62452A9AFB7E9E9AB4AD7CF468F0EE42A900` |
+| `public/Logo.svg` | Original vector route mark and wordmark produced by `scripts/generate-original-assets.ts` for Mission Planner | SVG metadata names the owner and portfolio purpose | `89F9AAC1124A92D9C7C59F2C44C8E7EE550CB1BBE8194DF7964E58B6481CC195` |
+| `public/assets/aircraft-marker.png` | Original procedural aircraft marker rendered by the same generator | PNG `Copyright` text chunk names the owner and portfolio purpose | `9271C71666CA59C3286F6817481C259829BE281BF475DB8BCAFECA84F21A705A` |
+| `public/assets/drone.glb` | Original low-poly fixed-wing model assembled from procedural box geometry by the same generator | glTF `asset.generator`, `asset.copyright`, and `extras.provenance` fields record its source | `48A9917C5E8DBCD2CE8BAEC7C4AE660D104C1C1D00318F83F7DD4C25B486AA7E` |
 
 The hashes above identify the generated files reviewed for this portfolio release. Regenerating them from the committed script produces the same bytes.
 
