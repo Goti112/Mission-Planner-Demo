@@ -135,7 +135,7 @@ export function downloadRecordings(
   const url  = URL.createObjectURL(blob)
   const a    = document.createElement('a')
   a.href     = url
-  a.download = `${fileName}.rohu.json`
+  a.download = `${fileName}.mission.json`
   a.click()
   URL.revokeObjectURL(url)
 }

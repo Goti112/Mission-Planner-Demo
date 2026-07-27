@@ -24,7 +24,7 @@
  * • Uses CSS position:absolute (relative to .gcs-map-col) so it never
  *   causes layout reflow.
  * • Glassmorphism styling consistent with the rest of the GCS design
- *   system (backdrop-filter blur, rohu-* color tokens where possible).
+ *   system (backdrop-filter blur, mission-* color tokens where possible).
  * • The component is self-contained: it imports the stores directly and
  *   exposes only the `droneId` prop for the active drone context.
  */
@@ -330,7 +330,7 @@ const ReplayPanel: React.FC<ReplayPanelProps> = ({ droneId }) => {
           className="rp__btn rp__btn--icon rp__btn--export"
           onClick={handleExport}
           disabled={!hasData}
-          title="Exportar grabación como archivo .rohu.json"
+          title="Exportar grabación como archivo .mission.json"
           aria-label="Exportar grabación"
         ><Save size={13} /></button>
 
@@ -428,7 +428,7 @@ const ReplayPanel: React.FC<ReplayPanelProps> = ({ droneId }) => {
       <input
         ref={fileInputRef}
         type="file"
-        accept=".json,.rohu.json"
+        accept=".json,.mission.json"
         style={{ display: 'none' }}
         onChange={handleFileChange}
         aria-hidden="true"

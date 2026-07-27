@@ -5,7 +5,7 @@
   right: 16px;
   z-index: 500;
   pointer-events: all;
-  animation: ors-drop-in 0.28s var(--rohu-ease, cubic-bezier(0.22, 1, 0.36, 1)) both;
+  animation: ors-drop-in 0.28s var(--mission-ease, cubic-bezier(0.22, 1, 0.36, 1)) both;
 }
 
 @keyframes ors-drop-in {
@@ -98,7 +98,7 @@
 }
 
 .ors-eyebrow {
-  color: var(--rohu-text-muted, #6b7280);
+  color: var(--mission-text-muted, #6b7280);
   font-size: 0.605rem;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -106,7 +106,7 @@
 }
 
 .ors-summary {
-  color: var(--rohu-text-primary, #e5edf8);
+  color: var(--mission-text-primary, #e5edf8);
   font-size: 0.792rem;
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -148,7 +148,7 @@
 }
 
 .ors-message-label {
-  color: var(--rohu-text-secondary, #9ca3af);
+  color: var(--mission-text-secondary, #9ca3af);
   font-size: 0.682rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -156,7 +156,7 @@
 }
 
 .ors-message-detail {
-  color: var(--rohu-text-muted, #6b7280);
+  color: var(--mission-text-muted, #6b7280);
   font-size: 0.671rem;
   line-height: 1.35;
 }

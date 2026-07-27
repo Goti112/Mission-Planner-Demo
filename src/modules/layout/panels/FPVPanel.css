@@ -39,7 +39,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--rohu-font-ui, system-ui);
+  font-family: var(--mission-font-ui, system-ui);
   font-size: 12.1px;
   font-weight: 700;
   letter-spacing: 0.8px;

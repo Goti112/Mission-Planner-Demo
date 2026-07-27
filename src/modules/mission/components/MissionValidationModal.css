@@ -20,8 +20,8 @@
 
 .mv-modal {
   background: rgba(12, 16, 28, 0.97);
-  border: 1px solid var(--rohu-border-glass, rgba(255, 255, 255, 0.08));
-  border-radius: var(--rohu-radius, 12px);
+  border: 1px solid var(--mission-border-glass, rgba(255, 255, 255, 0.08));
+  border-radius: var(--mission-radius, 12px);
   width: 420px;
   max-width: calc(100vw - 32px);
   max-height: calc(100vh - 64px);
@@ -33,7 +33,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  animation: rohu-scale-in 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: mission-scale-in 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes mv-slidein {
@@ -47,7 +47,7 @@
   align-items: center;
   gap: 10px;
   padding: 16px 20px;
-  border-bottom: 1px solid var(--rohu-border, rgba(255, 255, 255, 0.06));
+  border-bottom: 1px solid var(--mission-border, rgba(255, 255, 255, 0.06));
 }
 
 .mv-header__icon {
@@ -68,14 +68,14 @@
 .mv-header__title {
   font-size: 16.5px;
   font-weight: 700;
-  color: var(--rohu-text-primary);
+  color: var(--mission-text-primary);
   flex: 1;
-  font-family: var(--rohu-font-ui);
+  font-family: var(--mission-font-ui);
 }
 
 .mv-header__subtitle {
   font-size: 12.1px;
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
   margin-top: 2px;
 }
 
@@ -96,7 +96,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 6px;
-  font-family: var(--rohu-font-ui);
+  font-family: var(--mission-font-ui);
 }
 
 .mv-section__label--error   { color: #f87171; }
@@ -146,18 +146,18 @@
   display: flex;
   gap: 8px;
   padding: 14px 20px;
-  border-top: 1px solid var(--rohu-border, rgba(255, 255, 255, 0.06));
+  border-top: 1px solid var(--mission-border, rgba(255, 255, 255, 0.06));
   justify-content: flex-end;
 }
 
 .mv-btn {
   padding: 7px 18px;
-  border-radius: var(--rohu-radius-pill, 100px);
+  border-radius: var(--mission-radius-pill, 100px);
   font-size: 13.2px;
   font-weight: 600;
   cursor: pointer;
   border: 1px solid transparent;
-  font-family: var(--rohu-font-ui);
+  font-family: var(--mission-font-ui);
   letter-spacing: 0.3px;
   transition: all 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -167,13 +167,13 @@
 
 .mv-btn--cancel {
   background: rgba(255, 255, 255, 0.06);
-  border-color: var(--rohu-border-glass);
-  color: var(--rohu-text-secondary);
+  border-color: var(--mission-border-glass);
+  color: var(--mission-text-secondary);
 }
 
 .mv-btn--cancel:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: var(--rohu-text-primary);
+  color: var(--mission-text-primary);
 }
 
 .mv-btn--confirm {
@@ -190,6 +190,6 @@
 
 .mv-btn--close {
   background: rgba(255, 255, 255, 0.08);
-  border-color: var(--rohu-border-glass);
-  color: var(--rohu-text-secondary);
+  border-color: var(--mission-border-glass);
+  color: var(--mission-text-secondary);
 }

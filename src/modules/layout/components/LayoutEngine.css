@@ -25,9 +25,9 @@
   overflow: hidden;
   position: relative;
   transition:
-    width     260ms var(--rohu-ease),
-    max-width 260ms var(--rohu-ease),
-    min-width 260ms var(--rohu-ease),
+    width     260ms var(--mission-ease),
+    max-width 260ms var(--mission-ease),
+    min-width 260ms var(--mission-ease),
     border-width 140ms ease,
     opacity   200ms ease;
 }
@@ -86,9 +86,9 @@
   overflow: hidden;
   position: relative;
   transition:
-    width     260ms var(--rohu-ease),
-    max-width 260ms var(--rohu-ease),
-    min-width 260ms var(--rohu-ease),
+    width     260ms var(--mission-ease),
+    max-width 260ms var(--mission-ease),
+    min-width 260ms var(--mission-ease),
     border-width 140ms ease,
     opacity   200ms ease;
 }

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { encodeTlog } from '../../../mission/services/tlogCodec';
 import { F, FRAME_FIELDS, MAX_FRAMES_PER_DRONE, type DroneRecording } from '../../store/flightRecorderStore';
-import { decodeRohuTlogMessages } from '../rohuTlogAdapter';
+import { decodeMissionTlogMessages } from '../missionTlogAdapter';
 
 function recording(): DroneRecording {
   const frames = new Float32Array(MAX_FRAMES_PER_DRONE * FRAME_FIELDS);
@@ -30,7 +30,7 @@ function recording(): DroneRecording {
 
   return {
     droneId: 'drone-1',
-    missionName: 'Rohu sample',
+    missionName: 'Mission sample',
     startedAt: 500,
     frames,
     timestamps,
@@ -39,18 +39,18 @@ function recording(): DroneRecording {
   };
 }
 
-describe('decodeRohuTlogMessages', () => {
-  it('converts Rohu tlog recordings into normalized sample messages', () => {
+describe('decodeMissionTlogMessages', () => {
+  it('converts mission tlog recordings into normalized sample messages', () => {
     const buffer = encodeTlog({ 'drone-1': recording() });
-    const result = decodeRohuTlogMessages(buffer);
+    const result = decodeMissionTlogMessages(buffer);
 
     expect(result.ok).toBe(true);
     if (!result.ok) throw new Error(result.error);
 
     expect(result.messages).toHaveLength(2);
     expect(result.messages[0]).toMatchObject({
-      source: 'ROHU',
-      type: 'ROHU_SAMPLE',
+      source: 'MISSION',
+      type: 'MISSION_SAMPLE',
       sysId: 1,
       timestampMs: 1500,
       relativeTimeMs: 1000,

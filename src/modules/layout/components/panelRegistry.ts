@@ -1,5 +1,5 @@
 /**
- * panelRegistry.ts — Central panel metadata for the ROHU GCS layout system.
+ * panelRegistry.ts — Central panel metadata for the MISSION GCS layout system.
  *
  * Each panel declares its id, label, default zone, allowed zones, and
  * sizing constraints. The layout engine and layout controls widget use

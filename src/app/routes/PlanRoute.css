@@ -5,7 +5,7 @@
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  background: var(--rohu-bg-primary, #020617);
+  background: var(--mission-bg-primary, #020617);
 }
 
 .plan-view__map-toolbar {
@@ -16,10 +16,10 @@
   display: flex;
   gap: 3px;
   padding: 4px 5px;
-  border: 1px solid var(--rohu-border-glass, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--mission-border-glass, rgba(255, 255, 255, 0.08));
   border-radius: 8px;
-  background: var(--rohu-bg-card, rgba(11, 17, 32, 0.88));
-  box-shadow: var(--rohu-shadow-md, 0 4px 24px rgba(0, 0, 0, 0.5));
-  backdrop-filter: var(--rohu-blur-light, blur(12px));
-  -webkit-backdrop-filter: var(--rohu-blur-light, blur(12px));
+  background: var(--mission-bg-card, rgba(11, 17, 32, 0.88));
+  box-shadow: var(--mission-shadow-md, 0 4px 24px rgba(0, 0, 0, 0.5));
+  backdrop-filter: var(--mission-blur-light, blur(12px));
+  -webkit-backdrop-filter: var(--mission-blur-light, blur(12px));
 }

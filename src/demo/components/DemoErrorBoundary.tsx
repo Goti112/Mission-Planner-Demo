@@ -21,7 +21,7 @@ export class DemoErrorBoundary extends Component<DemoErrorBoundaryProps, DemoErr
   }
 
   componentDidCatch(error: Error, info: ErrorInfo): void {
-    console.error('RohuPlanner demo render failed', {
+    console.error('Mission Planner demo render failed', {
       errorName: error.name,
       errorMessage: error.message,
       componentStack: info.componentStack,

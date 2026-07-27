@@ -316,7 +316,7 @@ export default function MissionPanel({
               )}
               {selectedMission.status === 'completed' && (
                 <div className="mission-progress-row">
-                  <span className="mission-progress-label" style={{ color: 'var(--rohu-success)' }}>
+                  <span className="mission-progress-label" style={{ color: 'var(--mission-success)' }}>
                     ✓ Misión completada
                   </span>
                 </div>

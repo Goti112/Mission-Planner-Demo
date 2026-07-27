@@ -106,7 +106,7 @@ export const GCSNavBar: React.FC<GCSNavBarProps> = ({ clockTime, readiness }) =>
   <header className="gcs-navbar">
     <div className="gcs-navbar-brand">
       <div className="gcs-navbar-logo">
-        <img src={PUBLIC_ASSET_URLS.logo} alt="Rohu" />
+        <img src={PUBLIC_ASSET_URLS.logo} alt="Mission Planner" />
       </div>
     </div>
 

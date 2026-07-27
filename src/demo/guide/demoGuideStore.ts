@@ -8,7 +8,7 @@ import {
 } from './demoGuideMachine';
 import type { DemoGuideStep } from './demoGuideMachine';
 
-const DEMO_GUIDE_STORAGE_KEY = 'rohuplanner-demo-guide';
+const DEMO_GUIDE_STORAGE_KEY = 'mission-planner-demo-guide';
 
 interface PersistedDemoGuideState {
   readonly step: DemoGuideStep;

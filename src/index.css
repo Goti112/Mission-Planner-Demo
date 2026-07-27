@@ -2,131 +2,131 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ROHU GCS — Design System v3.0
+   MISSION GCS — Design System v3.0
    Premium Aerospace-Grade Dark Cockpit Theme
    Inspired by Garmin G1000 / Collins Pro Line / QGroundControl
    ═══════════════════════════════════════════════════════════════════════════ */
 :root {
   /* ── Surfaces — deep space palette ── */
-  --rohu-bg-primary:    #020617;
-  --rohu-bg-secondary:  rgba(4, 8, 22, 0.90);
-  --rohu-bg-tertiary:   #111827;
-  --rohu-bg-card:       rgba(11, 17, 32, 0.88);
-  --rohu-bg-card-hover: rgba(15, 23, 42, 0.95);
-  --rohu-bg-elevated:   rgba(17, 24, 39, 0.92);
-  --rohu-bg-inset:      rgba(0, 0, 0, 0.3);
-  --rohu-bg-overlay:    rgba(2, 6, 23, 0.85);
+  --mission-bg-primary:    #020617;
+  --mission-bg-secondary:  rgba(4, 8, 22, 0.90);
+  --mission-bg-tertiary:   #111827;
+  --mission-bg-card:       rgba(11, 17, 32, 0.88);
+  --mission-bg-card-hover: rgba(15, 23, 42, 0.95);
+  --mission-bg-elevated:   rgba(17, 24, 39, 0.92);
+  --mission-bg-inset:      rgba(0, 0, 0, 0.3);
+  --mission-bg-overlay:    rgba(2, 6, 23, 0.85);
 
   /* ── Accent — avionics cyan ── */
-  --rohu-cyan:      #00E5FF;
-  --rohu-cyan-dim:  rgba(0, 229, 255, 0.10);
-  --rohu-cyan-glow: rgba(0, 229, 255, 0.22);
-  --rohu-cyan-mid:  rgba(0, 229, 255, 0.35);
-  --rohu-indigo:    #818CF8;
-  --rohu-indigo-dim: rgba(129, 140, 248, 0.12);
+  --mission-cyan:      #00E5FF;
+  --mission-cyan-dim:  rgba(0, 229, 255, 0.10);
+  --mission-cyan-glow: rgba(0, 229, 255, 0.22);
+  --mission-cyan-mid:  rgba(0, 229, 255, 0.35);
+  --mission-indigo:    #818CF8;
+  --mission-indigo-dim: rgba(129, 140, 248, 0.12);
 
-  /* ── Brand Red — ROHU logo ── */
-  --rohu-red:        #E53535;
-  --rohu-red-bright: #FF5E5E;
-  --rohu-red-dim:    rgba(229, 53, 53, 0.10);
-  --rohu-red-glow:   rgba(229, 53, 53, 0.18);
-  --rohu-red-soft:   #C93030;
+  /* ── Brand Red — MISSION logo ── */
+  --mission-red:        #E53535;
+  --mission-red-bright: #FF5E5E;
+  --mission-red-dim:    rgba(229, 53, 53, 0.10);
+  --mission-red-glow:   rgba(229, 53, 53, 0.18);
+  --mission-red-soft:   #C93030;
 
   /* ── Blue neon accent — primary interactive ── */
-  --rohu-neon:        #5BA0F5;
-  --rohu-neon-dim:    rgba(91, 160, 245, 0.10);
-  --rohu-neon-border: rgba(91, 160, 245, 0.20);
-  --rohu-neon-glow:   rgba(91, 160, 245, 0.15);
-  --rohu-neon-bright: #7DB8FF;
+  --mission-neon:        #5BA0F5;
+  --mission-neon-dim:    rgba(91, 160, 245, 0.10);
+  --mission-neon-border: rgba(91, 160, 245, 0.20);
+  --mission-neon-glow:   rgba(91, 160, 245, 0.15);
+  --mission-neon-bright: #7DB8FF;
 
   /* ── Semantic — vivid status colors ── */
-  --rohu-success:     #34D399;
-  --rohu-success-dim: rgba(52, 211, 153, 0.12);
-  --rohu-warning:     #FBBF24;
-  --rohu-warning-dim: rgba(251, 191, 36, 0.12);
-  --rohu-danger:      #F87171;
-  --rohu-danger-dim:  rgba(248, 113, 113, 0.12);
+  --mission-success:     #34D399;
+  --mission-success-dim: rgba(52, 211, 153, 0.12);
+  --mission-warning:     #FBBF24;
+  --mission-warning-dim: rgba(251, 191, 36, 0.12);
+  --mission-danger:      #F87171;
+  --mission-danger-dim:  rgba(248, 113, 113, 0.12);
 
   /* ── Text — high-contrast avionics readability ── */
-  --rohu-text-primary:   #F1F5F9;
-  --rohu-text-secondary: #94A3B8;
-  --rohu-text-muted:     #475569;
-  --rohu-text-dim:       #334155;
+  --mission-text-primary:   #F1F5F9;
+  --mission-text-secondary: #94A3B8;
+  --mission-text-muted:     #475569;
+  --mission-text-dim:       #334155;
 
   /* ── Borders — layered glassmorphism ── */
-  --rohu-border:        rgba(255, 255, 255, 0.06);
-  --rohu-border-glass:  rgba(255, 255, 255, 0.08);
-  --rohu-border-subtle: rgba(255, 255, 255, 0.04);
-  --rohu-border-accent: rgba(0, 229, 255, 0.16);
-  --rohu-border-red:    rgba(229, 53, 53, 0.20);
-  --rohu-border-hover:  rgba(91, 160, 245, 0.22);
+  --mission-border:        rgba(255, 255, 255, 0.06);
+  --mission-border-glass:  rgba(255, 255, 255, 0.08);
+  --mission-border-subtle: rgba(255, 255, 255, 0.04);
+  --mission-border-accent: rgba(0, 229, 255, 0.16);
+  --mission-border-red:    rgba(229, 53, 53, 0.20);
+  --mission-border-hover:  rgba(91, 160, 245, 0.22);
 
   /* ── Effects — elevation system ── */
-  --rohu-shadow:      0 4px 32px rgba(0, 0, 0, 0.55);
-  --rohu-shadow-glow: 0 0 24px rgba(0, 229, 255, 0.06);
-  --rohu-shadow-red:  0 0 24px rgba(229, 53, 53, 0.08);
-  --rohu-blur:        blur(20px) saturate(1.3);
-  --rohu-blur-heavy:  blur(32px) saturate(1.4);
-  --rohu-blur-light:  blur(12px) saturate(1.15);
+  --mission-shadow:      0 4px 32px rgba(0, 0, 0, 0.55);
+  --mission-shadow-glow: 0 0 24px rgba(0, 229, 255, 0.06);
+  --mission-shadow-red:  0 0 24px rgba(229, 53, 53, 0.08);
+  --mission-blur:        blur(20px) saturate(1.3);
+  --mission-blur-heavy:  blur(32px) saturate(1.4);
+  --mission-blur-light:  blur(12px) saturate(1.15);
 
   /* ── Animation tokens ── */
-  --rohu-ease:        cubic-bezier(0.22, 1, 0.36, 1);
-  --rohu-ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
-  --rohu-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --rohu-ease-snap:   cubic-bezier(0.12, 0.8, 0.32, 1);
-  --rohu-duration-fast: 120ms;
-  --rohu-duration-base: 180ms;
-  --rohu-duration-slow: 260ms;
-  --rohu-transition-base: var(--rohu-duration-base) var(--rohu-ease);
-  --rohu-transition-slow: var(--rohu-duration-slow) var(--rohu-ease);
+  --mission-ease:        cubic-bezier(0.22, 1, 0.36, 1);
+  --mission-ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --mission-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --mission-ease-snap:   cubic-bezier(0.12, 0.8, 0.32, 1);
+  --mission-duration-fast: 120ms;
+  --mission-duration-base: 180ms;
+  --mission-duration-slow: 260ms;
+  --mission-transition-base: var(--mission-duration-base) var(--mission-ease);
+  --mission-transition-slow: var(--mission-duration-slow) var(--mission-ease);
 
   /* ── Teal accent (secondary accent) ── */
-  --rohu-teal:      #06B6D4;
-  --rohu-teal-dim:  rgba(6, 182, 212, 0.12);
-  --rohu-teal-glow: rgba(6, 182, 212, 0.22);
+  --mission-teal:      #06B6D4;
+  --mission-teal-dim:  rgba(6, 182, 212, 0.12);
+  --mission-teal-glow: rgba(6, 182, 212, 0.22);
 
   /* ── Elevation shadow scale ── */
-  --rohu-shadow-xs: 0 1px 4px rgba(0, 0, 0, 0.3);
-  --rohu-shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
-  --rohu-shadow-md: 0 4px 24px rgba(0, 0, 0, 0.5);
-  --rohu-shadow-lg: 0 8px 48px rgba(0, 0, 0, 0.6);
-  --rohu-shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.7);
-  --rohu-shadow-glow-cyan: 0 0 20px rgba(0, 229, 255, 0.10);
-  --rohu-shadow-glow-red:  0 0 20px rgba(229, 53, 53, 0.10);
-  --rohu-shadow-glow-teal: 0 0 16px rgba(6, 182, 212, 0.12);
-  --rohu-shadow-glow-neon: 0 0 16px rgba(91, 160, 245, 0.10);
+  --mission-shadow-xs: 0 1px 4px rgba(0, 0, 0, 0.3);
+  --mission-shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --mission-shadow-md: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --mission-shadow-lg: 0 8px 48px rgba(0, 0, 0, 0.6);
+  --mission-shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.7);
+  --mission-shadow-glow-cyan: 0 0 20px rgba(0, 229, 255, 0.10);
+  --mission-shadow-glow-red:  0 0 20px rgba(229, 53, 53, 0.10);
+  --mission-shadow-glow-teal: 0 0 16px rgba(6, 182, 212, 0.12);
+  --mission-shadow-glow-neon: 0 0 16px rgba(91, 160, 245, 0.10);
 
   /* ── Type scale — aerospace optimized ── */
-  --rohu-text-2xs:  0.6875rem;  /* 11px - badges, units */
-  --rohu-text-xs:   0.75625rem; /* 12.1px - labels, captions */
-  --rohu-text-sm:   0.89375rem; /* 14.3px - secondary body */
-  --rohu-text-base: 0.9625rem;  /* 15.4px - primary body */
-  --rohu-text-md:   1.1rem;     /* 17.6px - panel titles */
-  --rohu-text-lg:   1.2375rem;  /* 19.8px - section headings */
-  --rohu-text-xl:   1.375rem;   /* 22px - large headings */
+  --mission-text-2xs:  0.6875rem;  /* 11px - badges, units */
+  --mission-text-xs:   0.75625rem; /* 12.1px - labels, captions */
+  --mission-text-sm:   0.89375rem; /* 14.3px - secondary body */
+  --mission-text-base: 0.9625rem;  /* 15.4px - primary body */
+  --mission-text-md:   1.1rem;     /* 17.6px - panel titles */
+  --mission-text-lg:   1.2375rem;  /* 19.8px - section headings */
+  --mission-text-xl:   1.375rem;   /* 22px - large headings */
 
   /* ── Spacing — 4px base grid ── */
-  --rohu-space-1:  4px;
-  --rohu-space-2:  8px;
-  --rohu-space-3:  12px;
-  --rohu-space-4:  16px;
-  --rohu-space-5:  20px;
-  --rohu-space-6:  24px;
-  --rohu-space-8:  32px;
-  --rohu-space-10: 40px;
-  --rohu-space-12: 48px;
+  --mission-space-1:  4px;
+  --mission-space-2:  8px;
+  --mission-space-3:  12px;
+  --mission-space-4:  16px;
+  --mission-space-5:  20px;
+  --mission-space-6:  24px;
+  --mission-space-8:  32px;
+  --mission-space-10: 40px;
+  --mission-space-12: 48px;
 
   /* ── Radii ── */
-  --rohu-radius:     10px;
-  --rohu-radius-sm:  6px;
-  --rohu-radius-md:  10px;
-  --rohu-radius-lg:  14px;
-  --rohu-radius-xl:  18px;
-  --rohu-radius-pill: 100px;
+  --mission-radius:     10px;
+  --mission-radius-sm:  6px;
+  --mission-radius-md:  10px;
+  --mission-radius-lg:  14px;
+  --mission-radius-xl:  18px;
+  --mission-radius-pill: 100px;
 
   /* ── Typography ── */
-  --rohu-font-ui:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --rohu-font-mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+  --mission-font-ui:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mission-font-mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
 
   /* ── Layout ── */
   --sidebar-width:    300px;
@@ -147,9 +147,9 @@ html, body, #root {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: var(--rohu-font-ui);
-  background: var(--rohu-bg-primary);
-  color: var(--rohu-text-primary);
+  font-family: var(--mission-font-ui);
+  background: var(--mission-bg-primary);
+  color: var(--mission-text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -157,7 +157,7 @@ html, body, #root {
 
 /* Tabular-nums for any numeric display */
 .mono, [data-mono] {
-  font-family: var(--rohu-font-mono);
+  font-family: var(--mission-font-mono);
   font-variant-numeric: tabular-nums;
 }
 
@@ -202,56 +202,56 @@ button, a, input, select {
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── Glass card surface — premium frost panel ── */
-.rohu-glass-card {
-  background: var(--rohu-bg-card);
-  backdrop-filter: var(--rohu-blur);
-  -webkit-backdrop-filter: var(--rohu-blur);
-  border: 1px solid var(--rohu-border-glass);
-  border-radius: var(--rohu-radius);
-  box-shadow: var(--rohu-shadow-md),
+.mission-glass-card {
+  background: var(--mission-bg-card);
+  backdrop-filter: var(--mission-blur);
+  -webkit-backdrop-filter: var(--mission-blur);
+  border: 1px solid var(--mission-border-glass);
+  border-radius: var(--mission-radius);
+  box-shadow: var(--mission-shadow-md),
               inset 0 1px 0 rgba(255, 255, 255, 0.03);
-  transition: border-color var(--rohu-transition-base),
-              box-shadow var(--rohu-transition-base);
+  transition: border-color var(--mission-transition-base),
+              box-shadow var(--mission-transition-base);
 }
 
-.rohu-glass-card:hover {
-  border-color: var(--rohu-border-hover);
-  box-shadow: var(--rohu-shadow-md),
-              var(--rohu-shadow-glow-neon);
+.mission-glass-card:hover {
+  border-color: var(--mission-border-hover);
+  box-shadow: var(--mission-shadow-md),
+              var(--mission-shadow-glow-neon);
 }
 
 /* ── Elevated glass — for floating panels & modals ── */
-.rohu-glass-elevated {
-  background: var(--rohu-bg-elevated);
-  backdrop-filter: var(--rohu-blur-heavy);
-  -webkit-backdrop-filter: var(--rohu-blur-heavy);
+.mission-glass-elevated {
+  background: var(--mission-bg-elevated);
+  backdrop-filter: var(--mission-blur-heavy);
+  -webkit-backdrop-filter: var(--mission-blur-heavy);
   border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: var(--rohu-radius-lg);
-  box-shadow: var(--rohu-shadow-lg),
+  border-radius: var(--mission-radius-lg);
+  box-shadow: var(--mission-shadow-lg),
               inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 /* ── Inset surface — recessed area within cards ── */
-.rohu-inset {
-  background: var(--rohu-bg-inset);
-  border: 1px solid var(--rohu-border-subtle);
-  border-radius: var(--rohu-radius-sm);
+.mission-inset {
+  background: var(--mission-bg-inset);
+  border: 1px solid var(--mission-border-subtle);
+  border-radius: var(--mission-radius-sm);
 }
 
 /* ── Section title bar — replaces duplicated ::before pattern ── */
-.rohu-section-title {
+.mission-section-title {
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: var(--rohu-text-xs);
+  font-size: var(--mission-text-xs);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--rohu-neon);
+  color: var(--mission-neon);
   padding-left: 4px;
 }
 
-.rohu-section-title::before {
+.mission-section-title::before {
   content: '';
   display: block;
   width: 3px;
@@ -263,98 +263,98 @@ button, a, input, select {
 }
 
 /* ── Variant: teal accent ── */
-.rohu-section-title--teal {
-  color: var(--rohu-teal);
+.mission-section-title--teal {
+  color: var(--mission-teal);
 }
 
 /* ── Variant: cyan accent ── */
-.rohu-section-title--cyan {
-  color: var(--rohu-cyan);
+.mission-section-title--cyan {
+  color: var(--mission-cyan);
 }
 
 /* ── Badge — pill shape with glow ── */
-.rohu-badge {
+.mission-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 2px 8px;
-  border-radius: var(--rohu-radius-pill);
-  font-size: var(--rohu-text-2xs);
+  border-radius: var(--mission-radius-pill);
+  font-size: var(--mission-text-2xs);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.04em;
-  background: var(--rohu-neon-dim);
-  color: var(--rohu-neon);
-  border: 1px solid var(--rohu-neon-border);
+  background: var(--mission-neon-dim);
+  color: var(--mission-neon);
+  border: 1px solid var(--mission-neon-border);
   line-height: 1.5;
   text-transform: uppercase;
 }
 
-.rohu-badge--success {
-  background: var(--rohu-success-dim);
-  color: var(--rohu-success);
+.mission-badge--success {
+  background: var(--mission-success-dim);
+  color: var(--mission-success);
   border-color: rgba(52, 211, 153, 0.22);
 }
 
-.rohu-badge--warning {
-  background: var(--rohu-warning-dim);
-  color: var(--rohu-warning);
+.mission-badge--warning {
+  background: var(--mission-warning-dim);
+  color: var(--mission-warning);
   border-color: rgba(251, 191, 36, 0.22);
 }
 
-.rohu-badge--danger {
-  background: var(--rohu-danger-dim);
-  color: var(--rohu-danger);
+.mission-badge--danger {
+  background: var(--mission-danger-dim);
+  color: var(--mission-danger);
   border-color: rgba(248, 113, 113, 0.22);
 }
 
 /* ── Icon button (square, ghost) — refined ── */
-.rohu-icon-btn {
+.mission-icon-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 28px;
   height: 28px;
   border: 1px solid transparent;
-  border-radius: var(--rohu-radius-sm);
+  border-radius: var(--mission-radius-sm);
   background: transparent;
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
   cursor: pointer;
-  transition: background var(--rohu-transition-base),
-              color var(--rohu-transition-base),
-              border-color var(--rohu-transition-base),
-              box-shadow var(--rohu-transition-base);
+  transition: background var(--mission-transition-base),
+              color var(--mission-transition-base),
+              border-color var(--mission-transition-base),
+              box-shadow var(--mission-transition-base);
   flex-shrink: 0;
 }
 
-.rohu-icon-btn:hover {
-  background: var(--rohu-neon-dim);
-  color: var(--rohu-neon);
-  border-color: var(--rohu-neon-border);
-  box-shadow: var(--rohu-shadow-glow-neon);
+.mission-icon-btn:hover {
+  background: var(--mission-neon-dim);
+  color: var(--mission-neon);
+  border-color: var(--mission-neon-border);
+  box-shadow: var(--mission-shadow-glow-neon);
 }
 
-.rohu-icon-btn:focus-visible {
-  outline: 2px solid var(--rohu-cyan);
+.mission-icon-btn:focus-visible {
+  outline: 2px solid var(--mission-cyan);
   outline-offset: 2px;
 }
 
 /* ── Divider ── */
-.rohu-divider {
+.mission-divider {
   width: 100%;
   height: 1px;
-  background: var(--rohu-border);
+  background: var(--mission-border);
   flex-shrink: 0;
 }
 
-.rohu-divider--vertical {
+.mission-divider--vertical {
   width: 1px;
   height: 100%;
-  background: var(--rohu-border);
+  background: var(--mission-border);
 }
 
 /* ── Empty state card ── */
-.rohu-empty-state {
+.mission-empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -364,22 +364,22 @@ button, a, input, select {
   text-align: center;
 }
 
-.rohu-empty-state__icon {
-  color: var(--rohu-text-muted);
+.mission-empty-state__icon {
+  color: var(--mission-text-muted);
   opacity: 0.4;
 }
 
-.rohu-empty-state__title {
-  font-size: var(--rohu-text-xs);
+.mission-empty-state__title {
+  font-size: var(--mission-text-xs);
   font-weight: 600;
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
-.rohu-empty-state__sub {
-  font-size: var(--rohu-text-2xs);
-  color: var(--rohu-text-muted);
+.mission-empty-state__sub {
+  font-size: var(--mission-text-2xs);
+  color: var(--mission-text-muted);
   opacity: 0.6;
 }
 
@@ -393,17 +393,17 @@ button, a, input, select {
 
 /* Override mapbox controls to match theme */
 .mapboxgl-ctrl-group {
-  background: var(--rohu-bg-card) !important;
-  backdrop-filter: var(--rohu-blur) !important;
-  -webkit-backdrop-filter: var(--rohu-blur) !important;
-  border: 1px solid var(--rohu-border-glass) !important;
-  border-radius: var(--rohu-radius-sm) !important;
-  box-shadow: var(--rohu-shadow) !important;
+  background: var(--mission-bg-card) !important;
+  backdrop-filter: var(--mission-blur) !important;
+  -webkit-backdrop-filter: var(--mission-blur) !important;
+  border: 1px solid var(--mission-border-glass) !important;
+  border-radius: var(--mission-radius-sm) !important;
+  box-shadow: var(--mission-shadow) !important;
   overflow: hidden !important;
 }
 .mapboxgl-ctrl-group button {
   background: transparent !important;
-  border-color: var(--rohu-border) !important;
+  border-color: var(--mission-border) !important;
   transition: background 150ms ease !important;
 }
 .mapboxgl-ctrl-group button:hover {
@@ -414,12 +414,12 @@ button, a, input, select {
 }
 .mapboxgl-ctrl-attrib {
   background: rgba(0, 0, 0, 0.6) !important;
-  color: var(--rohu-text-muted) !important;
+  color: var(--mission-text-muted) !important;
   font-size: 9.9px !important;
   backdrop-filter: blur(8px) !important;
 }
 .mapboxgl-ctrl-attrib a {
-  color: var(--rohu-text-muted) !important;
+  color: var(--mission-text-muted) !important;
 }
 
 /* ═══════════════════════════════════════════
@@ -427,60 +427,60 @@ button, a, input, select {
    ═══════════════════════════════════════════ */
 
 /* Soft pulse — for connected status dots, active indicators */
-@keyframes rohu-pulse {
+@keyframes mission-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50%       { opacity: 0.5; transform: scale(0.88); }
 }
 
 /* Fast blink — for critical/error states */
-@keyframes rohu-blink-crit {
+@keyframes mission-blink-crit {
   0%, 100% { opacity: 1; box-shadow: 0 0 7px currentColor; }
   50%       { opacity: 0.55; box-shadow: 0 0 2px currentColor; }
 }
 
 /* Connecting spin — for loading/connecting spinner dots */
-@keyframes rohu-spin {
+@keyframes mission-spin {
   to { transform: rotate(360deg); }
 }
 
 /* Subtle fade-up entry — for panels, cards, popups */
-@keyframes rohu-fade-up {
+@keyframes mission-fade-up {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 /* Scale-in entry — for modals, dropdowns */
-@keyframes rohu-scale-in {
+@keyframes mission-scale-in {
   from { opacity: 0; transform: scale(0.96) translateY(-6px); }
   to   { opacity: 1; transform: scale(1)   translateY(0); }
 }
 
 /* Shimmer — skeleton loading placeholder */
-@keyframes rohu-shimmer {
+@keyframes mission-shimmer {
   0%   { background-position: -400% 0; }
   100% { background-position:  400% 0; }
 }
 
 /* Neon glow breathe — e.g. active mission indicator */
-@keyframes rohu-glow-breathe {
+@keyframes mission-glow-breathe {
   0%, 100% { box-shadow: 0 0 8px rgba(0, 229, 255, 0.18); }
   50%       { box-shadow: 0 0 20px rgba(0, 229, 255, 0.40); }
 }
 
 /* Slide-in from left */
-@keyframes rohu-slide-in-left {
+@keyframes mission-slide-in-left {
   from { opacity: 0; transform: translateX(-12px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 
 /* Slide-in from right */
-@keyframes rohu-slide-in-right {
+@keyframes mission-slide-in-right {
   from { opacity: 0; transform: translateX(12px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 
 /* Scan line — cockpit HUD scan effect */
-@keyframes rohu-scanline {
+@keyframes mission-scanline {
   0%   { transform: translateY(-100%); opacity: 0.6; }
   100% { transform: translateY(100vh); opacity: 0; }
 }
@@ -488,24 +488,24 @@ button, a, input, select {
 /* ═══════════════════════════════════════════
    Utility Animation Classes
    ═══════════════════════════════════════════ */
-.rohu-animate-in {
-  animation: rohu-fade-up 0.28s var(--rohu-ease) both;
+.mission-animate-in {
+  animation: mission-fade-up 0.28s var(--mission-ease) both;
 }
 
-.rohu-animate-in-left {
-  animation: rohu-slide-in-left 0.26s var(--rohu-ease) both;
+.mission-animate-in-left {
+  animation: mission-slide-in-left 0.26s var(--mission-ease) both;
 }
 
-.rohu-animate-in-right {
-  animation: rohu-slide-in-right 0.26s var(--rohu-ease) both;
+.mission-animate-in-right {
+  animation: mission-slide-in-right 0.26s var(--mission-ease) both;
 }
 
-.rohu-stagger > * {
-  animation: rohu-fade-up 0.28s var(--rohu-ease) both;
+.mission-stagger > * {
+  animation: mission-fade-up 0.28s var(--mission-ease) both;
 }
-.rohu-stagger > *:nth-child(1) { animation-delay: 0ms; }
-.rohu-stagger > *:nth-child(2) { animation-delay: 40ms; }
-.rohu-stagger > *:nth-child(3) { animation-delay: 80ms; }
-.rohu-stagger > *:nth-child(4) { animation-delay: 120ms; }
-.rohu-stagger > *:nth-child(5) { animation-delay: 160ms; }
-.rohu-stagger > *:nth-child(6) { animation-delay: 200ms; }
+.mission-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.mission-stagger > *:nth-child(2) { animation-delay: 40ms; }
+.mission-stagger > *:nth-child(3) { animation-delay: 80ms; }
+.mission-stagger > *:nth-child(4) { animation-delay: 120ms; }
+.mission-stagger > *:nth-child(5) { animation-delay: 160ms; }
+.mission-stagger > *:nth-child(6) { animation-delay: 200ms; }

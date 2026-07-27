@@ -1,6 +1,6 @@
-# RohuPlanner Demo Architecture
+# Mission Planner Demo Architecture
 
-RohuPlanner Demo composes the public mission-planning product around a synthetic telemetry boundary. The same mission, telemetry, stores, transforms, and UI surfaces used throughout the public code path participate in the guided scenario; there is no parallel mock interface.
+Mission Planner Demo composes the public mission-planning product around a synthetic telemetry boundary. The same mission, telemetry, stores, transforms, and UI surfaces used throughout the public code path participate in the guided scenario; there is no parallel mock interface.
 
 ```text
 Synthetic scenario

@@ -3,8 +3,8 @@ import type { DroneRecording } from '../store/flightRecorderStore';
 export type FlightLogFormat =
   | 'MAVLINK_TLOG'
   | 'DATAFLASH_BIN'
-  | 'ROHU_TLOG'
-  | 'ROHU_JSON';
+  | 'MISSION_TLOG'
+  | 'MISSION_JSON';
 
 export type FlightLogParser = 'browser' | 'bridge';
 
@@ -48,7 +48,7 @@ export interface DecodedFrameEnvelope {
 }
 
 export interface DecodedLogMessage<TPayload extends Record<string, unknown> = Record<string, unknown>> {
-  source: 'MAVLINK' | 'DATAFLASH' | 'ROHU';
+  source: 'MAVLINK' | 'DATAFLASH' | 'MISSION';
   type: string;
   messageId: number | string;
   sysId: number | null;

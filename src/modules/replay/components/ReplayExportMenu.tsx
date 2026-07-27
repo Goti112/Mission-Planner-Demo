@@ -11,12 +11,12 @@ export default function ReplayExportMenu(): React.ReactElement {
   const dataset = useReplayImportStore((state) => state.dataset);
   const hasRecordings = Object.keys(recordings).length > 0;
 
-  const exportRohuTlog = useCallback(() => {
+  const exportMissionTlog = useCallback(() => {
     if (!hasRecordings) return;
     downloadTlog(recordings, dataset?.source.fileName ?? 'replay');
   }, [dataset?.source.fileName, hasRecordings, recordings]);
 
-  const exportRohuJson = useCallback(() => {
+  const exportMissionJson = useCallback(() => {
     if (!hasRecordings) return;
     downloadRecordings(recordings, dataset?.source.fileName ?? 'replay');
   }, [dataset?.source.fileName, hasRecordings, recordings]);
@@ -28,11 +28,11 @@ export default function ReplayExportMenu(): React.ReactElement {
 
   return (
     <div className="mrv-export">
-      <button type="button" className="mrv-export__button" disabled={!hasRecordings} onClick={exportRohuTlog}>
+      <button type="button" className="mrv-export__button" disabled={!hasRecordings} onClick={exportMissionTlog}>
         <Download size={14} />
-        Rohu TLOG
+        Mission Planner TLOG
       </button>
-      <button type="button" className="mrv-export__button" disabled={!hasRecordings} onClick={exportRohuJson}>
+      <button type="button" className="mrv-export__button" disabled={!hasRecordings} onClick={exportMissionJson}>
         JSON
       </button>
       <button type="button" className="mrv-export__button" disabled={!dataset} onClick={exportAnalysis}>

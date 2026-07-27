@@ -1,5 +1,5 @@
 .aircraft-marker {
-  --aircraft-accent: var(--rohu-cyan, #00e5ff);
+  --aircraft-accent: var(--mission-cyan, #00e5ff);
   --aircraft-accent-rgb: 0, 229, 255;
   width: var(--aircraft-size);
   height: var(--aircraft-size);

@@ -16,11 +16,12 @@ const forbiddenContent = [
   'MavlinkTelemetrySource',
   'bridgeHttpUrl',
   'ConnectionSettingsModal',
-  'ROHU_LICENSE_',
+  'MISSION_LICENSE_',
   'ws://',
   'serialPort',
 ];
 const textExtensions = new Set(['.css', '.html', '.js', '.json', '.md', '.mjs', '.ts', '.tsx', '.yml', '.yaml']);
+const removedIdentityPattern = new RegExp(['ro', 'hu'].join(''), 'i');
 const expectedCspSources = {
   'default-src': ["'self'"],
   'script-src': ["'self'", "'unsafe-eval'"],
@@ -79,6 +80,9 @@ const files = await collectFiles(root);
 const violations = await collectCspViolations();
 for (const absolutePath of files) {
   const repositoryPath = relative(root, absolutePath).replaceAll('\\', '/');
+  if (removedIdentityPattern.test(repositoryPath)) {
+    violations.push({ repositoryPath, marker: 'removed identity', kind: 'path' });
+  }
   for (const fragment of forbiddenPathFragments) {
     if (`/${repositoryPath}`.includes(fragment)) {
       violations.push({ repositoryPath, marker: fragment, kind: 'path' });
@@ -86,6 +90,9 @@ for (const absolutePath of files) {
   }
   if (absolutePath === auditScriptPath || !textExtensions.has(extname(repositoryPath))) continue;
   const content = await readFile(absolutePath, 'utf8');
+  if (removedIdentityPattern.test(content)) {
+    violations.push({ repositoryPath, marker: 'removed identity', kind: 'content' });
+  }
   for (const marker of forbiddenContent) {
     if (content.includes(marker)) {
       violations.push({ repositoryPath, marker, kind: 'content' });

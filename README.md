@@ -1,14 +1,14 @@
-# RohuPlanner Demo
+# Mission Planner Demo
 
 > A simulation-only ground-control case study for planning, flying, inspecting, and replaying a deterministic synthetic mission.
 
-[Launch live demo](https://rohuplanner-demo.vercel.app) · [View on GitHub](https://github.com/Goti112/RohuPlanner-Demo) · [Run locally](#run-locally)
+[Launch live demo](https://mission-planner-demo.vercel.app) · [View on GitHub](https://github.com/Goti112/Mission-Planner-Demo) · [Run locally](#run-locally)
 
-RohuPlanner brings mission planning, map and 3D inspection, a primary flight display, operational readiness, and recorded telemetry into one browser workflow. This public edition uses synthetic data only; it does not connect to an aircraft.
+Mission Planner brings mission planning, map and 3D inspection, a primary flight display, operational readiness, and recorded telemetry into one browser workflow. This public edition uses synthetic data only; it does not connect to an aircraft.
 
 ## Live demo
 
-Open the [public RohuPlanner Demo](https://rohuplanner-demo.vercel.app) for the guided scenario or free exploration. The hosted build and browser smoke journey use restricted provider credentials that are never stored in this repository.
+Open the [public Mission Planner Demo](https://mission-planner-demo.vercel.app) for the guided scenario or free exploration. The hosted build and browser smoke journey use restricted provider credentials that are never stored in this repository.
 
 ## What you can explore
 
@@ -33,7 +33,7 @@ No hardware, autopilot, local bridge, or live vehicle data is involved.
 
 ## Resumen en español
 
-RohuPlanner Demo es un caso de estudio de una estación de control terrestre ejecutada íntegramente en el navegador. Permite revisar una misión sintética preparada, validar su ruta, iniciar una simulación, observar telemetría y seguridad, inspeccionar la trayectoria en 3D y reproducir el vuelo grabado.
+Mission Planner Demo es un caso de estudio de una estación de control terrestre ejecutada íntegramente en el navegador. Permite revisar una misión sintética preparada, validar su ruta, iniciar una simulación, observar telemetría y seguridad, inspeccionar la trayectoria en 3D y reproducir el vuelo grabado.
 
 La edición pública utiliza exclusivamente datos sintéticos y no se conecta a aeronaves. **Restart tour** restaura la misión preparada y el estado base de ejecución, reproducción, vista principal y recorrido guiado. Para ejecutarla en local se necesitan Node.js 24 y tokens de cliente restringidos de Mapbox y Cesium ion.
 
@@ -76,8 +76,8 @@ Requirements:
 - A domain-restricted Cesium ion client token
 
 ```powershell
-git clone https://github.com/Goti112/RohuPlanner-Demo.git
-Set-Location RohuPlanner-Demo
+git clone https://github.com/Goti112/Mission-Planner-Demo.git
+Set-Location Mission-Planner-Demo
 npm ci
 Copy-Item .env.example .env.local
 ```
@@ -99,7 +99,7 @@ Open the local URL printed by Vite. Keep `.env.local` untracked, use client-side
 
 ## Project scope
 
-This repository is a curated portfolio edition of RohuPlanner. It includes the browser mission-planning experience, deterministic simulation, map and 3D visualization, HUD and telemetry surfaces, operational readiness, replay analysis, public quality gates, and original presentation assets.
+This repository is a curated portfolio edition of Mission Planner. It includes the browser mission-planning experience, deterministic simulation, map and 3D visualization, HUD and telemetry surfaces, operational readiness, replay analysis, public quality gates, and original presentation assets.
 
 It intentionally excludes live vehicle connections, hardware control, native desktop packaging, local bridge services, private operational code, deployment credentials, and provider tokens. The demo must not be used to operate an aircraft or make flight-safety decisions.
 

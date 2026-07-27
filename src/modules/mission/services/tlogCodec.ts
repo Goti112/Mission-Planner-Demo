@@ -7,7 +7,7 @@
  *
  * File structure:
  *   HEADER (fixed 32 bytes)
- *     magic    : 4 bytes  "ROHU"
+ *     magic    : 4 bytes  "MISSION"
  *     version  : Uint8
  *     flags    : Uint8 (bit 0 = delta-encoded)
  *     reserved : 2 bytes
@@ -51,7 +51,7 @@ import {
 
 // ── Constants ─────────────────────────────────────────────────────────────
 
-const MAGIC = new Uint8Array([0x52, 0x4F, 0x48, 0x55]) // "ROHU"
+const MAGIC = new Uint8Array([0x52, 0x4F, 0x48, 0x55]) // "MISSION"
 const FORMAT_VERSION = 1
 const FLAG_DELTA = 0x01
 

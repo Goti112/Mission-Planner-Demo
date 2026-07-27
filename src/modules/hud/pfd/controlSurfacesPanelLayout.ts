@@ -31,7 +31,7 @@ export interface PersistedControlSurfacesPanelState extends ControlPanelRect {
 
 // ── Constants ─────────────────────────────────────────────────────────────
 
-export const CONTROL_PANEL_STORAGE_KEY = 'rohu:control-surfaces-panel';
+export const CONTROL_PANEL_STORAGE_KEY = 'mission:control-surfaces-panel';
 export const CONTROL_PANEL_SNAP_PX     = 28;
 
 export const CONTROL_PANEL_DEFAULT_RECT: ControlPanelRect = {

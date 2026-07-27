@@ -1,5 +1,5 @@
 /**
- * LayoutEngine.tsx — Dynamic zone-based panel layout for ROHU GCS.
+ * LayoutEngine.tsx — Dynamic zone-based panel layout for MISSION GCS.
  *
  * Responsibilities:
  *   - Read panel positions from layoutStore

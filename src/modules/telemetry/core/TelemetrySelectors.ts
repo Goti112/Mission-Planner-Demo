@@ -14,9 +14,9 @@
  * Thresholds: >50% → success (green), >20% → warning (amber), ≤20% → danger (red).
  */
 export function getBatteryColor(pct: number): string {
-  if (pct > 50) return 'var(--rohu-success)';
-  if (pct > 20) return 'var(--rohu-warning)';
-  return 'var(--rohu-danger)';
+  if (pct > 50) return 'var(--mission-success)';
+  if (pct > 20) return 'var(--mission-warning)';
+  return 'var(--mission-danger)';
 }
 
 /** Discrete battery level used to select an icon variant. */

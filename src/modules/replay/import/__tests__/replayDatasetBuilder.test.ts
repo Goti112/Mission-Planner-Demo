@@ -108,14 +108,14 @@ describe('buildReplayDataset', () => {
     expect(dataset.plotSeries.some((series) => series.id === 'sys-1:GLOBAL_POSITION_INT:altitudeRelativeM')).toBe(true);
   });
 
-  it('builds a replayable vehicle track from Rohu sample messages', () => {
+  it('builds a replayable vehicle track from mission sample messages', () => {
     const dataset = buildReplayDataset(
-      { fileName: 'sample.tlog', byteLength: 100, format: 'ROHU_TLOG', parser: 'browser', importedAt: 123, originalFileAvailable: true },
+      { fileName: 'sample.tlog', byteLength: 100, format: 'MISSION_TLOG', parser: 'browser', importedAt: 123, originalFileAvailable: true },
       [
         {
-          source: 'ROHU',
-          type: 'ROHU_SAMPLE',
-          messageId: 'ROHU_SAMPLE',
+          source: 'MISSION',
+          type: 'MISSION_SAMPLE',
+          messageId: 'MISSION_SAMPLE',
           sysId: 1,
           compId: null,
           timestampMs: 1500,
@@ -126,9 +126,9 @@ describe('buildReplayDataset', () => {
           warnings: [],
         },
         {
-          source: 'ROHU',
-          type: 'ROHU_SAMPLE',
-          messageId: 'ROHU_SAMPLE',
+          source: 'MISSION',
+          type: 'MISSION_SAMPLE',
+          messageId: 'MISSION_SAMPLE',
           sysId: 1,
           compId: null,
           timestampMs: 2500,

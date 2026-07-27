@@ -147,13 +147,13 @@ export const MISSION_STATE_LABELS: Record<MissionState, string> = {
  * CSS-friendly colour tokens for each state (for UI indicators).
  */
 export const MISSION_STATE_COLORS: Record<MissionState, string> = {
-  [MissionState.IDLE]:            'var(--rohu-text-muted, #888)',
-  [MissionState.ARMING]:          'var(--rohu-warning, #f0ad4e)',
-  [MissionState.TAKEOFF]:         'var(--rohu-info, #5bc0de)',
-  [MissionState.MISSION_RUNNING]: 'var(--rohu-success, #5cb85c)',
-  [MissionState.PAUSED]:          'var(--rohu-warning, #f0ad4e)',
-  [MissionState.RETURN_HOME]:     'var(--rohu-info, #5bc0de)',
-  [MissionState.LANDING]:         'var(--rohu-info, #5bc0de)',
-  [MissionState.COMPLETED]:       'var(--rohu-success, #5cb85c)',
-  [MissionState.ABORTED]:         'var(--rohu-danger, #d9534f)',
+  [MissionState.IDLE]:            'var(--mission-text-muted, #888)',
+  [MissionState.ARMING]:          'var(--mission-warning, #f0ad4e)',
+  [MissionState.TAKEOFF]:         'var(--mission-info, #5bc0de)',
+  [MissionState.MISSION_RUNNING]: 'var(--mission-success, #5cb85c)',
+  [MissionState.PAUSED]:          'var(--mission-warning, #f0ad4e)',
+  [MissionState.RETURN_HOME]:     'var(--mission-info, #5bc0de)',
+  [MissionState.LANDING]:         'var(--mission-info, #5bc0de)',
+  [MissionState.COMPLETED]:       'var(--mission-success, #5cb85c)',
+  [MissionState.ABORTED]:         'var(--mission-danger, #d9534f)',
 };

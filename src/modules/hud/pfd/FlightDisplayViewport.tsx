@@ -16,7 +16,7 @@
  *   │          PrimaryFlightDisplay (fills stage)          │ ← fdv-stage (1fr)
  *   │                                                      │
  *   ├──────────────────────────────────────────────────────┤
- *   │ ROHU GCS  │  ROLL │ PITCH │  VS  │  AGL             │ ← fdv-ribbon (32px)
+ *   │ MISSION GCS  │  ROLL │ PITCH │  VS  │  AGL             │ ← fdv-ribbon (32px)
  *   └──────────────────────────────────────────────────────┘
  *
  * Overlay sits fixed between: navbar (52px top) and statusbar (36px bottom).
@@ -196,7 +196,7 @@ const FlightDisplayViewport: React.FC<FlightDisplayViewportProps> = ({
       {/* ── Bottom data ribbon ─────────────────────────────────────── */}
       <div className="fdv-ribbon">
 
-        <span className="fdv-ribbon-brand">ROHU GCS</span>
+        <span className="fdv-ribbon-brand">MISSION GCS</span>
 
         <div className="fdv-ribbon-items">
 

@@ -26,8 +26,8 @@
   border-left: 5px solid transparent;
   border-radius: 8px;
   background: rgba(12, 16, 28, 0.96);
-  color: var(--rohu-text-primary, #f4f7fb);
-  font-family: var(--rohu-font-ui);
+  color: var(--mission-text-primary, #f4f7fb);
+  font-family: var(--mission-font-ui);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -139,7 +139,7 @@
 
 .fs-alert__badge {
   max-width: 100%;
-  color: var(--rohu-text-secondary, #c8cfda);
+  color: var(--mission-text-secondary, #c8cfda);
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.09);
 }
@@ -154,14 +154,14 @@
 .fs-alert__type-icon {
   display: inline-flex;
   flex: 0 0 auto;
-  color: var(--rohu-text-secondary, #c8cfda);
+  color: var(--mission-text-secondary, #c8cfda);
 }
 
 .fs-alert__title {
   margin: 0;
   min-width: 0;
   overflow-wrap: anywhere;
-  color: var(--rohu-text-primary, #f4f7fb);
+  color: var(--mission-text-primary, #f4f7fb);
   font-size: 14.3px;
   font-weight: 800;
   line-height: 1.2;
@@ -170,7 +170,7 @@
 
 .fs-alert__detail {
   margin: 0;
-  color: var(--rohu-text-secondary, #c8cfda);
+  color: var(--mission-text-secondary, #c8cfda);
   font-size: 13.2px;
   line-height: 1.35;
   overflow-wrap: anywhere;
@@ -189,7 +189,7 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.04);
-  color: var(--rohu-text-secondary, #c8cfda);
+  color: var(--mission-text-secondary, #c8cfda);
   cursor: pointer;
   transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
 }
@@ -197,7 +197,7 @@
 .fs-alert__dismiss:hover {
   border-color: rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.1);
-  color: var(--rohu-text-primary, #f4f7fb);
+  color: var(--mission-text-primary, #f4f7fb);
 }
 
 .fs-alerts-simbar {
@@ -217,8 +217,8 @@
 
 .fs-alerts-simbar__label {
   padding: 0 4px;
-  color: var(--rohu-text-muted, #8b94a5);
-  font-family: var(--rohu-font-ui);
+  color: var(--mission-text-muted, #8b94a5);
+  font-family: var(--mission-font-ui);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0;
@@ -233,8 +233,8 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.05);
-  color: var(--rohu-text-secondary, #c8cfda);
-  font-family: var(--rohu-font-ui);
+  color: var(--mission-text-secondary, #c8cfda);
+  font-family: var(--mission-font-ui);
   font-size: 12.1px;
   line-height: 1;
   letter-spacing: 0;
@@ -245,7 +245,7 @@
 .fs-alerts-simbar__btn:hover {
   border-color: rgba(74, 144, 226, 0.38);
   background: rgba(74, 144, 226, 0.12);
-  color: var(--rohu-text-primary, #f4f7fb);
+  color: var(--mission-text-primary, #f4f7fb);
 }
 
 .fs-alerts-simbar__btn--clear {

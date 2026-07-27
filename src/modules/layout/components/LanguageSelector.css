@@ -14,7 +14,7 @@
   padding: 4px 10px;
   height: 24px;
   border-radius: 4px;
-  font-family: var(--rohu-font-ui, system-ui);
+  font-family: var(--mission-font-ui, system-ui);
   font-size: 12.1px;
   font-weight: 500;
   cursor: pointer;
@@ -60,7 +60,7 @@
   color: rgba(255, 255, 255, 0.7);
   padding: 6px 10px;
   border-radius: 4px;
-  font-family: var(--rohu-font-ui, system-ui);
+  font-family: var(--mission-font-ui, system-ui);
   font-size: 12.1px;
   cursor: pointer;
   text-align: left;

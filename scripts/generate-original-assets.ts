@@ -1,15 +1,15 @@
 import { deflateSync } from 'node:zlib';
 import { writeFile } from 'node:fs/promises';
 
-const ASSET_COPYRIGHT = 'Copyright © 2026 Goti112. Original RohuPlanner portfolio asset.';
+const ASSET_COPYRIGHT = 'Copyright © 2026 Goti112. Original Mission Planner portfolio asset.';
 const LOGO_PATH = new URL('../public/Logo.svg', import.meta.url);
 const MARKER_PATH = new URL('../public/assets/aircraft-marker.png', import.meta.url);
 const MODEL_PATH = new URL('../public/assets/drone.glb', import.meta.url);
 
 const createLogoSvg = (): string => `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="300" viewBox="0 0 960 300" role="img" aria-labelledby="title description">
-  <title id="title">RohuPlanner</title>
-  <desc id="description">An original route and aircraft mark beside the RohuPlanner wordmark.</desc>
+  <title id="title">Mission Planner</title>
+  <desc id="description">An original route and aircraft mark beside the Mission Planner wordmark.</desc>
   <metadata>${ASSET_COPYRIGHT}</metadata>
   <rect width="960" height="300" rx="44" fill="#071018"/>
   <g transform="translate(58 48)">
@@ -20,7 +20,7 @@ const createLogoSvg = (): string => `<?xml version="1.0" encoding="UTF-8"?>
       <path d="M0 -54 L15 -8 L58 12 L58 26 L15 20 L7 58 L-7 58 L-15 20 L-58 26 L-58 12 L-15 -8 Z" fill="#f8fafc" stroke="#0ea5e9" stroke-width="5" stroke-linejoin="round"/>
     </g>
   </g>
-  <text x="350" y="142" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="76" font-weight="760" letter-spacing="-2">RohuPlanner</text>
+  <text x="350" y="142" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="76" font-weight="760" letter-spacing="-2">Mission Planner</text>
   <text x="354" y="195" fill="#94a3b8" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="560" letter-spacing="5">MISSION CONTROL · SIMULATION</text>
 </svg>
 `;
@@ -362,14 +362,14 @@ const createDroneModelGlb = (): Buffer => {
   const json = {
     asset: {
       version: '2.0',
-      generator: 'RohuPlanner scripts/generate-original-assets.ts',
+      generator: 'Mission Planner scripts/generate-original-assets.ts',
       copyright: ASSET_COPYRIGHT,
     },
     scene: 0,
     scenes: [{ nodes: [0] }],
-    nodes: [{ mesh: 0, name: 'RohuPlanner original fixed-wing aircraft' }],
+    nodes: [{ mesh: 0, name: 'Mission Planner original fixed-wing aircraft' }],
     meshes: [{
-      name: 'RohuPlanner aircraft',
+      name: 'Mission Planner aircraft',
       primitives: [{
         attributes: { POSITION: 0, NORMAL: 1, COLOR_0: 2 },
         indices: 3,
@@ -399,7 +399,7 @@ const createDroneModelGlb = (): Buffer => {
       { bufferView: 3, componentType: 5123, count: geometry.indices.length, type: 'SCALAR' },
     ],
     extras: {
-      provenance: 'Original procedural model created for RohuPlanner; reproducible from scripts/generate-original-assets.ts.',
+      provenance: 'Original procedural model created for Mission Planner; reproducible from scripts/generate-original-assets.ts.',
       positionValueCount: positionValues.length,
     },
   };

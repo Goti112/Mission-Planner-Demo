@@ -1,7 +1,7 @@
 ﻿/* ═══════════════════════════════════════════════════════════════════
    TelemetryPanelAdvanced  ·  tap-* class namespace
    Professional 7-section telemetry panel
-   Dark / glassmorphism · ROHU design tokens
+   Dark / glassmorphism · MISSION design tokens
    ═══════════════════════════════════════════════════════════════════ */
 
 /* ── Panel shell ────────────────────────────────────────────────────────── */
@@ -14,12 +14,12 @@
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
   backdrop-filter: blur(20px) saturate(1.4);
   border: 1px solid rgba(91, 160, 245, 0.10);
-  border-radius: var(--rohu-radius, 10px);
+  border-radius: var(--mission-radius, 10px);
   box-shadow:
     0 4px 28px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.025);
-  font-family: var(--rohu-font-ui, 'Inter', sans-serif);
-  color: var(--rohu-text-primary, #F0F2F5);
+  font-family: var(--mission-font-ui, 'Inter', sans-serif);
+  color: var(--mission-text-primary, #F0F2F5);
   overflow: hidden;
 }
 
@@ -42,7 +42,7 @@
   font-weight: 700;
   letter-spacing: 1.6px;
   text-transform: uppercase;
-  color: var(--rohu-neon, #5BA0F5);
+  color: var(--mission-neon, #5BA0F5);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -85,7 +85,7 @@
   padding: 1px 5px;
   border-radius: 3px;
   background: rgba(91, 160, 245, 0.12);
-  color: var(--rohu-neon, #5BA0F5);
+  color: var(--mission-neon, #5BA0F5);
   border: 1px solid rgba(91, 160, 245, 0.25);
   line-height: 1.5;
   max-width: 90px;
@@ -108,7 +108,7 @@
   transition: color 0.15s, background 0.15s;
 }
 .tap-minimize-btn:hover {
-  color: var(--rohu-neon, #5BA0F5);
+  color: var(--mission-neon, #5BA0F5);
   background: rgba(91, 160, 245, 0.08);
 }
 
@@ -188,7 +188,7 @@
   font-weight: 600;
   letter-spacing: 0.8px;
   text-transform: uppercase;
-  color: var(--rohu-text-muted, #505A6B);
+  color: var(--mission-text-muted, #505A6B);
   line-height: 1;
   white-space: nowrap;
   overflow: hidden;
@@ -196,11 +196,11 @@
 }
 
 .tap-cell-value {
-  font-family: var(--rohu-font-mono, 'JetBrains Mono', monospace);
+  font-family: var(--mission-font-mono, 'JetBrains Mono', monospace);
   font-size: 0.99rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  color: var(--rohu-text-primary, #F0F2F5);
+  color: var(--mission-text-primary, #F0F2F5);
   line-height: 1.25;
   letter-spacing: 0.3px;
   overflow: hidden;
@@ -225,9 +225,9 @@
 }
 
 /* ── Status text helpers ──────────────────────────────────────────────────── */
-.tap-text-ok  { color: var(--rohu-success, #22C55E); }
-.tap-text-bad { color: var(--rohu-danger,  #EF4444); }
-.tap-text-warn { color: var(--rohu-warning, #F59E0B); }
+.tap-text-ok  { color: var(--mission-success, #22C55E); }
+.tap-text-bad { color: var(--mission-danger,  #EF4444); }
+.tap-text-warn { color: var(--mission-warning, #F59E0B); }
 
 /* ── Link dot ─────────────────────────────────────────────────────────────── */
 .tap-link-dot {
@@ -244,9 +244,9 @@
   border-radius: 50%;
   background: currentColor;
 }
-.tap-link-dot--ok    { color: var(--rohu-success, #22C55E); }
-.tap-link-dot--weak  { color: var(--rohu-warning, #F59E0B); }
-.tap-link-dot--lost  { color: var(--rohu-danger,  #EF4444); }
+.tap-link-dot--ok    { color: var(--mission-success, #22C55E); }
+.tap-link-dot--weak  { color: var(--mission-warning, #F59E0B); }
+.tap-link-dot--lost  { color: var(--mission-danger,  #EF4444); }
 
 .tap-link-dot--ok .tap-link-dot-pulse {
   animation: tapPulseOk 2s ease-in-out infinite;
@@ -296,7 +296,7 @@
 }
 
 .tap-bat-pct-label {
-  font-family: var(--rohu-font-mono, 'JetBrains Mono', monospace);
+  font-family: var(--mission-font-mono, 'JetBrains Mono', monospace);
   font-size: 0.792rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -306,7 +306,7 @@
 }
 
 .tap-pct-inline {
-  font-family: var(--rohu-font-mono, 'JetBrains Mono', monospace);
+  font-family: var(--mission-font-mono, 'JetBrains Mono', monospace);
   font-size: 0.748rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -325,17 +325,17 @@
 }
 .tap-badge--good {
   background: rgba(34, 197, 94, 0.15);
-  color: var(--rohu-success, #22C55E);
+  color: var(--mission-success, #22C55E);
   border: 1px solid rgba(34, 197, 94, 0.30);
 }
 .tap-badge--warn {
   background: rgba(245, 158, 11, 0.15);
-  color: var(--rohu-warning, #F59E0B);
+  color: var(--mission-warning, #F59E0B);
   border: 1px solid rgba(245, 158, 11, 0.30);
 }
 .tap-badge--bad {
   background: rgba(239, 68, 68, 0.15);
-  color: var(--rohu-danger, #EF4444);
+  color: var(--mission-danger, #EF4444);
   border: 1px solid rgba(239, 68, 68, 0.25);
 }
 .tap-badge--rtk {
@@ -377,11 +377,11 @@
   transition: color 0.15s, background 0.15s, transform 0.25s;
 }
 .tap-settings-btn:hover {
-  color: var(--rohu-neon, #5BA0F5);
+  color: var(--mission-neon, #5BA0F5);
   background: rgba(91, 160, 245, 0.08);
 }
 .tap-settings-btn[aria-pressed="true"] {
-  color: var(--rohu-neon, #5BA0F5);
+  color: var(--mission-neon, #5BA0F5);
   background: rgba(91, 160, 245, 0.12);
   transform: rotate(45deg);
 }
@@ -397,7 +397,7 @@
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(91, 160, 245, 0.18);
-  border-radius: var(--rohu-radius, 10px) var(--rohu-radius, 10px) 8px 8px;
+  border-radius: var(--mission-radius, 10px) var(--mission-radius, 10px) 8px 8px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
@@ -420,7 +420,7 @@
   font-weight: 700;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--rohu-neon, #5BA0F5);
+  color: var(--mission-neon, #5BA0F5);
 }
 .tap-config-close {
   background: none;
@@ -433,7 +433,7 @@
   border-radius: 4px;
   transition: color 0.15s;
 }
-.tap-config-close:hover { color: var(--rohu-danger, #EF4444); }
+.tap-config-close:hover { color: var(--mission-danger, #EF4444); }
 
 .tap-config-body {
   padding: 6px 10px 4px;
@@ -490,8 +490,8 @@
   transition: background 0.12s, border-color 0.12s;
 }
 .tap-config-item input[type="checkbox"]:checked {
-  background: var(--rohu-neon, #5BA0F5);
-  border-color: var(--rohu-neon, #5BA0F5);
+  background: var(--mission-neon, #5BA0F5);
+  border-color: var(--mission-neon, #5BA0F5);
 }
 .tap-config-item input[type="checkbox"]:checked::after {
   content: '';
@@ -524,7 +524,7 @@
   transition: color 0.15s, border-color 0.15s, background 0.15s;
 }
 .tap-config-reset:hover {
-  color: var(--rohu-warning, #F59E0B);
+  color: var(--mission-warning, #F59E0B);
   border-color: rgba(245, 158, 11, 0.35);
   background: rgba(245, 158, 11, 0.06);
 }

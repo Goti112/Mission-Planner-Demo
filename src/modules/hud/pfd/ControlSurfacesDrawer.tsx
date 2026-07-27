@@ -108,7 +108,7 @@ interface DrawerPanelPersistedState {
   anchor: ControlPanelAnchor;
 }
 
-const DRAWER_PANEL_STORAGE_KEY = 'rohu:control-surfaces-drawer-panel';
+const DRAWER_PANEL_STORAGE_KEY = 'mission:control-surfaces-drawer-panel';
 
 function loadDrawerPanelState(): DrawerPanelPersistedState {
   const defaults: DrawerPanelPersistedState = {

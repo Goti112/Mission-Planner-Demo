@@ -135,10 +135,10 @@ const Cell: React.FC<{
 
 function batteryColor(level: BatteryWarningLevel, pct: number | null): string {
   if (level === BatteryWarningLevel.CRITICAL || (pct !== null && pct < 15))
-    return 'var(--rohu-danger, #EF4444)';
+    return 'var(--mission-danger, #EF4444)';
   if (level === BatteryWarningLevel.LOW || (pct !== null && pct < 30))
-    return 'var(--rohu-warning, #F59E0B)';
-  return 'var(--rohu-success, #22C55E)';
+    return 'var(--mission-warning, #F59E0B)';
+  return 'var(--mission-success, #22C55E)';
 }
 
 // ── Helper: GPS badge class ────────────────────────────────────────────────

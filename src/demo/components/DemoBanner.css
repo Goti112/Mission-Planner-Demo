@@ -11,7 +11,7 @@
   border-bottom: 1px solid rgba(245, 158, 11, 0.28);
   background: linear-gradient(90deg, #211609, #352006 48%, #211609);
   color: #fef3c7;
-  font-family: var(--rohu-font-ui);
+  font-family: var(--mission-font-ui);
 }
 
 .demo-banner__badge {
@@ -31,7 +31,7 @@
   right: 14px;
   padding: 3px 9px;
   border: 1px solid rgba(251, 191, 36, 0.3);
-  border-radius: var(--rohu-radius-pill);
+  border-radius: var(--mission-radius-pill);
   background: rgba(251, 191, 36, 0.08);
   color: #fde68a;
   font: inherit;

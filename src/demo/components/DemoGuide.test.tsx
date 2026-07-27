@@ -178,7 +178,7 @@ describe('guided demo interface', () => {
   it('labels and focuses the dialog and provides a skip action', () => {
     render(<DemoGuide />);
 
-    const dialog = screen.getByRole('dialog', { name: 'Welcome to RohuPlanner' });
+    const dialog = screen.getByRole('dialog', { name: 'Welcome to Mission Planner' });
 
     expect(document.activeElement).toBe(dialog);
 
@@ -205,7 +205,7 @@ describe('guided demo interface', () => {
       </>,
     );
 
-    const dialog = screen.getByRole('dialog', { name: 'Welcome to RohuPlanner' });
+    const dialog = screen.getByRole('dialog', { name: 'Welcome to Mission Planner' });
     const close = screen.getByRole('button', { name: 'Close tour' });
     const explore = screen.getByRole('button', { name: 'Explore freely' });
     const background = screen.getByRole('button', { name: 'Background action' });

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   ROHU GCS — App Layout v3.0
+   MISSION GCS — App Layout v3.0
    Premium Aerospace Ground Control Station
    ═══════════════════════════════════════════════════════════════ */
 
@@ -14,7 +14,7 @@
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background: var(--rohu-bg-primary);
+  background: var(--mission-bg-primary);
   overflow: hidden;
 }
 
@@ -42,9 +42,9 @@
   -webkit-backdrop-filter: blur(20px) saturate(1.3);
   backdrop-filter: blur(20px) saturate(1.3);
   overflow: hidden;
-  transition: width 280ms var(--rohu-ease),
-              max-width 280ms var(--rohu-ease),
-              min-width 280ms var(--rohu-ease),
+  transition: width 280ms var(--mission-ease),
+              max-width 280ms var(--mission-ease),
+              min-width 280ms var(--mission-ease),
               opacity 220ms ease;
 }
 
@@ -75,7 +75,7 @@
   padding: 3px 4px;
   background: rgba(2, 6, 23, 0.88);
   border: 1px solid rgba(91, 160, 245, 0.08);
-  border-radius: var(--rohu-radius-pill);
+  border-radius: var(--mission-radius-pill);
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
@@ -85,13 +85,13 @@
   height: 24px;
   padding: 0 10px;
   border: 1px solid transparent;
-  border-radius: var(--rohu-radius-pill);
+  border-radius: var(--mission-radius-pill);
   background: transparent;
   color: rgba(255, 255, 255, 0.35);
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 180ms var(--rohu-ease);
+  transition: all 180ms var(--mission-ease);
   letter-spacing: 0.3px;
 }
 
@@ -103,7 +103,7 @@
 .gcs-map-tool-btn--active {
   background: rgba(91, 160, 245, 0.12);
   border-color: rgba(91, 160, 245, 0.28);
-  color: var(--rohu-neon);
+  color: var(--mission-neon);
   box-shadow: 0 0 10px rgba(91, 160, 245, 0.08);
 }
 
@@ -134,7 +134,7 @@
   background: rgba(2, 6, 23, 0.96);
   border-top: 1px solid rgba(91, 160, 245, 0.05);
   font-size: 11px;
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
   z-index: 100;
   flex-shrink: 0;
   position: relative;
@@ -169,20 +169,20 @@
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
 }
 
 .gcs-statusbar-value {
-  font-family: var(--rohu-font-mono);
+  font-family: var(--mission-font-mono);
   font-size: 11px;
   font-weight: 500;
-  color: var(--rohu-text-secondary);
+  color: var(--mission-text-secondary);
   font-variant-numeric: tabular-nums;
 }
 
 .gcs-statusbar-idle {
   font-size: 11px;
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
   font-style: italic;
 }
 
@@ -190,20 +190,20 @@
    Panel Card — glassmorphism surface
    ══════════════════════════════════════════════════════════════ */
 .gcs-panel {
-  background: var(--rohu-bg-card);
-  backdrop-filter: var(--rohu-blur);
-  -webkit-backdrop-filter: var(--rohu-blur);
-  border: 1px solid var(--rohu-border-glass);
-  border-radius: var(--rohu-radius);
+  background: var(--mission-bg-card);
+  backdrop-filter: var(--mission-blur);
+  -webkit-backdrop-filter: var(--mission-blur);
+  border: 1px solid var(--mission-border-glass);
+  border-radius: var(--mission-radius);
   padding: 14px;
-  transition: border-color var(--rohu-transition-base),
-              box-shadow var(--rohu-transition-base);
+  transition: border-color var(--mission-transition-base),
+              box-shadow var(--mission-transition-base);
   flex-shrink: 0;
 }
 
 .gcs-panel:hover {
   border-color: rgba(91, 160, 245, 0.12);
-  box-shadow: var(--rohu-shadow-glow-neon);
+  box-shadow: var(--mission-shadow-glow-neon);
 }
 
 .gcs-panel-header {
@@ -212,7 +212,7 @@
   gap: 8px;
   margin-bottom: 12px;
   padding-bottom: 8px;
-  border-bottom: 1px solid var(--rohu-border);
+  border-bottom: 1px solid var(--mission-border);
 }
 
 .gcs-panel-icon {
@@ -221,19 +221,19 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  border-radius: var(--rohu-radius-sm);
+  border-radius: var(--mission-radius-sm);
   flex-shrink: 0;
 }
 
-.gcs-panel-icon--cyan { background: var(--rohu-cyan-dim); color: var(--rohu-cyan); }
-.gcs-panel-icon--indigo { background: var(--rohu-indigo-dim); color: var(--rohu-indigo); }
+.gcs-panel-icon--cyan { background: var(--mission-cyan-dim); color: var(--mission-cyan); }
+.gcs-panel-icon--indigo { background: var(--mission-indigo-dim); color: var(--mission-indigo); }
 
 .gcs-panel-title {
   font-size: 13.2px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--rohu-text-primary);
+  color: var(--mission-text-primary);
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -247,9 +247,9 @@
   justify-content: space-between;
   padding: 7px 10px;
   background: rgba(255, 255, 255, 0.02);
-  border-radius: var(--rohu-radius-sm);
+  border-radius: var(--mission-radius-sm);
   border: 1px solid transparent;
-  transition: all 180ms var(--rohu-ease);
+  transition: all 180ms var(--mission-ease);
 }
 
 .telem-row:hover {
@@ -258,14 +258,14 @@
 }
 
 .telem-row-left { display: flex; align-items: center; gap: 8px; }
-.telem-row-icon { color: var(--rohu-text-muted); flex-shrink: 0; }
-.telem-row-label { font-size: 12.1px; color: var(--rohu-text-secondary); font-weight: 400; }
+.telem-row-icon { color: var(--mission-text-muted); flex-shrink: 0; }
+.telem-row-label { font-size: 12.1px; color: var(--mission-text-secondary); font-weight: 400; }
 
 .telem-row-value {
-  font-family: var(--rohu-font-mono);
+  font-family: var(--mission-font-mono);
   font-size: 13.2px;
   font-weight: 600;
-  color: var(--rohu-text-primary);
+  color: var(--mission-text-primary);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.3px;
 }
@@ -282,14 +282,14 @@
   width: 100%;
   padding: 9px 12px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--rohu-radius-sm);
+  border-radius: var(--mission-radius-sm);
   background: rgba(255, 255, 255, 0.02);
-  color: var(--rohu-text-primary);
-  font-family: var(--rohu-font-ui);
+  color: var(--mission-text-primary);
+  font-family: var(--mission-font-ui);
   font-size: 12.1px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 180ms var(--rohu-ease);
+  transition: all 180ms var(--mission-ease);
   outline: none;
 }
 
@@ -303,15 +303,15 @@
 
 .ctrl-btn-icon {
   display: flex; align-items: center; justify-content: center;
-  width: 26px; height: 26px; border-radius: var(--rohu-radius-sm); flex-shrink: 0;
+  width: 26px; height: 26px; border-radius: var(--mission-radius-sm); flex-shrink: 0;
 }
 
-.ctrl-btn-icon--cyan { background: var(--rohu-red-dim); color: var(--rohu-red-bright); }
-.ctrl-btn-icon--indigo { background: var(--rohu-indigo-dim); color: var(--rohu-indigo); }
-.ctrl-btn-icon--warning { background: var(--rohu-warning-dim); color: var(--rohu-warning); }
+.ctrl-btn-icon--cyan { background: var(--mission-red-dim); color: var(--mission-red-bright); }
+.ctrl-btn-icon--indigo { background: var(--mission-indigo-dim); color: var(--mission-indigo); }
+.ctrl-btn-icon--warning { background: var(--mission-warning-dim); color: var(--mission-warning); }
 .ctrl-btn-label { flex: 1; text-align: left; }
-.ctrl-btn-arrow { color: var(--rohu-text-muted); transition: transform 180ms var(--rohu-ease); }
-.ctrl-btn:hover .ctrl-btn-arrow { transform: translateX(2px); color: var(--rohu-red-bright); }
+.ctrl-btn-arrow { color: var(--mission-text-muted); transition: transform 180ms var(--mission-ease); }
+.ctrl-btn:hover .ctrl-btn-arrow { transform: translateX(2px); color: var(--mission-red-bright); }
 
 /* ══════════════════════════════════════════════════════════════
    Drone List
@@ -321,9 +321,9 @@
 .drone-list-item {
   display: flex; align-items: center; gap: 8px; width: 100%; padding: 7px 10px;
   background: rgba(255,255,255,0.02); border: 1px solid transparent;
-  border-radius: var(--rohu-radius-sm); color: var(--rohu-text-primary);
-  font-family: var(--rohu-font-ui); font-size: 12.1px; cursor: pointer;
-  transition: all 180ms var(--rohu-ease); outline: none;
+  border-radius: var(--mission-radius-sm); color: var(--mission-text-primary);
+  font-family: var(--mission-font-ui); font-size: 12.1px; cursor: pointer;
+  transition: all 180ms var(--mission-ease); outline: none;
 }
 
 .drone-list-item:hover { background: rgba(91,160,245,0.04); border-color: rgba(91,160,245,0.10); }
@@ -335,9 +335,9 @@
 
 .drone-list-dot { flex-shrink: 0; }
 .drone-list-info { display: flex; flex-direction: column; flex: 1; min-width: 0; text-align: left; }
-.drone-list-name { font-weight: 600; font-size: 12.1px; color: var(--rohu-text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.drone-list-meta { font-size: 9.9px; color: var(--rohu-text-muted); font-weight: 400; }
-.drone-list-arrow { color: var(--rohu-text-muted); flex-shrink: 0; transition: transform 180ms var(--rohu-ease), color 180ms var(--rohu-ease); }
+.drone-list-name { font-weight: 600; font-size: 12.1px; color: var(--mission-text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.drone-list-meta { font-size: 9.9px; color: var(--mission-text-muted); font-weight: 400; }
+.drone-list-arrow { color: var(--mission-text-muted); flex-shrink: 0; transition: transform 180ms var(--mission-ease), color 180ms var(--mission-ease); }
 .drone-list-item:hover .drone-list-arrow,
-.drone-list-item--active .drone-list-arrow { color: var(--rohu-red-bright); transform: translateX(2px); }
-.drone-count-badge { margin-left: auto; display: flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 10px; background: var(--rohu-red-dim); color: var(--rohu-red-bright); font-size: 11px; font-weight: 700; }
+.drone-list-item--active .drone-list-arrow { color: var(--mission-red-bright); transform: translateX(2px); }
+.drone-count-badge { margin-left: auto; display: flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 10px; background: var(--mission-red-dim); color: var(--mission-red-bright); font-size: 11px; font-weight: 700; }

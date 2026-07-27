@@ -107,7 +107,7 @@ function DroneCard({ drone, isActive, onSelect }: DroneCardProps) {
 
         {/* Mode */}
         <div className="dfp-card__stat" title="Modo">
-          <Radio size={12} style={{ color: 'var(--rohu-cyan)' }} />
+          <Radio size={12} style={{ color: 'var(--mission-cyan)' }} />
           <span>{drone.mode}</span>
         </div>
 

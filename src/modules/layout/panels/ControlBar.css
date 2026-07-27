@@ -12,7 +12,7 @@
 .coords-display {
   font-variant-numeric: tabular-nums;
   font-size: 14.3px;
-  color: var(--rohu-text-secondary, #9CA3AF);
+  color: var(--mission-text-secondary, #9CA3AF);
   letter-spacing: 0.5px;
 }
 

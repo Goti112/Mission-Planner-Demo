@@ -30,7 +30,7 @@ function calculateProgress(value: number, minZoom: number, maxZoom: number): num
 }
 
 /**
- * Professional vertical zoom control for ROHU GCS maps.
+ * Professional vertical zoom control for MISSION GCS maps.
  * Integrates with both 2D (Mapbox) and 3D (Cesium) views.
  */
 export const MapZoomControl: React.FC<MapZoomControlProps> = ({

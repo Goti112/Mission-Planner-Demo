@@ -39,30 +39,30 @@
   min-width: 48px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: var(--rohu-radius-sm);
-  color: var(--rohu-text-muted);
-  font-family: var(--rohu-font-ui);
+  border-radius: var(--mission-radius-sm);
+  color: var(--mission-text-muted);
+  font-family: var(--mission-font-ui);
   cursor: pointer;
-  transition: all 180ms var(--rohu-ease);
+  transition: all 180ms var(--mission-ease);
   outline: none;
   user-select: none;
 }
 .lag-btn:hover {
   background: rgba(91, 160, 245, 0.05);
   border-color: rgba(91, 160, 245, 0.14);
-  color: var(--rohu-text-primary);
+  color: var(--mission-text-primary);
 }
 .lag-btn:focus-visible {
   border-color: rgba(0, 229, 255, 0.35);
   box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.10);
-  color: var(--rohu-text-primary);
+  color: var(--mission-text-primary);
 }
 .lag-btn:active { background: rgba(91, 160, 245, 0.08); }
 
 .lag-btn--active {
   background: rgba(91, 160, 245, 0.08);
   border-color: rgba(91, 160, 245, 0.25);
-  color: var(--rohu-neon);
+  color: var(--mission-neon);
   box-shadow: 0 0 10px rgba(91, 160, 245, 0.06);
 }
 .lag-btn--active:hover {
@@ -76,8 +76,8 @@
   display: block;
   transition: color 130ms ease;
 }
-.lag-btn--active .lag-btn-symbol { color: var(--rohu-neon); }
-.lag-btn:hover:not(.lag-btn--active) .lag-btn-symbol { color: var(--rohu-text-secondary); }
+.lag-btn--active .lag-btn-symbol { color: var(--mission-neon); }
+.lag-btn:hover:not(.lag-btn--active) .lag-btn-symbol { color: var(--mission-text-secondary); }
 
 .lag-btn-label {
   font-size: 8.25px;

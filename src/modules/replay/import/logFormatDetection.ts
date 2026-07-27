@@ -1,6 +1,6 @@
 import type { FlightLogFormat } from './logImportTypes';
 
-const ROHU_MAGIC = [0x52, 0x4f, 0x48, 0x55] as const;
+const MISSION_MAGIC = [0x52, 0x4f, 0x48, 0x55] as const;
 const DATAFLASH_HEAD_1 = 0xa3;
 const DATAFLASH_HEAD_2 = 0x95;
 const MAVLINK_V1_MAGIC = 0xfe;
@@ -14,8 +14,8 @@ export function detectFlightLogFormat(fileName: string, buffer: ArrayBuffer): Fl
   const bytes = new Uint8Array(buffer);
   const lowerName = fileName.toLowerCase();
 
-  if (startsWith(bytes, ROHU_MAGIC)) {
-    return 'ROHU_TLOG';
+  if (startsWith(bytes, MISSION_MAGIC)) {
+    return 'MISSION_TLOG';
   }
 
   if (bytes[0] === DATAFLASH_HEAD_1 && bytes[1] === DATAFLASH_HEAD_2) {
@@ -26,8 +26,8 @@ export function detectFlightLogFormat(fileName: string, buffer: ArrayBuffer): Fl
     return 'MAVLINK_TLOG';
   }
 
-  if (lowerName.endsWith('.rohu.json') || lowerName.endsWith('.json')) {
-    return 'ROHU_JSON';
+  if (lowerName.endsWith('.mission.json') || lowerName.endsWith('.json')) {
+    return 'MISSION_JSON';
   }
 
   if (lowerName.endsWith('.bin')) {

@@ -21,10 +21,10 @@
   border-radius: 14px;
   background: rgba(5, 11, 28, 0.97);
   box-shadow: 0 18px 56px rgba(0, 0, 0, 0.52), 0 0 28px rgba(91, 160, 245, 0.08);
-  color: var(--rohu-text-primary);
-  font-family: var(--rohu-font-ui);
+  color: var(--mission-text-primary);
+  font-family: var(--mission-font-ui);
   pointer-events: auto;
-  animation: demo-guide-enter 220ms var(--rohu-ease);
+  animation: demo-guide-enter 220ms var(--mission-ease);
 }
 
 .demo-guide-layer--welcome .demo-guide {
@@ -52,7 +52,7 @@
   border-radius: 50%;
   place-items: center;
   background: transparent;
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
   cursor: pointer;
 }
 
@@ -60,12 +60,12 @@
 .demo-guide__close:focus-visible {
   border-color: rgba(91, 160, 245, 0.24);
   background: rgba(91, 160, 245, 0.08);
-  color: var(--rohu-text-primary);
+  color: var(--mission-text-primary);
   outline: none;
 }
 
 .demo-guide__step {
-  color: var(--rohu-neon);
+  color: var(--mission-neon);
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 1px;
@@ -80,7 +80,7 @@
 
 .demo-guide > p {
   margin: 0;
-  color: var(--rohu-text-secondary);
+  color: var(--mission-text-secondary);
   font-size: 13px;
   line-height: 1.55;
 }
@@ -94,7 +94,7 @@
 }
 
 .demo-guide__target-instruction strong {
-  color: var(--rohu-neon);
+  color: var(--mission-neon);
 }
 
 .demo-guide__actions {
@@ -113,7 +113,7 @@
   border: 1px solid rgba(91, 160, 245, 0.2);
   border-radius: 8px;
   background: rgba(91, 160, 245, 0.06);
-  color: var(--rohu-text-secondary);
+  color: var(--mission-text-secondary);
   font: inherit;
   font-size: 12px;
   font-weight: 700;
@@ -123,13 +123,13 @@
 .demo-guide__button:hover,
 .demo-guide__button:focus-visible {
   border-color: rgba(91, 160, 245, 0.48);
-  color: var(--rohu-text-primary);
+  color: var(--mission-text-primary);
   outline: none;
 }
 
 .demo-guide__button--primary {
   border-color: rgba(91, 160, 245, 0.48);
-  background: var(--rohu-neon);
+  background: var(--mission-neon);
   color: #020617;
 }
 

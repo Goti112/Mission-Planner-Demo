@@ -122,7 +122,7 @@
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--rohu-neon, #5BA0F5);
+  color: var(--mission-neon, #5BA0F5);
   opacity: 0.85;
 }
 

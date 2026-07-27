@@ -11,7 +11,7 @@ type GuidedDemoStep = Exclude<DemoGuideStep, 'FREE'>;
 
 export const DEMO_GUIDE_CONTENT: Readonly<Record<GuidedDemoStep, DemoGuideContent>> = {
   WELCOME: {
-    title: 'Welcome to RohuPlanner',
+    title: 'Welcome to Mission Planner',
     body: 'Understand the prepared synthetic six-point mission before running the simulation.',
     actionLabel: 'Review mission',
     target: null,

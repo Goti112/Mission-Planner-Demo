@@ -1,7 +1,7 @@
 # Flight HUD — Arquitectura del Sistema de Instrumentos
 
 **Versión:** 1.0  
-**Contexto:** Ground Control Station · RohuPlanner  
+**Contexto:** Ground Control Station · Mission Planner
 **Estado:** Diseño — Pre-implementación
 
 ---

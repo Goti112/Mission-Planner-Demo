@@ -27,7 +27,7 @@ describe('useReplayImportStore', () => {
       source: {
         fileName: 'flight.tlog',
         byteLength: 100,
-        format: 'ROHU_TLOG',
+        format: 'MISSION_TLOG',
         parser: 'browser',
         importedAt: 1,
         originalFileAvailable: true,
@@ -39,7 +39,7 @@ describe('useReplayImportStore', () => {
     });
 
     expect(useReplayImportStore.getState().dataset?.source).toMatchObject({
-      format: 'ROHU_TLOG',
+      format: 'MISSION_TLOG',
       parser: 'browser',
       originalFileAvailable: true,
     });

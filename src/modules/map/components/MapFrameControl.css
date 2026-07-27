@@ -18,7 +18,7 @@
     0 14px 34px rgba(0, 0, 0, 0.42),
     inset 0 1px 0 rgba(255, 255, 255, 0.045);
   user-select: none;
-  animation: rohu-fade-up 0.3s var(--rohu-ease) both;
+  animation: mission-fade-up 0.3s var(--mission-ease) both;
 }
 
 .map-frame-control::before {
@@ -39,7 +39,7 @@
 }
 
 .map-frame-control__header-title {
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
   font-size: 8.8px;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -65,19 +65,19 @@
   border: 1px solid rgba(148, 163, 184, 0.16);
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.045);
-  color: var(--rohu-text-secondary);
+  color: var(--mission-text-secondary);
   cursor: pointer;
   transition:
-    background-color 160ms var(--rohu-ease),
-    border-color 160ms var(--rohu-ease),
-    color 160ms var(--rohu-ease),
-    box-shadow 160ms var(--rohu-ease);
+    background-color 160ms var(--mission-ease),
+    border-color 160ms var(--mission-ease),
+    color 160ms var(--mission-ease),
+    box-shadow 160ms var(--mission-ease);
   flex-shrink: 0;
 }
 
 .map-frame-control__button:hover:not(:disabled) {
   background: rgba(91, 160, 245, 0.12);
-  color: var(--rohu-neon);
+  color: var(--mission-neon);
   border-color: rgba(91, 160, 245, 0.28);
   box-shadow: 0 0 14px rgba(91, 160, 245, 0.13);
 }
@@ -107,7 +107,7 @@
   white-space: nowrap;
 }
 
-@keyframes rohu-fade-up {
+@keyframes mission-fade-up {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }

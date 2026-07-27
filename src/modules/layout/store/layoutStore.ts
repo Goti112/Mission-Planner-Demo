@@ -1,5 +1,5 @@
 /**
- * layoutStore.ts — Panel layout management for ROHU GCS
+ * layoutStore.ts — Panel layout management for MISSION GCS
  *
  * Manages the positions of UI panels across layout zones.
  * Persists to localStorage so the user's layout is restored on reload.
@@ -107,7 +107,7 @@ export const useLayoutStore = create<LayoutStore>()(
       resetLayout: () => set({ panels: { ...DEFAULT_LAYOUT } }),
     }),
     {
-      name: 'rohu-layout-v1',
+      name: 'mission-layout-v1',
       partialize: (s) => ({ panels: s.panels }),
     },
   ),

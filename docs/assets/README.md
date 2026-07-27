@@ -9,7 +9,7 @@ The four final portfolio media files are release-gated. They must be captured fr
 | `docs/assets/mission-planning.webp` | Selected Synthetic Range Alpha mission with route, mission items, metrics, and readiness or validation visible | 1600×900 source; below 500 KB | Awaiting restricted-token capture |
 | `docs/assets/flight-3d.webp` | Simulated aircraft, route, and altitude trajectory in the Cesium 3D view | 1600×900 source; below 500 KB | Awaiting restricted-token capture |
 | `docs/assets/telemetry-safety.webp` | Primary flight display, live telemetry, and operational readiness or safety signals | 1600×900 source; below 500 KB | Awaiting restricted-token capture |
-| `docs/assets/rohuplanner-demo.webp` | 20–30 second plan → simulate → 3D → replay animation | 1600×900 source; below 8 MB | Awaiting restricted-token capture |
+| `docs/assets/mission-planner-demo.webp` | 20–30 second plan → simulate → 3D → replay animation | 1600×900 source; below 8 MB | Awaiting restricted-token capture |
 
 Do not add these paths to the README as image embeds until every file exists, the real-provider browser smoke test passes, and the checks below are complete.
 

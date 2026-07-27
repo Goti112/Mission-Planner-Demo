@@ -7,9 +7,9 @@
 .flog-panel {
   display: flex;
   flex-direction: column;
-  background: var(--rohu-bg-card, rgba(14, 18, 32, 0.82));
-  border: 1px solid var(--rohu-border-glass, rgba(255, 255, 255, 0.08));
-  border-radius: var(--rohu-radius-sm, 8px);
+  background: var(--mission-bg-card, rgba(14, 18, 32, 0.82));
+  border: 1px solid var(--mission-border-glass, rgba(255, 255, 255, 0.08));
+  border-radius: var(--mission-radius-sm, 8px);
   overflow: hidden;
   min-height: 0;
   backdrop-filter: blur(12px);
@@ -23,7 +23,7 @@
   justify-content: space-between;
   padding: 6px 10px;
   background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid var(--rohu-border, rgba(255, 255, 255, 0.06));
+  border-bottom: 1px solid var(--mission-border, rgba(255, 255, 255, 0.06));
   flex-shrink: 0;
   gap: 6px;
 }
@@ -32,7 +32,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  color: var(--rohu-text-secondary);
+  color: var(--mission-text-secondary);
 }
 
 .flog-title {
@@ -40,18 +40,18 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--rohu-text-secondary);
-  font-family: var(--rohu-font-ui);
+  color: var(--mission-text-secondary);
+  font-family: var(--mission-font-ui);
 }
 
 .flog-count {
   font-size: 11px;
   background: rgba(91, 160, 245, 0.08);
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
   padding: 1px 6px;
   border-radius: 10px;
   font-variant-numeric: tabular-nums;
-  font-family: var(--rohu-font-mono);
+  font-family: var(--mission-font-mono);
   border: 1px solid rgba(91, 160, 245, 0.1);
 }
 
@@ -67,12 +67,12 @@
   align-items: center;
   gap: 3px;
   padding: 3px 7px;
-  border: 1px solid var(--rohu-border, rgba(255, 255, 255, 0.06));
+  border: 1px solid var(--mission-border, rgba(255, 255, 255, 0.06));
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.04);
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
   font-size: 11px;
-  font-family: var(--rohu-font-ui);
+  font-family: var(--mission-font-ui);
   cursor: pointer;
   transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
   line-height: 1;
@@ -80,13 +80,13 @@
 
 .flog-btn:hover {
   background: rgba(91, 160, 245, 0.08);
-  color: var(--rohu-text-primary);
-  border-color: var(--rohu-neon-border);
+  color: var(--mission-text-primary);
+  border-color: var(--mission-neon-border);
 }
 
 .flog-btn--danger:hover {
-  background: var(--rohu-danger-dim, rgba(239, 68, 68, 0.12));
-  color: var(--rohu-danger, #EF4444);
+  background: var(--mission-danger-dim, rgba(239, 68, 68, 0.12));
+  color: var(--mission-danger, #EF4444);
   border-color: rgba(239, 68, 68, 0.3);
 }
 
@@ -97,19 +97,19 @@
   gap: 5px;
   padding: 4px 10px;
   background: rgba(255, 255, 255, 0.02);
-  border-bottom: 1px solid var(--rohu-border, rgba(255, 255, 255, 0.06));
+  border-bottom: 1px solid var(--mission-border, rgba(255, 255, 255, 0.06));
   flex-shrink: 0;
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
 }
 
 .flog-select {
   flex: 1;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--rohu-border, rgba(255, 255, 255, 0.06));
+  border: 1px solid var(--mission-border, rgba(255, 255, 255, 0.06));
   border-radius: 5px;
-  color: var(--rohu-text-secondary);
+  color: var(--mission-text-secondary);
   font-size: 11px;
-  font-family: var(--rohu-font-ui);
+  font-family: var(--mission-font-ui);
   padding: 2px 4px;
   cursor: pointer;
   outline: none;
@@ -117,7 +117,7 @@
 }
 
 .flog-select:focus {
-  border-color: var(--rohu-neon-border, rgba(91, 160, 245, 0.3));
+  border-color: var(--mission-neon-border, rgba(91, 160, 245, 0.3));
 }
 
 /* ── Scrollable event list ── */
@@ -149,10 +149,10 @@
   align-items: center;
   justify-content: center;
   padding: 20px 12px;
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
   font-size: 11px;
   font-style: italic;
-  font-family: var(--rohu-font-ui);
+  font-family: var(--mission-font-ui);
 }
 
 /* ── Event row ── */
@@ -174,9 +174,9 @@
 
 .flog-event-time {
   flex-shrink: 0;
-  color: var(--rohu-text-muted);
+  color: var(--mission-text-muted);
   font-size: 11px;
-  font-family: var(--rohu-font-mono);
+  font-family: var(--mission-font-mono);
   letter-spacing: 0.2px;
 }
 
@@ -187,14 +187,14 @@
   border: 1px solid rgba(91, 160, 245, 0.18);
   border-radius: 4px;
   padding: 0 4px;
-  font-family: var(--rohu-font-mono);
+  font-family: var(--mission-font-mono);
 }
 
 .flog-event-msg {
   flex: 1;
-  color: var(--rohu-text-secondary);
+  color: var(--mission-text-secondary);
   word-break: break-word;
-  font-family: var(--rohu-font-ui);
+  font-family: var(--mission-font-ui);
 }
 
 /* ── Event type color variants ── */

@@ -99,7 +99,7 @@ function updateTrackState(state: PartialTrackState, message: DecodedLogMessage):
       batteryPercent: finiteNumber(payload.batteryRemainingPercent) ?? state.batteryPercent,
     };
   }
-  if (message.type === 'ROHU_SAMPLE') {
+  if (message.type === 'MISSION_SAMPLE') {
     return {
       ...state,
       lat: finiteNumber(payload.lat) ?? state.lat,
@@ -124,7 +124,7 @@ function hasReplayPosition(state: PartialTrackState): boolean {
 }
 
 function messageProvidesPosition(message: DecodedLogMessage): boolean {
-  return message.type === 'GPS' || message.type === 'GLOBAL_POSITION_INT' || message.type === 'VFR_HUD' || message.type === 'ROHU_SAMPLE';
+  return message.type === 'GPS' || message.type === 'GLOBAL_POSITION_INT' || message.type === 'VFR_HUD' || message.type === 'MISSION_SAMPLE';
 }
 
 function sampleFromState(timestampMs: number, state: PartialTrackState): ReplayTrackSample {

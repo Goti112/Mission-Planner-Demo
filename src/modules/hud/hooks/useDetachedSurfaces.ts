@@ -14,7 +14,7 @@ import type {
   ZoneFlags,
 } from '../../../shared/contexts/DetachedSurfacesContext';
 
-const STORAGE_KEY = 'rohu:detached-surfaces';
+const STORAGE_KEY = 'mission:detached-surfaces';
 const DEFAULT_ZONES: ZoneFlags = { icon: true, arc: true, val: true };
 const MIN_WIDTH_PX = 110;
 const MIN_HEIGHT_PX = 120;

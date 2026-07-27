@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const STORAGE_KEY = 'rohuplanner-demo-guide';
+const STORAGE_KEY = 'mission-planner-demo-guide';
 
 const loadDemoGuideStore = async () => import('./demoGuideStore');
 

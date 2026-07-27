@@ -2,7 +2,7 @@ import { decodeTlog } from '../../mission/services/tlogCodec';
 import { F, FRAME_FIELDS, MAX_FRAMES_PER_DRONE } from '../store/flightRecorderStore';
 import type { DecodedLogMessage, ReplayImportDiagnostics } from './logImportTypes';
 
-export type RohuTlogDecodeMessagesResult =
+export type MissionTlogDecodeMessagesResult =
   | {
       readonly ok: true;
       readonly messages: readonly DecodedLogMessage[];
@@ -28,7 +28,7 @@ function sysIdFromIndex(index: number): number {
   return index + 1;
 }
 
-export function decodeRohuTlogMessages(buffer: ArrayBuffer): RohuTlogDecodeMessagesResult {
+export function decodeMissionTlogMessages(buffer: ArrayBuffer): MissionTlogDecodeMessagesResult {
   const decoded = decodeTlog(buffer);
 
   if (!decoded.ok) {
@@ -50,9 +50,9 @@ export function decodeRohuTlogMessages(buffer: ArrayBuffer): RohuTlogDecodeMessa
       const timestampMs = recording.startedAt + relativeTimeMs;
 
       messages.push({
-        source: 'ROHU',
-        type: 'ROHU_SAMPLE',
-        messageId: 'ROHU_SAMPLE',
+        source: 'MISSION',
+        type: 'MISSION_SAMPLE',
+        messageId: 'MISSION_SAMPLE',
         sysId,
         compId: null,
         timestampMs,

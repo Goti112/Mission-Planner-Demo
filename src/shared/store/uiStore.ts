@@ -1,5 +1,5 @@
 /**
- * uiStore.ts — Centralised UI panel state for ROHU GCS
+ * uiStore.ts — Centralised UI panel state for MISSION GCS
  *
  * Controls which overlay panels are open and the drone-selector dropdown.
  * Also manages top-level view switching (FLIGHT ↔ PLAN).

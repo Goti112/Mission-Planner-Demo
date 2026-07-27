@@ -36,7 +36,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: var(--rohu-neon, #5BA0F5);
+  color: var(--mission-neon, #5BA0F5);
   opacity: 0.8;
   padding-left: 4px;
   margin-bottom: 3px;
@@ -47,7 +47,7 @@
   display: block;
   width: 3px;
   height: 12px;
-  background: var(--rohu-neon, #5BA0F5);
+  background: var(--mission-neon, #5BA0F5);
   border-radius: 2px;
   flex-shrink: 0;
   opacity: 0.7;
@@ -58,7 +58,7 @@
   margin-left: auto;
   font-size: 0.638rem;
   font-weight: 700;
-  color: var(--rohu-text-muted, #6B7280);
+  color: var(--mission-text-muted, #6B7280);
   background: rgba(255, 255, 255, 0.05);
   padding: 1px 6px;
   border-radius: 8px;
@@ -94,7 +94,7 @@
 }
 
 .pf-check-item:focus-visible {
-  outline: 2px solid var(--rohu-neon, #5BA0F5);
+  outline: 2px solid var(--mission-neon, #5BA0F5);
   outline-offset: 2px;
 }
 
@@ -104,7 +104,7 @@
 }
 
 .pf-check-item--done .pf-check-label {
-  color: var(--rohu-text-muted, #6B7280);
+  color: var(--mission-text-muted, #6B7280);
   text-decoration: line-through;
   text-decoration-color: rgba(16, 185, 129, 0.45);
 }
@@ -138,7 +138,7 @@
 .pf-check-label {
   font-size: 0.715rem;
   font-weight: 500;
-  color: var(--rohu-text-secondary, #9CA3AF);
+  color: var(--mission-text-secondary, #9CA3AF);
   line-height: 1.4;
   transition: color 0.15s ease;
   text-align: left;
@@ -224,7 +224,7 @@
 }
 
 .pf-auto-label {
-  color: var(--rohu-text-secondary, #9ca3af);
+  color: var(--mission-text-secondary, #9ca3af);
   font-size: 0.693rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -232,7 +232,7 @@
 }
 
 .pf-auto-detail {
-  color: var(--rohu-text-muted, #6b7280);
+  color: var(--mission-text-muted, #6b7280);
   font-size: 0.671rem;
   line-height: 1.3;
 }
