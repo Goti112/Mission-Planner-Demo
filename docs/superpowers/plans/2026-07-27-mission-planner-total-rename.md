@@ -31,7 +31,7 @@
 - Consumes: the existing tracked-file scan in `scripts/assert-public-surface.mjs`.
 - Produces: a case-insensitive forbidden-pattern rule covering tracked file contents and paths.
 
-- [ ] **Step 1: Add a forbidden identity pattern**
+- [x] **Step 1: Add a forbidden identity pattern**
 
 Build the removed fragment without writing it contiguously in the source:
 
@@ -41,13 +41,13 @@ const removedIdentityPattern = new RegExp(['ro', 'hu'].join(''), 'i');
 
 Raise an explicit audit error containing the offending tracked path when either the path or content matches.
 
-- [ ] **Step 2: Verify the audit fails before migration**
+- [x] **Step 2: Verify the audit fails before migration**
 
 Run: `npm run audit:surface`
 
 Expected: FAIL listing current files that still contain the removed identity.
 
-- [ ] **Step 3: Commit the guard with the rename work**
+- [x] **Step 3: Commit the guard with the rename work**
 
 Do not commit a deliberately failing intermediate state. Stage this file together with Task 2.
 
@@ -66,7 +66,7 @@ Do not commit a deliberately failing intermediate state. Stage this file togethe
 - Consumes: the naming rules in Global Constraints.
 - Produces: `mission-planner-demo` package metadata, `Mission Planner Demo` interface copy and `--mission-*` CSS variables.
 
-- [ ] **Step 1: Perform deterministic case-preserving replacements**
+- [x] **Step 1: Perform deterministic case-preserving replacements**
 
 Apply these exact mappings to tracked UTF-8 text files only. The removed source values are assembled to keep this plan compliant with the final scan:
 
@@ -82,17 +82,17 @@ $renamePairs = @(
 
 Apply the pairs in the listed longest-first order so URLs, display names and slugs cannot become partially transformed.
 
-- [ ] **Step 2: Rename tracked paths**
+- [x] **Step 2: Rename tracked paths**
 
 Rename any tracked filename containing the removed identity to the `mission-planner-demo` stem using `git mv`.
 
-- [ ] **Step 3: Verify the guard passes**
+- [x] **Step 3: Verify the guard passes**
 
 Run: `npm run audit:surface`
 
 Expected: PASS with no matching tracked path or content.
 
-- [ ] **Step 4: Run focused behavior checks**
+- [x] **Step 4: Run focused behavior checks**
 
 Run: `npm run lint`
 
@@ -100,7 +100,7 @@ Run: `npm run test`
 
 Expected: 82 files and 389 tests pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```powershell
 git add -A
@@ -120,17 +120,17 @@ git commit -m "Rename product to Mission Planner"
 - Consumes: `Mission Planner Demo` naming and the existing deterministic asset generator.
 - Produces: a Mission Planner wordmark and provenance metadata containing no previous identity.
 
-- [ ] **Step 1: Run the owned asset generator**
+- [x] **Step 1: Run the owned asset generator**
 
 Run: `npx tsx scripts/generate-original-assets.ts`
 
 Expected: `public/Logo.svg` visibly contains `Mission Planner` and generated metadata uses the new product identity.
 
-- [ ] **Step 2: Verify asset and documentation text**
+- [x] **Step 2: Verify asset and documentation text**
 
 Run the public-surface audit and inspect the SVG title, description, metadata and wordmark.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 Stage the regenerated assets and their provenance updates with the rename commit. If the rename work has already been committed, use a second scoped commit for the remaining generated-asset cleanup.
 
@@ -145,7 +145,7 @@ Stage the regenerated assets and their provenance updates with the rename commit
 - Consumes: the fully renamed source tree and locally configured public Mapbox and Cesium client values.
 - Produces: a successful public-surface audit, lint run, test suite, production build and guided local browser journey.
 
-- [ ] **Step 1: Run the complete validation command**
+- [x] **Step 1: Run the complete validation command**
 
 Load the two required provider values into the current process without printing them, then run:
 
@@ -160,7 +160,7 @@ Expected:
 - all Vitest files and tests pass;
 - TypeScript and the Vite production build pass.
 
-- [ ] **Step 2: Run the guided browser journey locally**
+- [x] **Step 2: Run the guided browser journey locally**
 
 With the same process-only provider loading, run:
 
@@ -170,7 +170,7 @@ npm run test:e2e
 
 Expected: Playwright completes the guided plan, simulation, 3D inspection and replay path with no browser errors.
 
-- [ ] **Step 3: Preserve redacted validation evidence**
+- [x] **Step 3: Preserve redacted validation evidence**
 
 Record only command names, provider-variable names, pass summaries and exit codes. Do not record provider values or authentication credentials.
 
@@ -187,7 +187,7 @@ Record only command names, provider-variable names, pass summaries and exit code
 - Consumes: the validated rename commits and the user-authorized public browser-provider values.
 - Produces: a public GitHub repository and production Vercel deployment using only the new identity.
 
-- [ ] **Step 1: Publish the verified commits**
+- [x] **Step 1: Publish the verified commits**
 
 Push the rename branch, rename the existing public GitHub repository, update the local remote, and integrate the verified commit into the default `main` branch.
 
@@ -198,11 +198,11 @@ Expected:
 - `origin` targets `https://github.com/Goti112/Mission-Planner-Demo.git`;
 - remote branch and `main` resolve to the verified release commit.
 
-- [ ] **Step 2: Update GitHub presentation metadata**
+- [x] **Step 2: Update GitHub presentation metadata**
 
 Set the homepage to `https://mission-planner-demo.vercel.app`, retain the portfolio topic, verify the repository remains pinned, and confirm the public `main` README uses the current repository and demo links.
 
-- [ ] **Step 3: Publish the Vercel project**
+- [x] **Step 3: Publish the Vercel project**
 
 Create or rename the project to `mission-planner-demo`, configure the approved Mapbox and Cesium client variables as encrypted Preview and Production values, deploy the verified source, and assign:
 
@@ -212,13 +212,13 @@ https://mission-planner-demo.vercel.app
 
 Ensure the portfolio deployment is publicly accessible and remove superseded aliases or deployments that expose the removed identity.
 
-- [ ] **Step 4: Verify production behavior**
+- [x] **Step 4: Verify production behavior**
 
 Run the guided Playwright journey against the stable production URL using process-only provider loading.
 
 Expected: one complete guided simulation journey passes without browser errors.
 
-- [ ] **Step 5: Preserve redacted publication evidence**
+- [x] **Step 5: Preserve redacted publication evidence**
 
 Record repository visibility, default-branch SHA, homepage, README checks, pinned state, project identity, public protection state, encrypted variable names, aliases, deployment state and the production Playwright result. Never record provider values or access credentials.
 
@@ -235,7 +235,7 @@ Record repository visibility, default-branch SHA, homepage, README checks, pinne
 - Consumes: the published GitHub and Vercel release.
 - Produces: immutable redacted evidence proving that current public surfaces contain no case-insensitive occurrence of the removed identity.
 
-- [ ] **Step 1: Re-run the local release gate**
+- [x] **Step 1: Re-run the local release gate**
 
 Run:
 
@@ -245,7 +245,7 @@ npm run validate
 
 Expected: audit, lint, tests and production build all pass from the exact published commit.
 
-- [ ] **Step 2: Scan every current public surface**
+- [x] **Step 2: Scan every current public surface**
 
 Confirm zero case-insensitive matches in:
 
@@ -257,13 +257,13 @@ Confirm zero case-insensitive matches in:
 
 The local parent folder and historical commit messages are explicit exclusions because neither is a current tracked or published surface.
 
-- [ ] **Step 3: Re-run production Playwright**
+- [x] **Step 3: Re-run production Playwright**
 
 Run `npm run test:e2e` with `PLAYWRIGHT_BASE_URL` set to `https://mission-planner-demo.vercel.app`. Load provider values only into the test process and clear them when the command exits.
 
 Expected: the guided production journey passes.
 
-- [ ] **Step 4: Verify CI and synchronization**
+- [x] **Step 4: Verify CI and synchronization**
 
 Confirm:
 
@@ -271,6 +271,6 @@ Confirm:
 - `HEAD`, the published feature branch and `origin/main` resolve to the same commit;
 - the tracked worktree is clean.
 
-- [ ] **Step 5: Capture immutable redacted evidence**
+- [x] **Step 5: Capture immutable redacted evidence**
 
 Write a final evidence record containing the release commit and tree hashes, exact pass counts, zero-match counts, current publication identifiers, CI result and Git synchronization state. Calculate its SHA-256 hash and ensure it contains no provider value, access credential or authentication token.
