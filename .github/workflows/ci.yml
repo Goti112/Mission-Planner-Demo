@@ -20,11 +20,14 @@ jobs:
       - run: npm run test
       - run: npm run build
         env:
-          VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
-          VITE_CESIUM_ION_TOKEN: ${{ secrets.VITE_CESIUM_ION_TOKEN }}
+          VITE_MAPBOX_TOKEN: pk.ci-build-only
+          VITE_CESIUM_ION_TOKEN: ci-build-only
 
   browser-smoke:
     runs-on: ubuntu-latest
+    env:
+      VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
+      VITE_CESIUM_ION_TOKEN: ${{ secrets.VITE_CESIUM_ION_TOKEN }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -32,11 +35,11 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+        if: ${{ env.VITE_MAPBOX_TOKEN != '' && env.VITE_CESIUM_ION_TOKEN != '' }}
       - run: npx playwright install --with-deps chromium
+        if: ${{ env.VITE_MAPBOX_TOKEN != '' && env.VITE_CESIUM_ION_TOKEN != '' }}
       - run: npm run test:e2e
-        env:
-          VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
-          VITE_CESIUM_ION_TOKEN: ${{ secrets.VITE_CESIUM_ION_TOKEN }}
+        if: ${{ env.VITE_MAPBOX_TOKEN != '' && env.VITE_CESIUM_ION_TOKEN != '' }}
 
   gitleaks:
     runs-on: ubuntu-latest
