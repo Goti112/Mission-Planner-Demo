@@ -15,3 +15,4 @@ test-results/
 .vscode/
 .idea/
 .DS_Store
+.vercel/

@@ -6,10 +6,13 @@ const environment = readDemoEnvironment({
   VITE_CESIUM_ION_TOKEN: process.env.VITE_CESIUM_ION_TOKEN,
 });
 
+const localBaseUrl = 'http://127.0.0.1:4173';
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? localBaseUrl;
+
 export default defineConfig({
   testDir: './tests',
   use: {
-    baseURL: 'http://127.0.0.1:4173',
+    baseURL,
     trace: 'on-first-retry',
   },
   projects: [
@@ -18,12 +21,12 @@ export default defineConfig({
       use: devices['Desktop Chrome'],
     },
   ],
-  webServer: {
+  webServer: process.env.PLAYWRIGHT_BASE_URL ? undefined : {
     command: 'npm run dev -- --host 127.0.0.1 --port 4173',
     env: {
       VITE_MAPBOX_TOKEN: environment.mapboxToken,
       VITE_CESIUM_ION_TOKEN: environment.cesiumIonToken,
     },
-    url: 'http://127.0.0.1:4173',
+    url: localBaseUrl,
   },
 });

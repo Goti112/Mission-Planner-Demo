@@ -2,15 +2,13 @@
 
 > A simulation-only ground-control case study for planning, flying, inspecting, and replaying a deterministic synthetic mission.
 
-[Launch live demo](#live-demo) · [Run locally](#run-locally)
+[Launch live demo](https://rohuplanner-demo.vercel.app) · [View on GitHub](https://github.com/Goti112/RohuPlanner-Demo) · [Run locally](#run-locally)
 
 RohuPlanner brings mission planning, map and 3D inspection, a primary flight display, operational readiness, and recorded telemetry into one browser workflow. This public edition uses synthetic data only; it does not connect to an aircraft.
 
 ## Live demo
 
-A public deployment is intentionally not linked yet. Release requires a successful provider-backed browser smoke run and fresh production media using new domain-restricted Mapbox and Cesium ion tokens. Those tokens are not stored in this repository.
-
-Until that release gate passes, the complete demo can be reviewed locally using the setup below. The final [media capture manifest](docs/assets/README.md) records the approved screenshots, animation path, limits, and capture sequence without substituting fabricated media.
+Open the [public RohuPlanner Demo](https://rohuplanner-demo.vercel.app) for the guided scenario or free exploration. The hosted build and browser smoke journey use restricted provider credentials that are never stored in this repository.
 
 ## What you can explore
 
@@ -67,7 +65,7 @@ The public repository currently tracks **367 TypeScript/JavaScript source files*
 
 `npm run validate` runs the public-surface audit, ESLint, the Vitest behavior suite, and a production build. A separate Playwright smoke journey covers plan → simulate → 3D → replay and deliberately refuses to start without both restricted provider tokens.
 
-The browser smoke run with real restricted provider credentials and the resulting portfolio media remain release gates; neither is represented as complete here.
+The guided browser journey has passed locally and against the production deployment with real restricted provider credentials.
 
 ## Run locally
 
@@ -78,8 +76,8 @@ Requirements:
 - A domain-restricted Cesium ion client token
 
 ```powershell
-git clone <your-public-repository-url>
-Set-Location RohuPlanner
+git clone https://github.com/Goti112/RohuPlanner-Demo.git
+Set-Location RohuPlanner-Demo
 npm ci
 Copy-Item .env.example .env.local
 ```
