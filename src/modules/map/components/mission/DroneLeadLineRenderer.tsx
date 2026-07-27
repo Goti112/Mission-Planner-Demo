@@ -11,8 +11,8 @@
  */
 
 import React, { useMemo } from 'react'
-import { Source, Layer } from 'react-map-gl'
-import type { LineLayer } from 'react-map-gl'
+import { Source, Layer } from 'react-map-gl/mapbox'
+import type { LayerProps } from 'react-map-gl/mapbox'
 import { LEAD_LINE_COLOR } from './rendering/MissionRenderConfig'
 
 // ── Props ─────────────────────────────────────────────────────────────────────
@@ -24,7 +24,7 @@ export interface DroneLeadLineRendererProps {
 
 // ── Mapbox layer definition ────────────────────────────────────────────────────
 
-const LEAD_LAYER: LineLayer = {
+const LEAD_LAYER: LayerProps = {
   id:    'drone-lead-line',
   type:  'line',
   paint: {

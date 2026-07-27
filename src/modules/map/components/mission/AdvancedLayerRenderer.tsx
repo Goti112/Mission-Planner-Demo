@@ -1,6 +1,10 @@
 import React, { useEffect, useMemo } from 'react'
-import { Layer, Marker, Source, useMap } from 'react-map-gl'
-import type { FillLayer, LineLayer, MapLayerMouseEvent, MarkerDragEvent } from 'react-map-gl'
+import { Layer, Marker, Source, useMap } from 'react-map-gl/mapbox'
+import type {
+  LayerProps,
+  MapMouseEvent,
+  MarkerDragEvent,
+} from 'react-map-gl/mapbox'
 import {
   FENCE_EXCLUSION_COLOR,
   FENCE_INCLUSION_COLOR,
@@ -32,15 +36,15 @@ interface RenderableFenceLayer {
   readonly fenceId: string
   readonly fillLayerId: string
   readonly lineLayerId: string
-  readonly fillLayer: FillLayer
-  readonly lineLayer: LineLayer
+  readonly fillLayer: LayerProps
+  readonly lineLayer: LayerProps
   readonly feature: GeoJSON.Feature<GeoJSON.Polygon>
 }
 
 interface RenderableSurveyLayer {
   readonly sourceId: string
-  readonly fillLayer: FillLayer
-  readonly lineLayer: LineLayer
+  readonly fillLayer: LayerProps
+  readonly lineLayer: LayerProps
   readonly feature: GeoJSON.Feature<GeoJSON.Polygon>
 }
 
@@ -161,7 +165,7 @@ const surveyFeature = (surveyArea: SurveyAreaMapData): GeoJSON.Feature<GeoJSON.P
   }
 }
 
-const fillLayer = (id: string, color: string, selected: boolean): FillLayer => ({
+const fillLayer = (id: string, color: string, selected: boolean): LayerProps => ({
   id,
   type: 'fill',
   paint: {
@@ -170,7 +174,7 @@ const fillLayer = (id: string, color: string, selected: boolean): FillLayer => (
   },
 })
 
-const lineLayer = (id: string, color: string, selected: boolean): LineLayer => ({
+const lineLayer = (id: string, color: string, selected: boolean): LayerProps => ({
   id,
   type: 'line',
   layout: {
@@ -292,7 +296,7 @@ const AdvancedLayerRenderer: React.FC<AdvancedLayerRendererProps> = ({
     ])
 
     const handlers = registrations.map((registration) => {
-      const handler = (event: MapLayerMouseEvent): void => {
+      const handler = (event: MapMouseEvent): void => {
         event.originalEvent.stopPropagation()
         onSelectFence(registration.fenceId, null)
       }

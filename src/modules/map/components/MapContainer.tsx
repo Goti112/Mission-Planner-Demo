@@ -1,9 +1,9 @@
 import { useMemo, useCallback, useRef, useEffect, useState } from 'react'
 import type { FC } from 'react'
-import Map, { Marker } from 'react-map-gl'
-import type { MapRef } from 'react-map-gl'
-import type { MapLayerMouseEvent } from 'react-map-gl'
-import type { ViewStateChangeEvent } from 'react-map-gl'
+import Map, { Marker } from 'react-map-gl/mapbox'
+import type { MapRef } from 'react-map-gl/mapbox'
+import type { MapMouseEvent } from 'react-map-gl/mapbox'
+import type { ViewStateChangeEvent } from 'react-map-gl/mapbox'
 import { useDroneStore } from '../../drone'
 import { useUIStore } from '../../../shared/store/uiStore'
 
@@ -645,7 +645,7 @@ const MapContainer: FC<MapContainerProps> = ({
   const styleUrl = MAPBOX_STYLES[mapStyle] || MAPBOX_STYLES.streets
 
   const handleClick = useCallback(
-    (e: MapLayerMouseEvent) => {
+    (e: MapMouseEvent) => {
       if (!planningMode || !onWaypointClick) return
       onWaypointClick({ lat: e.lngLat.lat, lng: e.lngLat.lng })
     },

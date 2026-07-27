@@ -29,8 +29,8 @@
  */
 
 import React, { useState, useCallback, useRef } from 'react'
-import { Marker } from 'react-map-gl'
-import type { MarkerDragEvent } from 'react-map-gl'
+import { Marker } from 'react-map-gl/mapbox'
+import type { MarkerDragEvent } from 'react-map-gl/mapbox'
 import {
   WP_COLOR_NORMAL, WP_COLOR_CURRENT, WP_COLOR_SELECTED,
   WP_BORDER_NORMAL, WP_BORDER_CURRENT, WP_BORDER_SELECTED,

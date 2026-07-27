@@ -21,8 +21,8 @@
  */
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { Source, Layer } from 'react-map-gl'
-import type { LineLayer } from 'react-map-gl'
+import { Source, Layer } from 'react-map-gl/mapbox'
+import type { LayerProps } from 'react-map-gl/mapbox'
 import { getColorFromMSL, toHex } from '../../../../shared/utils/altitudeColors'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -193,7 +193,7 @@ const DroneTrailRenderer: React.FC<DroneTrailRendererProps> = ({
   const trailLyr = `drone-trail-lyr-${droneId}`
 
   // ── Trail layer — data-driven colour and opacity from GeoJSON properties ──
-  const trailLayer: LineLayer = {
+  const trailLayer: LayerProps = {
     id:   trailLyr,
     type: 'line',
     layout: {

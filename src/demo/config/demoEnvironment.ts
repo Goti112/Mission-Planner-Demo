@@ -25,7 +25,18 @@ const requireValue = (name: keyof DemoEnvironmentInput, value: string | undefine
   return normalized;
 };
 
+const requirePublicMapboxToken = (value: string | undefined): string => {
+  const token = requireValue('VITE_MAPBOX_TOKEN', value);
+  if (!token.startsWith('pk.')) {
+    throw new DemoEnvironmentError(
+      'VITE_MAPBOX_TOKEN must be a public client token beginning with pk. Secret tokens must never be exposed to the browser.',
+    );
+  }
+
+  return token;
+};
+
 export const readDemoEnvironment = (input: DemoEnvironmentInput): DemoEnvironment => ({
-  mapboxToken: requireValue('VITE_MAPBOX_TOKEN', input.VITE_MAPBOX_TOKEN),
+  mapboxToken: requirePublicMapboxToken(input.VITE_MAPBOX_TOKEN),
   cesiumIonToken: requireValue('VITE_CESIUM_ION_TOKEN', input.VITE_CESIUM_ION_TOKEN),
 });

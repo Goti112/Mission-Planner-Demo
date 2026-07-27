@@ -16,8 +16,8 @@
  */
 
 import React, { useState, useMemo, useRef, useEffect } from 'react'
-import Map, { Source, Layer, Marker } from 'react-map-gl'
-import type { MapRef } from 'react-map-gl'
+import Map, { Source, Layer, Marker } from 'react-map-gl/mapbox'
+import type { MapRef } from 'react-map-gl/mapbox'
 import {
   useFlightRecorderStore,
   MAX_FRAMES_PER_DRONE,

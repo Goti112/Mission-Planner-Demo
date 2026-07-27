@@ -11,8 +11,8 @@
  */
 
 import React, { useMemo } from 'react'
-import { Source, Layer, Marker } from 'react-map-gl'
-import type { LineLayer } from 'react-map-gl'
+import { Source, Layer, Marker } from 'react-map-gl/mapbox'
+import type { LayerProps } from 'react-map-gl/mapbox'
 import { calculateWaypointDistances, fmtDist } from '../../../mission'
 import { PATH_COLOR_IDLE, DIST_LABEL_BG, DIST_LABEL_BORDER, DIST_LABEL_TEXT } from './rendering/MissionRenderConfig'
 
@@ -31,7 +31,7 @@ interface MissionPathRendererProps {
 
 // ── Mapbox layer definition ────────────────────────────────────────────────────
 
-const LINE_LAYER: LineLayer = {
+const LINE_LAYER: LayerProps = {
   id:     'mission-line',
   type:   'line',
   paint:  {
