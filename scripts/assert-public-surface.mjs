@@ -27,7 +27,7 @@ const removedIdentityPattern = new RegExp(['ro', 'hu'].join(''), 'i');
 const expectedCspSources = {
   'default-src': ["'self'"],
   'script-src': ["'self'", "'unsafe-eval'"],
-  'connect-src': ["'self'", 'https://api.cesium.com', 'https://assets.cesium.com', 'https://*.mapbox.com'],
+  'connect-src': ["'self'", 'https://api.cesium.com', 'https://assets.cesium.com', 'https://assets.ion.cesium.com', 'https://tile.googleapis.com', 'https://*.mapbox.com'],
 };
 
 const parseCspDirectives = (policy) => new Map(policy
