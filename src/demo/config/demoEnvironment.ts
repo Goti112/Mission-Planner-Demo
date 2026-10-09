@@ -19,7 +19,7 @@ const requireValue = (name: keyof DemoEnvironmentInput, value: string | undefine
   const normalized = value?.trim() ?? '';
   if (normalized.length === 0) {
     throw new DemoEnvironmentError(
-      `${name} is required. Copy .env.example to .env.local and provide a domain-restricted client token.`,
+      `${name} is required. Run "npm run setup" (or copy .env.example to .env.local) and provide a domain-restricted client token.`,
     );
   }
   return normalized;

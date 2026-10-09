@@ -72,30 +72,20 @@ The guided browser journey has passed locally and against the production deploym
 Requirements:
 
 - Node.js 24
-- A domain-restricted Mapbox client token
-- A domain-restricted Cesium ion client token
+- A public Mapbox token (`pk.…`) — [create one](https://account.mapbox.com/access-tokens/)
+- A Cesium ion token — [create one](https://ion.cesium.com/tokens)
 
 ```powershell
 git clone https://github.com/Goti112/Mission-Planner-Demo.git
 Set-Location Mission-Planner-Demo
 npm ci
-Copy-Item .env.example .env.local
-```
-
-Add both client tokens to `.env.local`:
-
-```dotenv
-VITE_MAPBOX_TOKEN=your_restricted_mapbox_token
-VITE_CESIUM_ION_TOKEN=your_restricted_cesium_ion_token
-```
-
-Then start the demo:
-
-```powershell
+npm run setup
 npm run dev
 ```
 
-Open the local URL printed by Vite. Keep `.env.local` untracked, use client-side tokens with the narrowest permitted origins, and never commit credentials.
+`npm run setup` asks for both tokens and writes them to `.env.local` (git-ignored). Run every `npm` command from inside the `Mission-Planner-Demo` folder, then open the local URL printed by Vite.
+
+Prefer to do it by hand? Copy `.env.example` to `.env.local` and fill in `VITE_MAPBOX_TOKEN` and `VITE_CESIUM_ION_TOKEN`. Use client-side tokens restricted to the narrowest origins, and never commit credentials.
 
 ## Project scope
 
